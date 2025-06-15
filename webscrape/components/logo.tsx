@@ -31,7 +31,7 @@ const Logo = ({
         className="bg-gradient-to-r
         bg-clip-text text-transparent from-emerald-500 to-emerald-400"
       >
-        Sigma<span className="bg-gradient-to-r
+        Quick<span className="bg-gradient-to-r
         bg-clip-text text-transparent from-stone-400 to-stone-500 dark:text-stone-300">Scrape</span>
       </span>
     </Link>

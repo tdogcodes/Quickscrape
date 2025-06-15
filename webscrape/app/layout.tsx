@@ -18,7 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
         <body className={inter.className}>
-          <AppProvider>{children}</AppProvider>
+          <AppProvider 
+            attribute="class"
+            defaultTheme="system"
+            enableSystem>{children}</AppProvider>
         </body>
     </html>
   );

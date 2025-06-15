@@ -1,5 +1,6 @@
 import BreadcrumbHeader from '@/components/breadcrumb-header'
 import DesktopSidebar from '@/components/desktop-sidebar'
+import { ModeToggle } from '@/components/theme-toggle'
 import { Separator } from '@/components/ui/separator'
 import React from 'react'
 
@@ -11,6 +12,9 @@ const Layout = ({children} : {children: React.ReactNode}) => {
             <header className='flex items-center justify-between
             px-66 py-4 h-[50px] container'>
                 <BreadcrumbHeader/>
+                <div className="gap-1 flex items-center">
+                    <ModeToggle/>
+                </div>
             </header>
             <Separator/>
             <div className='overflow-auto'>

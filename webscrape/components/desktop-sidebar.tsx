@@ -3,13 +3,16 @@ import {
   CoinsIcon,
   HomeIcon,
   Layers2Icon,
+  Menu,
+  ScanText,
   ShieldCheckIcon,
 } from "lucide-react";
-import React from "react";
+import React, { Fragment } from "react";
 import Logo from "./logo";
 import Link from "next/link";
-import { buttonVariants } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import { usePathname } from "next/navigation";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 const routes = [
   {
@@ -58,8 +61,10 @@ const DesktopSidebar = () => {
             href={route.href}
             key={route.href}
             className={buttonVariants({
-              variant: activeRoute.href === route.href ? "sidebarItemActive" : "sidebarItem",
-                
+              variant:
+                activeRoute.href === route.href
+                  ? "sidebarItemActive"
+                  : "sidebarItem",
             })}
           >
             <route.icon size={20} />
@@ -67,6 +72,52 @@ const DesktopSidebar = () => {
           </Link>
         ))}
       </div>
+    </div>
+  );
+};
+
+export const MobileSidebar = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const pathname = usePathname();
+  const activeRoute =
+    routes.find(
+      (route) => route.href.length > 0 && pathname.includes(route.href)
+    ) || routes[0];
+
+  return (
+    <div className="block border-separate bg-background md:hidden">
+      <nav className="container flex items-center justify-between px-8">
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size={"icon"}>
+              <Menu className="text-[#10b981]" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent
+            className="w-[400px] sm:w-[300px] space-y-4"
+            side={"left"}
+          >
+            <Logo />
+            <div className="flex flex-col gap-1">
+              {routes.map((route) => (
+                <Link
+                  href={route.href}
+                  key={route.href}
+                  className={buttonVariants({
+                    variant:
+                      activeRoute.href === route.href
+                        ? "sidebarItemActive"
+                        : "sidebarItem",
+                  })}
+                >
+                  <route.icon size={20} />
+                  {route.label}
+                </Link>
+              ))}
+            </div>
+          </SheetContent>
+        </Sheet>
+      </nav>
     </div>
   );
 };
