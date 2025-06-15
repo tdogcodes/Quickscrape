@@ -109,6 +109,7 @@ export const MobileSidebar = () => {
                         ? "sidebarItemActive"
                         : "sidebarItem",
                   })}
+                  onClick={() => setIsOpen((prev) => !prev)}
                 >
                   <route.icon size={20} />
                   {route.label}

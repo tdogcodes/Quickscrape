@@ -17,7 +17,7 @@ const NotFound = () => {
             Try using a different URL or going back to the homepage.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href={"/"} className="px-4 py-2 flex items-center justify-content bg-primary text-white rounded-md hover:bg-primary/80 transition-colors">
+            <Link href={"/"} className="px-4 py-2 flex items-center m-auto w-fit justify-center bg-primary text-white rounded-md hover:bg-primary/80 transition-colors">
                 <ArrowLeft className='w-4 h-4 mr-2'/>Go to Homepage
             </Link>
         </div>
