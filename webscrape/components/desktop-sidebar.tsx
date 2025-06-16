@@ -4,7 +4,6 @@ import {
   HomeIcon,
   Layers2Icon,
   Menu,
-  ScanText,
   ShieldCheckIcon,
 } from "lucide-react";
 import React, { Fragment } from "react";
@@ -58,7 +57,7 @@ const DesktopSidebar = () => {
       <div className="flex flex-col p-2">
         {routes.map((route) => (
           <Link
-            href={route.href}
+            href={route.href === "" ? "/" : `/${route.href}`}
             key={route.href}
             className={buttonVariants({
               variant:

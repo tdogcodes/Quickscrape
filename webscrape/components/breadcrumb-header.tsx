@@ -8,13 +8,6 @@ import {
   BreadcrumbList,
 } from "./ui/breadcrumb";
 import { MobileSidebar } from "./desktop-sidebar";
-import {
-  SignedOut,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  UserButton,
-} from "@clerk/clerk-react";
 
 const BreadcrumbHeader = () => {
   const pathName = usePathname();
