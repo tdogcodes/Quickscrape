@@ -1,10 +1,32 @@
 "use client";
 import { WorkFlow } from "@/generated/prisma";
-import ReactFlow, { useEdgesState, useNodesState } from "reactflow";
+import ReactFlow, {
+  Background,
+  BackgroundVariant,
+  Controls,
+  useEdgesState,
+  useNodesState,
+} from "reactflow";
+import "reactflow/dist/style.css";
 import React from "react";
+import { CreateFlowNode } from "@/lib/workflow/task/create-flow-node";
+import { TaskType } from "@/types/task";
+import NodeComponent from "./nodes/node-component";
+import { tr } from "date-fns/locale";
+
+const nodeTypes = {
+  FlowScrapeNode: NodeComponent,
+};
+const fitViewOptions = {
+  padding: 1,
+  duration: 500,
+  transitionEasing: "ease-in-out",
+};
 
 const FlowEditor = ({ workflow }: { workflow: WorkFlow }) => {
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState([
+    CreateFlowNode(TaskType.LAUNCH_BROWSER),
+  ]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
   return (
@@ -14,8 +36,13 @@ const FlowEditor = ({ workflow }: { workflow: WorkFlow }) => {
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
+        nodeTypes={nodeTypes}
         fitView
-      ></ReactFlow>
+        fitViewOptions={fitViewOptions}
+      >
+        <Controls position="top-left" fitViewOptions={fitViewOptions} />
+        <Background variant={BackgroundVariant.Dots} gap={12} />
+      </ReactFlow>
     </main>
   );
 };

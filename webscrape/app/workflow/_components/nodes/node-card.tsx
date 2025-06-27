@@ -1,0 +1,41 @@
+"use client";
+import { cn } from "@/lib/utils";
+import React from "react";
+import { useReactFlow } from "reactflow";
+
+const NodeCard = ({
+  children,
+  nodeId,
+  isSelected = false,
+}: {
+  children: React.ReactNode;
+  nodeId: string;
+  isSelected: boolean;
+}) => {
+
+  const {getNode, setCenter} = useReactFlow();
+
+  return (
+    <div
+      onDoubleClick={() => {
+        const node = getNode(nodeId);
+        if (!node) return;
+        const { position, width, height} = node;
+        if (!position || !width  || !height) return;
+        const x = position.x + width / 2;
+        const y = position.y + height / 2;
+        if( x === undefined || y === undefined) return;
+        setCenter(x, y, { duration: 500, zoom: 1 });
+      }}
+      className={cn(
+        "border-2 transition-colors duration-200 cursor-pointer bg-background w-[420px] border-separate text-sm gap-1 flex flex-col rounded-sm p-3",
+        isSelected && "border-primary"
+      )}
+      id={nodeId}
+    >
+      {children}
+    </div>
+  );
+};
+
+export default NodeCard;
