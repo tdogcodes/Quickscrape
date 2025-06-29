@@ -12,15 +12,12 @@ import React from "react";
 import { CreateFlowNode } from "@/lib/workflow/task/create-flow-node";
 import { TaskType } from "@/types/task";
 import NodeComponent from "./nodes/node-component";
-import { tr } from "date-fns/locale";
 
 const nodeTypes = {
   FlowScrapeNode: NodeComponent,
 };
 const fitViewOptions = {
   padding: 1,
-  duration: 500,
-  transitionEasing: "ease-in-out",
 };
 
 const FlowEditor = ({ workflow }: { workflow: WorkFlow }) => {

@@ -6,25 +6,31 @@ import { TaskType } from "@/types/task";
 import { CoinsIcon, GripVerticalIcon } from "lucide-react";
 import React from "react";
 
-const NodeHeader = ({taskType} : { taskType: TaskType}) => {
-    const task = TaskRegistry[taskType]
-  return <div className="flex items-center p-2 gap-2">
-    <task.icon size={16} />
-    <div className="flex justify-between items-center w-full">
+const NodeHeader = ({ taskType }: { taskType: TaskType }) => {
+  const task = TaskRegistry[taskType];
+  return (
+    <div className="flex items-center p-2 gap-2">
+      <task.icon size={16} />
+      <div className="flex justify-between items-center w-full">
         <p className="text-xs text-muted-foreground uppercase font-bold">
-            {task.label}
+          {task.label}
         </p>
         <div className="gap-1 items-center flex">
-            {task.isEntryPoint && <Badge>Entry Point</Badge>}
-            <Badge className="gap-2 flex items-center text-xs">
-                <CoinsIcon size={16}/>
-            </Badge>
-            <Button variant={"ghost"} size={"icon"} className="drag-handle cursor-grab" >
-                <GripVerticalIcon size={20} />
-            </Button>
+          {task.isEntryPoint && <Badge>Entry Point</Badge>}
+          <Badge className="gap-2 flex items-center text-xs">
+            <CoinsIcon size={16} />
+          </Badge>
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+            className="drag-handle cursor-grab"
+          >
+            <GripVerticalIcon size={20} />
+          </Button>
         </div>
+      </div>
     </div>
-  </div>;
+  );
 };
 
 export default NodeHeader;
