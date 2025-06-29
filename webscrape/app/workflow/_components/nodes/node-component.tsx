@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { NodeProps } from "reactflow";
+import { NodeProps } from "@xyflow/react";
 import NodeCard from "./node-card";
 import NodeHeader from "./node-header";
 import { AppNodeData } from "@/types/app-node";

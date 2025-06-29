@@ -1,8 +1,8 @@
 import { TaskParam, TaskParamType } from "@/types/task";
 import React, { useCallback } from "react";
 import StringParam from "./param/string-param";
-import { useReactFlow } from "reactflow";
 import { AppNode } from "@/types/app-node";
+import { useReactFlow } from "@xyflow/react";
 
 const NodeParamField = ({
   param,
@@ -13,32 +13,20 @@ const NodeParamField = ({
   param: TaskParam;
   setNodes?: React.Dispatch<React.SetStateAction<AppNode[]>>;
 }) => {
-  const { getNode } = useReactFlow();
+  const { getNode, updateNodeData } = useReactFlow();
   const node = getNode(nodeId) as AppNode;
   const value = node?.data.inputs?.[param.name];
 
   const updateNodeParamValue = useCallback(
     (newValue: string) => {
-      if (setNodes) {
-        setNodes((nodes) =>
-          nodes.map((node) =>
-            node.id === nodeId
-              ? {
-                  ...node,
-                  data: {
-                    ...node.data,
-                    inputs: {
-                      ...node.data.inputs,
-                      [param.name]: newValue,
-                    },
-                  },
-                }
-              : node
-          )
-        );
-      }
+      updateNodeData(nodeId, {
+        inputs: {
+          ...node?.data?.inputs,
+          [param.name]: newValue,
+        }
+      })
     },
-    [setNodes, param.name, nodeId, node?.data.inputs]
+    [updateNodeData, param.name, nodeId, node?.data?.inputs]
   );
 
   switch (param.type) {

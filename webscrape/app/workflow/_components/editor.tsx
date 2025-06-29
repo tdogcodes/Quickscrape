@@ -1,7 +1,7 @@
 "use client"
 import { WorkFlow } from '@/generated/prisma'
 import React from 'react'
-import { ReactFlowProvider } from 'reactflow'
+import { ReactFlowProvider } from '@xyflow/react'
 import FlowEditor from './flow-editor'
 import Topbar from './topbar/topbar'
 

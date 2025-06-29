@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { TaskParam } from "@/types/task";
 import React from "react";
-import { Handle, Position } from "reactflow";
+import { Handle, Position } from "@xyflow/react";
 import NodeParamField from "./node-param-field";
 
 export const NodeInputs = ({ children }: { children: React.ReactNode }) => {
@@ -11,13 +11,15 @@ export const NodeInputs = ({ children }: { children: React.ReactNode }) => {
 export const NodeInput = ({
   input,
   nodeId,
+  setNodes,
 }: {
   input: TaskParam;
   nodeId: string;
+  setNodes?: React.Dispatch<React.SetStateAction<any[]>>;
 }) => {
   return (
     <div className="flex justify-start bg-secondary relative !rounded-b-sm p-3 w-full">
-      <NodeParamField param={input} nodeId={nodeId} />
+      <NodeParamField param={input} nodeId={nodeId} setNodes={setNodes} />
       {!input.hideHandle && (
         <Handle
           id={input.name}

@@ -1,18 +1,18 @@
 "use client";
 import { WorkFlow } from "@/generated/prisma";
-import ReactFlow, {
+import {
+  ReactFlow,
   Background,
   BackgroundVariant,
   Controls,
   useEdgesState,
   useNodesState,
-} from "reactflow";
-import "reactflow/dist/style.css";
+} from "@xyflow/react";
 import React from "react";
 import { CreateFlowNode } from "@/lib/workflow/task/create-flow-node";
 import { TaskType } from "@/types/task";
 import NodeComponent from "./nodes/node-component";
-
+import '@xyflow/react/dist/style.css';
 const nodeTypes = {
   FlowScrapeNode: NodeComponent,
 };
