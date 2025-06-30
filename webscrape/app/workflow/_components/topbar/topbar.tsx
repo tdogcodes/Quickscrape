@@ -7,11 +7,12 @@ import React from "react";
 import SaveBtn from "./save-btn";
 
 interface Props {
-    title: string;
+    title: string; 
     subtitle?: string;
+    workflowId: string;
 }
 
-const Topbar = ({title, subtitle} : Props) => {
+const Topbar = ({title, subtitle, workflowId} : Props) => {
 const router = useRouter()
   return (
     <header
@@ -35,7 +36,7 @@ const router = useRouter()
         </div>
       </div>
       <div className="flex gap-1 flex-1 justify-end">
-        <SaveBtn/>
+        <SaveBtn workflowId={workflowId}/>
       </div>
     </header>
   );
