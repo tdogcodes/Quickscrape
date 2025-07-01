@@ -27,7 +27,7 @@ const NodeCard = ({
         setCenter(x, y, { duration: 500, zoom: 1 });
       }}
       className={cn(
-        "border-2 transition-colors duration-200 cursor-pointer bg-background w-[420px] border-separate text-sm gap-1 flex flex-col rounded-sm",
+        "border-2 transition-colors duration-200 cursor-pointer bg-background w-[420px] border-separate text-sm gap-1 flex flex-col ",
         isSelected && "border-primary"
       )}
       id={nodeId}
