@@ -2,7 +2,7 @@ import NotFound from "@/app/not-found";
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import React from "react";
-import Editor from "../../_components/editor";
+import Editor from "../_components/editor";
 
 const Page = async ({ params }: { params: { workflowId: string } }) => {
   const { workflowId } = params;
