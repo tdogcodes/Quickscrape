@@ -2,7 +2,7 @@
 
 
 import prisma from "@/lib/prisma";
-import { WorkFlowStatus } from "@/types/workflow";
+import { WorkflowStatus } from "@/types/workflow";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
@@ -30,7 +30,7 @@ export async function UpdateWorkflow({
     throw new Error("Workflow not found");
   }
 
-  if (workFlow.status !== WorkFlowStatus.DRAFT) {
+  if (workFlow.status !== WorkflowStatus.DRAFT) {
     throw new Error("Workflow is not in draft status");
   }
 

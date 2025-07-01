@@ -16,18 +16,18 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { WorkFlow } from "@/generated/prisma";
 import { cn } from "@/lib/utils";
-import { WorkFlowStatus } from "@/types/workflow";
+import { WorkflowStatus } from "@/types/workflow";
 import { FileTextIcon, PlayIcon, ShuffleIcon } from "lucide-react";
 import Link from "next/link";
 
 const statusColors = {
-  [WorkFlowStatus.DRAFT]: "bg-yellow-400 text-yellow-600",
-  [WorkFlowStatus.PUBLISHED]: "bg-primary",
+  [WorkflowStatus.DRAFT]: "bg-yellow-400 text-yellow-600",
+  [WorkflowStatus.PUBLISHED]: "bg-primary",
 };
 
 const WorkflowCard = ({ workflow }: { workflow: WorkFlow }) => {
-  const isDraft = workflow.status === WorkFlowStatus.DRAFT;
-  const isPublished = workflow.status === WorkFlowStatus.PUBLISHED;
+  const isDraft = workflow.status === WorkflowStatus.DRAFT;
+  const isPublished = workflow.status === WorkflowStatus.PUBLISHED;
 
   return (
     <Card className="border border-separate shadow-md rounded-lg hover:shadow-lg dark:shadow-primary/30 transition-all duration-300">
@@ -37,8 +37,8 @@ const WorkflowCard = ({ workflow }: { workflow: WorkFlow }) => {
             className={cn(
               "w-10 h-10 rounded-full flex items-center justify-center",
               isDraft
-                ? statusColors[WorkFlowStatus.DRAFT]
-                : statusColors[WorkFlowStatus.PUBLISHED]
+                ? statusColors[WorkflowStatus.DRAFT]
+                : statusColors[WorkflowStatus.PUBLISHED]
             )}
           >
             {isDraft ? (

@@ -1,21 +1,22 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { CreateFlowNode } from "@/lib/workflow/task/create-flow-node";
+import { CreateFlowNode } from "@/lib/workflow/create-flow-node";
 import {
-  CreateWorkflowSchema,
+  createWorkflowSchema,
   CreateWorkflowSchemaType,
 } from "@/schema/workflows";
 import { AppNode } from "@/types/app-node";
 import { TaskType } from "@/types/task";
-import { WorkFlowStatus } from "@/types/workflow";
+import { WorkflowStatus } from "@/types/workflow";
+
 import { auth } from "@clerk/nextjs/server";
 import { Edge } from "@xyflow/react";
 import { redirect } from "next/navigation";
 
 export async function CreateWorkflow(form: CreateWorkflowSchemaType) {
   // Validate the form data using Zod schema
-  const { success, data } = CreateWorkflowSchema.safeParse(form);
+  const { success, data } = createWorkflowSchema.safeParse(form);
   if (!success) {
     throw new Error("Invalid form data, please check your inputs");
   }
@@ -42,7 +43,7 @@ export async function CreateWorkflow(form: CreateWorkflowSchemaType) {
       definition: JSON.stringify(initialWorkflow),
       name: data.name.toLowerCase(),
       description: data.description ?? "",
-      status: WorkFlowStatus.DRAFT,
+      status: WorkflowStatus.DRAFT,
     },
   });
 

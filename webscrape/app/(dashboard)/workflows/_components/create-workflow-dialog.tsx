@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Layers2Icon, Loader2Icon } from "lucide-react";
 import CustomDialogHeader from "@/components/custom-dialog-header";
 import {
-  CreateWorkflowSchema,
+  createWorkflowSchema,
   CreateWorkflowSchemaType,
 } from "@/schema/workflows";
 import { useForm } from "react-hook-form";
@@ -30,7 +30,7 @@ const CreateWorkflowDialog = ({ triggerText }: { triggerText?: string }) => {
   const [open, setOpen] = useState(false);
 
   const form = useForm<CreateWorkflowSchemaType>({
-    resolver: zodResolver(CreateWorkflowSchema),
+    resolver: zodResolver(createWorkflowSchema),
     defaultValues: {
       name: "",
       description: "",
