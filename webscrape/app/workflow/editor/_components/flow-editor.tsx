@@ -19,6 +19,7 @@ import { CreateFlowNode } from "@/lib/workflow/create-flow-node";
 import { TaskType } from "@/types/task";
 import { AppNode } from "@/types/app-node";
 import DeletableEdge from "./edges/deletable-edge";
+import { no } from "zod/v4/locales";
 
 const nodeTypes = {
   FlowScrapeNode: NodeComponent,
@@ -63,7 +64,7 @@ const FlowEditor = ({ workflow }: { workflow: WorkFlow }) => {
 
     const newNode = CreateFlowNode(taskType as TaskType, position);
     setNodes((nds) => nds.concat(newNode));
-  }, []);
+  }, [screenToFlowPosition, setNodes]);
 
   const onConnect = useCallback(
     (connection: Connection) => {
