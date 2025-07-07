@@ -8,8 +8,9 @@ import {
   useEdgesState,
   useNodesState,
   useReactFlow,
-  NodeTypes,
   Edge,
+  Connection,
+  addEdge,
 } from "@xyflow/react";
 import React, { useCallback, useEffect } from "react";
 import NodeComponent from "./nodes/node-component";
@@ -17,9 +18,16 @@ import "@xyflow/react/dist/style.css";
 import { CreateFlowNode } from "@/lib/workflow/create-flow-node";
 import { TaskType } from "@/types/task";
 import { AppNode } from "@/types/app-node";
+import DeletableEdge from "./edges/deletable-edge";
+
 const nodeTypes = {
   FlowScrapeNode: NodeComponent,
 };
+
+const edgeTypes = {
+  default: DeletableEdge,
+};
+
 const fitViewOptions = {
   padding: 1,
 };
@@ -27,7 +35,7 @@ const fitViewOptions = {
 const FlowEditor = ({ workflow }: { workflow: WorkFlow }) => {
   const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
-  const { setViewport, screenToFlowPosition } = useReactFlow();
+  const { setViewport, screenToFlowPosition, updateNodeData } = useReactFlow();
 
   useEffect(() => {
     try {
@@ -43,23 +51,44 @@ const FlowEditor = ({ workflow }: { workflow: WorkFlow }) => {
     event.dataTransfer.dropEffect = "move";
   }, []);
 
-  const onDrop = useCallback(
-    (event: React.DragEvent) => {
-      event.preventDefault();
-      const taskType = event.dataTransfer.getData("application/reactflow");
-      if (!taskType || typeof taskType === undefined) return;
+  const onDrop = useCallback((event: React.DragEvent) => {
+    event.preventDefault();
+    const taskType = event.dataTransfer.getData("application/reactflow");
+    if (!taskType || typeof taskType === undefined) return;
 
-      const position = screenToFlowPosition({
-        x: event.clientX,
-        y: event.clientY,
+    const position = screenToFlowPosition({
+      x: event.clientX,
+      y: event.clientY,
+    });
+
+    const newNode = CreateFlowNode(taskType as TaskType, position);
+    setNodes((nds) => nds.concat(newNode));
+  }, []);
+
+  const onConnect = useCallback(
+    (connection: Connection) => {
+      setEdges((edge) => addEdge({ ...connection, animated: true }, edge));
+      if (!connection.targetHandle) return;
+
+    const node = nodes.find((n) => n.id === connection.target);
+    if (!node) return;
+
+    // Deep clone inputs to ensure reactivity
+    const newInputs = { ...(node.data?.inputs || {}) };
+
+    if (newInputs[connection.targetHandle] !== undefined) {
+      newInputs[connection.targetHandle] = ""; // clear the value
+
+      updateNodeData(node.id, {
+        inputs: newInputs,
       });
 
-      const newNode = CreateFlowNode(taskType as TaskType, position);
-      setNodes((nds) => nds.concat(newNode));
-    },
-    [nodes.length, setNodes, setViewport]
+      console.log("Cleared input for:", node.id, connection.targetHandle);
+    }},
+    [setEdges, updateNodeData, nodes]
   );
 
+  console.log("Nodes: ", nodes);
   return (
     <main className="h-full w-full">
       <ReactFlow
@@ -68,10 +97,12 @@ const FlowEditor = ({ workflow }: { workflow: WorkFlow }) => {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
         fitViewOptions={fitViewOptions}
         fitView
         onDragOver={onDragOver}
         onDrop={onDrop}
+        onConnect={onConnect}
       >
         <Controls position="top-left" fitViewOptions={fitViewOptions} />
         <Background variant={BackgroundVariant.Dots} gap={12} />

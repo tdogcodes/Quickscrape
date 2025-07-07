@@ -7,7 +7,7 @@ export const PageToHTMLTask = {
   icon: (props: LucideProps) => (
     <CodeIcon {...props} className="stroke-rose-400"/>
   ),
-  isEntryPoint: true,
+  isEntryPoint: false,
   inputs: [
     {
         name : "Webpage",
