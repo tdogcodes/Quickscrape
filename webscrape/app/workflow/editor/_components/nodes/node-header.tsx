@@ -31,6 +31,7 @@ const NodeHeader = ({
           {task.isEntryPoint && <Badge>Entry Point</Badge>}
           <Badge className="gap-2 flex items-center text-xs">
             <CoinsIcon size={16} />
+            {task.credits}
           </Badge>
           {!task.isEntryPoint && (
             <>
@@ -47,8 +48,8 @@ const NodeHeader = ({
               </Button>
               <Button variant={"ghost"} size={"icon"} onClick={() => {
                 const node  = getNode(nodeId) as AppNode
-                const newX = node.position.x + 100;
-                const newY = node.position.y + 100;
+                const newX = node.position.x;
+                const newY = node.position.y + node.measured?.height! + 20;
                 const newNode = CreateFlowNode(node.data.type, {
                   x : newX,
                   y: newY,
