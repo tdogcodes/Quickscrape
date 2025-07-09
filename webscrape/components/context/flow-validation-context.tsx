@@ -24,7 +24,9 @@ export const FlowValidationContextProvider = ({
     setInvalidInputs([]);
   }
 
+  return (
   <FlowValidationContext.Provider value={{ invalidInputs, setInvalidInputs, clearErrors }}>
     {children}
-  </FlowValidationContext.Provider>;
+  </FlowValidationContext.Provider>
+  )
 };

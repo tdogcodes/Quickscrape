@@ -1,13 +1,22 @@
-import { AppNode } from "@/types/app-node";
+import { AppNode, AppNodeMissingInputs } from "@/types/app-node";
 import {
   WorkflowExecutionPlan,
   WorkflowExecutionPlanPhase,
 } from "@/types/workflow";
-import { Edge, getIncomers } from "@xyflow/react";
+import { Edge } from "@xyflow/react";
 import { TaskRegistry } from "./task/registry";
+
+export enum FlowToExecutionPlanValidationError {
+  "NO_ENTRY_POINT",
+  "INVALID_INPUTS",
+}
 
 type FlowToExecutionPlanType = {
   executionPlan?: WorkflowExecutionPlan;
+  error?: {
+    type: FlowToExecutionPlanValidationError;
+    invalidElements?: AppNodeMissingInputs[];
+  };
 };
 
 export const FlowToExecutionPlan = (
@@ -19,10 +28,23 @@ export const FlowToExecutionPlan = (
   );
 
   if (!entryPoint) {
-    throw new Error("No entry point found in the workflow nodes.");
+    return {
+      error: {
+        type: FlowToExecutionPlanValidationError.NO_ENTRY_POINT,
+      },
+    };
   }
+  const inputsWithErrors: AppNodeMissingInputs[] = [];
 
   const planned = new Set<string>();
+
+  const invalidInputs = getInvalidInputs(entryPoint, edges, planned);
+  if (invalidInputs.length > 0) {
+    inputsWithErrors.push({
+      nodeId: entryPoint.id,
+      inputs: invalidInputs,
+    });
+  }
 
   const executionPlan: WorkflowExecutionPlan = [
     { phase: 1, nodes: [entryPoint] },
@@ -50,16 +72,30 @@ export const FlowToExecutionPlan = (
                 it means the worklow in invalid
             */
           console.error("@Invalid inputs", currentNode.id, invalidInputs);
-          throw new Error("Todo: handle error 1");
-        } else { continue } //skip this node for now;
+          inputsWithErrors.push({
+            nodeId: currentNode.id,
+            inputs: invalidInputs,
+          });
+        } else {
+          continue;
+        } //skip this node for now;
       }
 
       nextPhase.nodes.push(currentNode);
     }
-     for (const node of nextPhase.nodes) {
+    for (const node of nextPhase.nodes) {
       planned.add(node.id);
-     }
+    }
     executionPlan.push(nextPhase);
+  }
+
+  if (inputsWithErrors.length > 0) {
+    return {
+      error: {
+        type: FlowToExecutionPlanValidationError.INVALID_INPUTS,
+        invalidElements: inputsWithErrors,
+      },
+    };
   }
 
   return { executionPlan };
@@ -91,19 +127,36 @@ const getInvalidInputs = (
       inputLinkedToOutput &&
       planned.has(inputLinkedToOutput.source);
 
-      if(requiredInputProvidedByVisitedOutput){
-        // this means this input is reuqired and we have a valid value for it provided by a previous node
+    if (requiredInputProvidedByVisitedOutput) {
+      // this means this input is reuqired and we have a valid value for it provided by a previous node
+      continue;
+    } else if (!input.required) {
+      // if an input is not required but there is an output linked to it
+      // we need to be sure that the output is already planned
+      if (!inputLinkedToOutput) continue;
+      if (inputLinkedToOutput && planned.has(inputLinkedToOutput.source)) {
+        // the output is providing a value for this input
         continue;
-      } else if(!input.required){
-        // if an input is not required but there is an output linked to it
-        // we need to be sure that the output is already planned
-        if(!inputLinkedToOutput) continue;
-        if(inputLinkedToOutput && planned.has(inputLinkedToOutput.source)){
-          // the output is providing a value for this input
-          continue;
-        }
+      }
     }
     invalidInputs.push(input.name);
   }
   return invalidInputs;
+};
+
+const getIncomers = (
+  node: AppNode,
+  nodes: AppNode[],
+  edges: Edge[]
+) => {
+  if (!node.id) {
+    return [];
+  }
+
+  const incomersIds = new Set();
+  edges.forEach(e => {
+    if(e.target === node.id){
+      incomersIds.add(e.source);
+    }})
+  return nodes.filter(n => incomersIds.has(n.id));
 };

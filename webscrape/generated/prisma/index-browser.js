@@ -128,14 +128,47 @@ exports.Prisma.WorkFlowScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.WorkflowExectutionScalarFieldEnum = {
+  id: 'id',
+  workflowId: 'workflowId',
+  userId: 'userId',
+  trigger: 'trigger',
+  status: 'status',
+  createdAt: 'createdAt',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt'
+};
+
+exports.Prisma.ExecutionPhaseScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  status: 'status',
+  number: 'number',
+  node: 'node',
+  name: 'name',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  inputs: 'inputs',
+  outputs: 'outputs',
+  creditsCost: 'creditsCost',
+  workflowExecutionId: 'workflowExecutionId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
-  WorkFlow: 'WorkFlow'
+  WorkFlow: 'WorkFlow',
+  WorkflowExectution: 'WorkflowExectution',
+  ExecutionPhase: 'ExecutionPhase'
 };
 
 /**

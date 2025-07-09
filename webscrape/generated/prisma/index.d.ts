@@ -18,6 +18,16 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type WorkFlow = $Result.DefaultSelection<Prisma.$WorkFlowPayload>
+/**
+ * Model WorkflowExectution
+ * 
+ */
+export type WorkflowExectution = $Result.DefaultSelection<Prisma.$WorkflowExectutionPayload>
+/**
+ * Model ExecutionPhase
+ * 
+ */
+export type ExecutionPhase = $Result.DefaultSelection<Prisma.$ExecutionPhasePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -153,6 +163,26 @@ export class PrismaClient<
     * ```
     */
   get workFlow(): Prisma.WorkFlowDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.workflowExectution`: Exposes CRUD operations for the **WorkflowExectution** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more WorkflowExectutions
+    * const workflowExectutions = await prisma.workflowExectution.findMany()
+    * ```
+    */
+  get workflowExectution(): Prisma.WorkflowExectutionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.executionPhase`: Exposes CRUD operations for the **ExecutionPhase** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ExecutionPhases
+    * const executionPhases = await prisma.executionPhase.findMany()
+    * ```
+    */
+  get executionPhase(): Prisma.ExecutionPhaseDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -593,7 +623,9 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    WorkFlow: 'WorkFlow'
+    WorkFlow: 'WorkFlow',
+    WorkflowExectution: 'WorkflowExectution',
+    ExecutionPhase: 'ExecutionPhase'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -612,7 +644,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "workFlow"
+      modelProps: "workFlow" | "workflowExectution" | "executionPhase"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -687,6 +719,154 @@ export namespace Prisma {
           count: {
             args: Prisma.WorkFlowCountArgs<ExtArgs>
             result: $Utils.Optional<WorkFlowCountAggregateOutputType> | number
+          }
+        }
+      }
+      WorkflowExectution: {
+        payload: Prisma.$WorkflowExectutionPayload<ExtArgs>
+        fields: Prisma.WorkflowExectutionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WorkflowExectutionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorkflowExectutionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WorkflowExectutionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorkflowExectutionPayload>
+          }
+          findFirst: {
+            args: Prisma.WorkflowExectutionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorkflowExectutionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WorkflowExectutionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorkflowExectutionPayload>
+          }
+          findMany: {
+            args: Prisma.WorkflowExectutionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorkflowExectutionPayload>[]
+          }
+          create: {
+            args: Prisma.WorkflowExectutionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorkflowExectutionPayload>
+          }
+          createMany: {
+            args: Prisma.WorkflowExectutionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WorkflowExectutionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorkflowExectutionPayload>[]
+          }
+          delete: {
+            args: Prisma.WorkflowExectutionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorkflowExectutionPayload>
+          }
+          update: {
+            args: Prisma.WorkflowExectutionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorkflowExectutionPayload>
+          }
+          deleteMany: {
+            args: Prisma.WorkflowExectutionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WorkflowExectutionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WorkflowExectutionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorkflowExectutionPayload>[]
+          }
+          upsert: {
+            args: Prisma.WorkflowExectutionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorkflowExectutionPayload>
+          }
+          aggregate: {
+            args: Prisma.WorkflowExectutionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWorkflowExectution>
+          }
+          groupBy: {
+            args: Prisma.WorkflowExectutionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WorkflowExectutionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WorkflowExectutionCountArgs<ExtArgs>
+            result: $Utils.Optional<WorkflowExectutionCountAggregateOutputType> | number
+          }
+        }
+      }
+      ExecutionPhase: {
+        payload: Prisma.$ExecutionPhasePayload<ExtArgs>
+        fields: Prisma.ExecutionPhaseFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ExecutionPhaseFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExecutionPhasePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ExecutionPhaseFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExecutionPhasePayload>
+          }
+          findFirst: {
+            args: Prisma.ExecutionPhaseFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExecutionPhasePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ExecutionPhaseFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExecutionPhasePayload>
+          }
+          findMany: {
+            args: Prisma.ExecutionPhaseFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExecutionPhasePayload>[]
+          }
+          create: {
+            args: Prisma.ExecutionPhaseCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExecutionPhasePayload>
+          }
+          createMany: {
+            args: Prisma.ExecutionPhaseCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ExecutionPhaseCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExecutionPhasePayload>[]
+          }
+          delete: {
+            args: Prisma.ExecutionPhaseDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExecutionPhasePayload>
+          }
+          update: {
+            args: Prisma.ExecutionPhaseUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExecutionPhasePayload>
+          }
+          deleteMany: {
+            args: Prisma.ExecutionPhaseDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ExecutionPhaseUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ExecutionPhaseUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExecutionPhasePayload>[]
+          }
+          upsert: {
+            args: Prisma.ExecutionPhaseUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExecutionPhasePayload>
+          }
+          aggregate: {
+            args: Prisma.ExecutionPhaseAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateExecutionPhase>
+          }
+          groupBy: {
+            args: Prisma.ExecutionPhaseGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ExecutionPhaseGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ExecutionPhaseCountArgs<ExtArgs>
+            result: $Utils.Optional<ExecutionPhaseCountAggregateOutputType> | number
           }
         }
       }
@@ -775,6 +955,8 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     workFlow?: WorkFlowOmit
+    workflowExectution?: WorkflowExectutionOmit
+    executionPhase?: ExecutionPhaseOmit
   }
 
   /* Types for Logging */
@@ -863,6 +1045,67 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type WorkFlowCountOutputType
+   */
+
+  export type WorkFlowCountOutputType = {
+    executions: number
+  }
+
+  export type WorkFlowCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    executions?: boolean | WorkFlowCountOutputTypeCountExecutionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * WorkFlowCountOutputType without action
+   */
+  export type WorkFlowCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorkFlowCountOutputType
+     */
+    select?: WorkFlowCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * WorkFlowCountOutputType without action
+   */
+  export type WorkFlowCountOutputTypeCountExecutionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WorkflowExectutionWhereInput
+  }
+
+
+  /**
+   * Count Type WorkflowExectutionCountOutputType
+   */
+
+  export type WorkflowExectutionCountOutputType = {
+    phases: number
+  }
+
+  export type WorkflowExectutionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    phases?: boolean | WorkflowExectutionCountOutputTypeCountPhasesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * WorkflowExectutionCountOutputType without action
+   */
+  export type WorkflowExectutionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorkflowExectutionCountOutputType
+     */
+    select?: WorkflowExectutionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * WorkflowExectutionCountOutputType without action
+   */
+  export type WorkflowExectutionCountOutputTypeCountPhasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExecutionPhaseWhereInput
+  }
 
 
   /**
@@ -1057,6 +1300,8 @@ export namespace Prisma {
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    executions?: boolean | WorkFlow$executionsArgs<ExtArgs>
+    _count?: boolean | WorkFlowCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["workFlow"]>
 
   export type WorkFlowSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1093,10 +1338,18 @@ export namespace Prisma {
   }
 
   export type WorkFlowOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "description" | "definition" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["workFlow"]>
+  export type WorkFlowInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    executions?: boolean | WorkFlow$executionsArgs<ExtArgs>
+    _count?: boolean | WorkFlowCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type WorkFlowIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type WorkFlowIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $WorkFlowPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "WorkFlow"
-    objects: {}
+    objects: {
+      executions: Prisma.$WorkflowExectutionPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
@@ -1500,6 +1753,7 @@ export namespace Prisma {
    */
   export interface Prisma__WorkFlowClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    executions<T extends WorkFlow$executionsArgs<ExtArgs> = {}>(args?: Subset<T, WorkFlow$executionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorkflowExectutionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1554,6 +1808,10 @@ export namespace Prisma {
      */
     omit?: WorkFlowOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkFlowInclude<ExtArgs> | null
+    /**
      * Filter, which WorkFlow to fetch.
      */
     where: WorkFlowWhereUniqueInput
@@ -1572,6 +1830,10 @@ export namespace Prisma {
      */
     omit?: WorkFlowOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkFlowInclude<ExtArgs> | null
+    /**
      * Filter, which WorkFlow to fetch.
      */
     where: WorkFlowWhereUniqueInput
@@ -1589,6 +1851,10 @@ export namespace Prisma {
      * Omit specific fields from the WorkFlow
      */
     omit?: WorkFlowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkFlowInclude<ExtArgs> | null
     /**
      * Filter, which WorkFlow to fetch.
      */
@@ -1638,6 +1904,10 @@ export namespace Prisma {
      */
     omit?: WorkFlowOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkFlowInclude<ExtArgs> | null
+    /**
      * Filter, which WorkFlow to fetch.
      */
     where?: WorkFlowWhereInput
@@ -1686,6 +1956,10 @@ export namespace Prisma {
      */
     omit?: WorkFlowOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkFlowInclude<ExtArgs> | null
+    /**
      * Filter, which WorkFlows to fetch.
      */
     where?: WorkFlowWhereInput
@@ -1728,6 +2002,10 @@ export namespace Prisma {
      * Omit specific fields from the WorkFlow
      */
     omit?: WorkFlowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkFlowInclude<ExtArgs> | null
     /**
      * The data needed to create a WorkFlow.
      */
@@ -1774,6 +2052,10 @@ export namespace Prisma {
      * Omit specific fields from the WorkFlow
      */
     omit?: WorkFlowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkFlowInclude<ExtArgs> | null
     /**
      * The data needed to update a WorkFlow.
      */
@@ -1841,6 +2123,10 @@ export namespace Prisma {
      */
     omit?: WorkFlowOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkFlowInclude<ExtArgs> | null
+    /**
      * The filter to search for the WorkFlow to update in case it exists.
      */
     where: WorkFlowWhereUniqueInput
@@ -1867,6 +2153,10 @@ export namespace Prisma {
      */
     omit?: WorkFlowOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkFlowInclude<ExtArgs> | null
+    /**
      * Filter which WorkFlow to delete.
      */
     where: WorkFlowWhereUniqueInput
@@ -1887,6 +2177,30 @@ export namespace Prisma {
   }
 
   /**
+   * WorkFlow.executions
+   */
+  export type WorkFlow$executionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorkflowExectution
+     */
+    select?: WorkflowExectutionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WorkflowExectution
+     */
+    omit?: WorkflowExectutionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkflowExectutionInclude<ExtArgs> | null
+    where?: WorkflowExectutionWhereInput
+    orderBy?: WorkflowExectutionOrderByWithRelationInput | WorkflowExectutionOrderByWithRelationInput[]
+    cursor?: WorkflowExectutionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WorkflowExectutionScalarFieldEnum | WorkflowExectutionScalarFieldEnum[]
+  }
+
+  /**
    * WorkFlow without action
    */
   export type WorkFlowDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1898,6 +2212,2320 @@ export namespace Prisma {
      * Omit specific fields from the WorkFlow
      */
     omit?: WorkFlowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkFlowInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model WorkflowExectution
+   */
+
+  export type AggregateWorkflowExectution = {
+    _count: WorkflowExectutionCountAggregateOutputType | null
+    _min: WorkflowExectutionMinAggregateOutputType | null
+    _max: WorkflowExectutionMaxAggregateOutputType | null
+  }
+
+  export type WorkflowExectutionMinAggregateOutputType = {
+    id: string | null
+    workflowId: string | null
+    userId: string | null
+    trigger: string | null
+    status: string | null
+    createdAt: Date | null
+    startedAt: Date | null
+    completedAt: Date | null
+  }
+
+  export type WorkflowExectutionMaxAggregateOutputType = {
+    id: string | null
+    workflowId: string | null
+    userId: string | null
+    trigger: string | null
+    status: string | null
+    createdAt: Date | null
+    startedAt: Date | null
+    completedAt: Date | null
+  }
+
+  export type WorkflowExectutionCountAggregateOutputType = {
+    id: number
+    workflowId: number
+    userId: number
+    trigger: number
+    status: number
+    createdAt: number
+    startedAt: number
+    completedAt: number
+    _all: number
+  }
+
+
+  export type WorkflowExectutionMinAggregateInputType = {
+    id?: true
+    workflowId?: true
+    userId?: true
+    trigger?: true
+    status?: true
+    createdAt?: true
+    startedAt?: true
+    completedAt?: true
+  }
+
+  export type WorkflowExectutionMaxAggregateInputType = {
+    id?: true
+    workflowId?: true
+    userId?: true
+    trigger?: true
+    status?: true
+    createdAt?: true
+    startedAt?: true
+    completedAt?: true
+  }
+
+  export type WorkflowExectutionCountAggregateInputType = {
+    id?: true
+    workflowId?: true
+    userId?: true
+    trigger?: true
+    status?: true
+    createdAt?: true
+    startedAt?: true
+    completedAt?: true
+    _all?: true
+  }
+
+  export type WorkflowExectutionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WorkflowExectution to aggregate.
+     */
+    where?: WorkflowExectutionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WorkflowExectutions to fetch.
+     */
+    orderBy?: WorkflowExectutionOrderByWithRelationInput | WorkflowExectutionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WorkflowExectutionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WorkflowExectutions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WorkflowExectutions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned WorkflowExectutions
+    **/
+    _count?: true | WorkflowExectutionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WorkflowExectutionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WorkflowExectutionMaxAggregateInputType
+  }
+
+  export type GetWorkflowExectutionAggregateType<T extends WorkflowExectutionAggregateArgs> = {
+        [P in keyof T & keyof AggregateWorkflowExectution]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWorkflowExectution[P]>
+      : GetScalarType<T[P], AggregateWorkflowExectution[P]>
+  }
+
+
+
+
+  export type WorkflowExectutionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WorkflowExectutionWhereInput
+    orderBy?: WorkflowExectutionOrderByWithAggregationInput | WorkflowExectutionOrderByWithAggregationInput[]
+    by: WorkflowExectutionScalarFieldEnum[] | WorkflowExectutionScalarFieldEnum
+    having?: WorkflowExectutionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WorkflowExectutionCountAggregateInputType | true
+    _min?: WorkflowExectutionMinAggregateInputType
+    _max?: WorkflowExectutionMaxAggregateInputType
+  }
+
+  export type WorkflowExectutionGroupByOutputType = {
+    id: string
+    workflowId: string
+    userId: string
+    trigger: string
+    status: string
+    createdAt: Date
+    startedAt: Date | null
+    completedAt: Date | null
+    _count: WorkflowExectutionCountAggregateOutputType | null
+    _min: WorkflowExectutionMinAggregateOutputType | null
+    _max: WorkflowExectutionMaxAggregateOutputType | null
+  }
+
+  type GetWorkflowExectutionGroupByPayload<T extends WorkflowExectutionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WorkflowExectutionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WorkflowExectutionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WorkflowExectutionGroupByOutputType[P]>
+            : GetScalarType<T[P], WorkflowExectutionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WorkflowExectutionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    workflowId?: boolean
+    userId?: boolean
+    trigger?: boolean
+    status?: boolean
+    createdAt?: boolean
+    startedAt?: boolean
+    completedAt?: boolean
+    phases?: boolean | WorkflowExectution$phasesArgs<ExtArgs>
+    workflow?: boolean | WorkFlowDefaultArgs<ExtArgs>
+    _count?: boolean | WorkflowExectutionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["workflowExectution"]>
+
+  export type WorkflowExectutionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    workflowId?: boolean
+    userId?: boolean
+    trigger?: boolean
+    status?: boolean
+    createdAt?: boolean
+    startedAt?: boolean
+    completedAt?: boolean
+    workflow?: boolean | WorkFlowDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["workflowExectution"]>
+
+  export type WorkflowExectutionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    workflowId?: boolean
+    userId?: boolean
+    trigger?: boolean
+    status?: boolean
+    createdAt?: boolean
+    startedAt?: boolean
+    completedAt?: boolean
+    workflow?: boolean | WorkFlowDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["workflowExectution"]>
+
+  export type WorkflowExectutionSelectScalar = {
+    id?: boolean
+    workflowId?: boolean
+    userId?: boolean
+    trigger?: boolean
+    status?: boolean
+    createdAt?: boolean
+    startedAt?: boolean
+    completedAt?: boolean
+  }
+
+  export type WorkflowExectutionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "workflowId" | "userId" | "trigger" | "status" | "createdAt" | "startedAt" | "completedAt", ExtArgs["result"]["workflowExectution"]>
+  export type WorkflowExectutionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    phases?: boolean | WorkflowExectution$phasesArgs<ExtArgs>
+    workflow?: boolean | WorkFlowDefaultArgs<ExtArgs>
+    _count?: boolean | WorkflowExectutionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type WorkflowExectutionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    workflow?: boolean | WorkFlowDefaultArgs<ExtArgs>
+  }
+  export type WorkflowExectutionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    workflow?: boolean | WorkFlowDefaultArgs<ExtArgs>
+  }
+
+  export type $WorkflowExectutionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "WorkflowExectution"
+    objects: {
+      phases: Prisma.$ExecutionPhasePayload<ExtArgs>[]
+      workflow: Prisma.$WorkFlowPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      workflowId: string
+      userId: string
+      trigger: string
+      status: string
+      createdAt: Date
+      startedAt: Date | null
+      completedAt: Date | null
+    }, ExtArgs["result"]["workflowExectution"]>
+    composites: {}
+  }
+
+  type WorkflowExectutionGetPayload<S extends boolean | null | undefined | WorkflowExectutionDefaultArgs> = $Result.GetResult<Prisma.$WorkflowExectutionPayload, S>
+
+  type WorkflowExectutionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WorkflowExectutionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WorkflowExectutionCountAggregateInputType | true
+    }
+
+  export interface WorkflowExectutionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['WorkflowExectution'], meta: { name: 'WorkflowExectution' } }
+    /**
+     * Find zero or one WorkflowExectution that matches the filter.
+     * @param {WorkflowExectutionFindUniqueArgs} args - Arguments to find a WorkflowExectution
+     * @example
+     * // Get one WorkflowExectution
+     * const workflowExectution = await prisma.workflowExectution.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WorkflowExectutionFindUniqueArgs>(args: SelectSubset<T, WorkflowExectutionFindUniqueArgs<ExtArgs>>): Prisma__WorkflowExectutionClient<$Result.GetResult<Prisma.$WorkflowExectutionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one WorkflowExectution that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WorkflowExectutionFindUniqueOrThrowArgs} args - Arguments to find a WorkflowExectution
+     * @example
+     * // Get one WorkflowExectution
+     * const workflowExectution = await prisma.workflowExectution.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WorkflowExectutionFindUniqueOrThrowArgs>(args: SelectSubset<T, WorkflowExectutionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WorkflowExectutionClient<$Result.GetResult<Prisma.$WorkflowExectutionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WorkflowExectution that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WorkflowExectutionFindFirstArgs} args - Arguments to find a WorkflowExectution
+     * @example
+     * // Get one WorkflowExectution
+     * const workflowExectution = await prisma.workflowExectution.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WorkflowExectutionFindFirstArgs>(args?: SelectSubset<T, WorkflowExectutionFindFirstArgs<ExtArgs>>): Prisma__WorkflowExectutionClient<$Result.GetResult<Prisma.$WorkflowExectutionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WorkflowExectution that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WorkflowExectutionFindFirstOrThrowArgs} args - Arguments to find a WorkflowExectution
+     * @example
+     * // Get one WorkflowExectution
+     * const workflowExectution = await prisma.workflowExectution.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WorkflowExectutionFindFirstOrThrowArgs>(args?: SelectSubset<T, WorkflowExectutionFindFirstOrThrowArgs<ExtArgs>>): Prisma__WorkflowExectutionClient<$Result.GetResult<Prisma.$WorkflowExectutionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more WorkflowExectutions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WorkflowExectutionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all WorkflowExectutions
+     * const workflowExectutions = await prisma.workflowExectution.findMany()
+     * 
+     * // Get first 10 WorkflowExectutions
+     * const workflowExectutions = await prisma.workflowExectution.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const workflowExectutionWithIdOnly = await prisma.workflowExectution.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WorkflowExectutionFindManyArgs>(args?: SelectSubset<T, WorkflowExectutionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorkflowExectutionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a WorkflowExectution.
+     * @param {WorkflowExectutionCreateArgs} args - Arguments to create a WorkflowExectution.
+     * @example
+     * // Create one WorkflowExectution
+     * const WorkflowExectution = await prisma.workflowExectution.create({
+     *   data: {
+     *     // ... data to create a WorkflowExectution
+     *   }
+     * })
+     * 
+     */
+    create<T extends WorkflowExectutionCreateArgs>(args: SelectSubset<T, WorkflowExectutionCreateArgs<ExtArgs>>): Prisma__WorkflowExectutionClient<$Result.GetResult<Prisma.$WorkflowExectutionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many WorkflowExectutions.
+     * @param {WorkflowExectutionCreateManyArgs} args - Arguments to create many WorkflowExectutions.
+     * @example
+     * // Create many WorkflowExectutions
+     * const workflowExectution = await prisma.workflowExectution.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WorkflowExectutionCreateManyArgs>(args?: SelectSubset<T, WorkflowExectutionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many WorkflowExectutions and returns the data saved in the database.
+     * @param {WorkflowExectutionCreateManyAndReturnArgs} args - Arguments to create many WorkflowExectutions.
+     * @example
+     * // Create many WorkflowExectutions
+     * const workflowExectution = await prisma.workflowExectution.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many WorkflowExectutions and only return the `id`
+     * const workflowExectutionWithIdOnly = await prisma.workflowExectution.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WorkflowExectutionCreateManyAndReturnArgs>(args?: SelectSubset<T, WorkflowExectutionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorkflowExectutionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a WorkflowExectution.
+     * @param {WorkflowExectutionDeleteArgs} args - Arguments to delete one WorkflowExectution.
+     * @example
+     * // Delete one WorkflowExectution
+     * const WorkflowExectution = await prisma.workflowExectution.delete({
+     *   where: {
+     *     // ... filter to delete one WorkflowExectution
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WorkflowExectutionDeleteArgs>(args: SelectSubset<T, WorkflowExectutionDeleteArgs<ExtArgs>>): Prisma__WorkflowExectutionClient<$Result.GetResult<Prisma.$WorkflowExectutionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one WorkflowExectution.
+     * @param {WorkflowExectutionUpdateArgs} args - Arguments to update one WorkflowExectution.
+     * @example
+     * // Update one WorkflowExectution
+     * const workflowExectution = await prisma.workflowExectution.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WorkflowExectutionUpdateArgs>(args: SelectSubset<T, WorkflowExectutionUpdateArgs<ExtArgs>>): Prisma__WorkflowExectutionClient<$Result.GetResult<Prisma.$WorkflowExectutionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more WorkflowExectutions.
+     * @param {WorkflowExectutionDeleteManyArgs} args - Arguments to filter WorkflowExectutions to delete.
+     * @example
+     * // Delete a few WorkflowExectutions
+     * const { count } = await prisma.workflowExectution.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WorkflowExectutionDeleteManyArgs>(args?: SelectSubset<T, WorkflowExectutionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WorkflowExectutions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WorkflowExectutionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many WorkflowExectutions
+     * const workflowExectution = await prisma.workflowExectution.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WorkflowExectutionUpdateManyArgs>(args: SelectSubset<T, WorkflowExectutionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WorkflowExectutions and returns the data updated in the database.
+     * @param {WorkflowExectutionUpdateManyAndReturnArgs} args - Arguments to update many WorkflowExectutions.
+     * @example
+     * // Update many WorkflowExectutions
+     * const workflowExectution = await prisma.workflowExectution.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more WorkflowExectutions and only return the `id`
+     * const workflowExectutionWithIdOnly = await prisma.workflowExectution.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WorkflowExectutionUpdateManyAndReturnArgs>(args: SelectSubset<T, WorkflowExectutionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorkflowExectutionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one WorkflowExectution.
+     * @param {WorkflowExectutionUpsertArgs} args - Arguments to update or create a WorkflowExectution.
+     * @example
+     * // Update or create a WorkflowExectution
+     * const workflowExectution = await prisma.workflowExectution.upsert({
+     *   create: {
+     *     // ... data to create a WorkflowExectution
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the WorkflowExectution we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WorkflowExectutionUpsertArgs>(args: SelectSubset<T, WorkflowExectutionUpsertArgs<ExtArgs>>): Prisma__WorkflowExectutionClient<$Result.GetResult<Prisma.$WorkflowExectutionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of WorkflowExectutions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WorkflowExectutionCountArgs} args - Arguments to filter WorkflowExectutions to count.
+     * @example
+     * // Count the number of WorkflowExectutions
+     * const count = await prisma.workflowExectution.count({
+     *   where: {
+     *     // ... the filter for the WorkflowExectutions we want to count
+     *   }
+     * })
+    **/
+    count<T extends WorkflowExectutionCountArgs>(
+      args?: Subset<T, WorkflowExectutionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WorkflowExectutionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a WorkflowExectution.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WorkflowExectutionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WorkflowExectutionAggregateArgs>(args: Subset<T, WorkflowExectutionAggregateArgs>): Prisma.PrismaPromise<GetWorkflowExectutionAggregateType<T>>
+
+    /**
+     * Group by WorkflowExectution.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WorkflowExectutionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WorkflowExectutionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WorkflowExectutionGroupByArgs['orderBy'] }
+        : { orderBy?: WorkflowExectutionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WorkflowExectutionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWorkflowExectutionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the WorkflowExectution model
+   */
+  readonly fields: WorkflowExectutionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for WorkflowExectution.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WorkflowExectutionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    phases<T extends WorkflowExectution$phasesArgs<ExtArgs> = {}>(args?: Subset<T, WorkflowExectution$phasesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExecutionPhasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    workflow<T extends WorkFlowDefaultArgs<ExtArgs> = {}>(args?: Subset<T, WorkFlowDefaultArgs<ExtArgs>>): Prisma__WorkFlowClient<$Result.GetResult<Prisma.$WorkFlowPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the WorkflowExectution model
+   */
+  interface WorkflowExectutionFieldRefs {
+    readonly id: FieldRef<"WorkflowExectution", 'String'>
+    readonly workflowId: FieldRef<"WorkflowExectution", 'String'>
+    readonly userId: FieldRef<"WorkflowExectution", 'String'>
+    readonly trigger: FieldRef<"WorkflowExectution", 'String'>
+    readonly status: FieldRef<"WorkflowExectution", 'String'>
+    readonly createdAt: FieldRef<"WorkflowExectution", 'DateTime'>
+    readonly startedAt: FieldRef<"WorkflowExectution", 'DateTime'>
+    readonly completedAt: FieldRef<"WorkflowExectution", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * WorkflowExectution findUnique
+   */
+  export type WorkflowExectutionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorkflowExectution
+     */
+    select?: WorkflowExectutionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WorkflowExectution
+     */
+    omit?: WorkflowExectutionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkflowExectutionInclude<ExtArgs> | null
+    /**
+     * Filter, which WorkflowExectution to fetch.
+     */
+    where: WorkflowExectutionWhereUniqueInput
+  }
+
+  /**
+   * WorkflowExectution findUniqueOrThrow
+   */
+  export type WorkflowExectutionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorkflowExectution
+     */
+    select?: WorkflowExectutionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WorkflowExectution
+     */
+    omit?: WorkflowExectutionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkflowExectutionInclude<ExtArgs> | null
+    /**
+     * Filter, which WorkflowExectution to fetch.
+     */
+    where: WorkflowExectutionWhereUniqueInput
+  }
+
+  /**
+   * WorkflowExectution findFirst
+   */
+  export type WorkflowExectutionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorkflowExectution
+     */
+    select?: WorkflowExectutionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WorkflowExectution
+     */
+    omit?: WorkflowExectutionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkflowExectutionInclude<ExtArgs> | null
+    /**
+     * Filter, which WorkflowExectution to fetch.
+     */
+    where?: WorkflowExectutionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WorkflowExectutions to fetch.
+     */
+    orderBy?: WorkflowExectutionOrderByWithRelationInput | WorkflowExectutionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WorkflowExectutions.
+     */
+    cursor?: WorkflowExectutionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WorkflowExectutions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WorkflowExectutions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WorkflowExectutions.
+     */
+    distinct?: WorkflowExectutionScalarFieldEnum | WorkflowExectutionScalarFieldEnum[]
+  }
+
+  /**
+   * WorkflowExectution findFirstOrThrow
+   */
+  export type WorkflowExectutionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorkflowExectution
+     */
+    select?: WorkflowExectutionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WorkflowExectution
+     */
+    omit?: WorkflowExectutionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkflowExectutionInclude<ExtArgs> | null
+    /**
+     * Filter, which WorkflowExectution to fetch.
+     */
+    where?: WorkflowExectutionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WorkflowExectutions to fetch.
+     */
+    orderBy?: WorkflowExectutionOrderByWithRelationInput | WorkflowExectutionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WorkflowExectutions.
+     */
+    cursor?: WorkflowExectutionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WorkflowExectutions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WorkflowExectutions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WorkflowExectutions.
+     */
+    distinct?: WorkflowExectutionScalarFieldEnum | WorkflowExectutionScalarFieldEnum[]
+  }
+
+  /**
+   * WorkflowExectution findMany
+   */
+  export type WorkflowExectutionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorkflowExectution
+     */
+    select?: WorkflowExectutionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WorkflowExectution
+     */
+    omit?: WorkflowExectutionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkflowExectutionInclude<ExtArgs> | null
+    /**
+     * Filter, which WorkflowExectutions to fetch.
+     */
+    where?: WorkflowExectutionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WorkflowExectutions to fetch.
+     */
+    orderBy?: WorkflowExectutionOrderByWithRelationInput | WorkflowExectutionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing WorkflowExectutions.
+     */
+    cursor?: WorkflowExectutionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WorkflowExectutions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WorkflowExectutions.
+     */
+    skip?: number
+    distinct?: WorkflowExectutionScalarFieldEnum | WorkflowExectutionScalarFieldEnum[]
+  }
+
+  /**
+   * WorkflowExectution create
+   */
+  export type WorkflowExectutionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorkflowExectution
+     */
+    select?: WorkflowExectutionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WorkflowExectution
+     */
+    omit?: WorkflowExectutionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkflowExectutionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a WorkflowExectution.
+     */
+    data: XOR<WorkflowExectutionCreateInput, WorkflowExectutionUncheckedCreateInput>
+  }
+
+  /**
+   * WorkflowExectution createMany
+   */
+  export type WorkflowExectutionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many WorkflowExectutions.
+     */
+    data: WorkflowExectutionCreateManyInput | WorkflowExectutionCreateManyInput[]
+  }
+
+  /**
+   * WorkflowExectution createManyAndReturn
+   */
+  export type WorkflowExectutionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorkflowExectution
+     */
+    select?: WorkflowExectutionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WorkflowExectution
+     */
+    omit?: WorkflowExectutionOmit<ExtArgs> | null
+    /**
+     * The data used to create many WorkflowExectutions.
+     */
+    data: WorkflowExectutionCreateManyInput | WorkflowExectutionCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkflowExectutionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WorkflowExectution update
+   */
+  export type WorkflowExectutionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorkflowExectution
+     */
+    select?: WorkflowExectutionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WorkflowExectution
+     */
+    omit?: WorkflowExectutionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkflowExectutionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a WorkflowExectution.
+     */
+    data: XOR<WorkflowExectutionUpdateInput, WorkflowExectutionUncheckedUpdateInput>
+    /**
+     * Choose, which WorkflowExectution to update.
+     */
+    where: WorkflowExectutionWhereUniqueInput
+  }
+
+  /**
+   * WorkflowExectution updateMany
+   */
+  export type WorkflowExectutionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update WorkflowExectutions.
+     */
+    data: XOR<WorkflowExectutionUpdateManyMutationInput, WorkflowExectutionUncheckedUpdateManyInput>
+    /**
+     * Filter which WorkflowExectutions to update
+     */
+    where?: WorkflowExectutionWhereInput
+    /**
+     * Limit how many WorkflowExectutions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * WorkflowExectution updateManyAndReturn
+   */
+  export type WorkflowExectutionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorkflowExectution
+     */
+    select?: WorkflowExectutionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WorkflowExectution
+     */
+    omit?: WorkflowExectutionOmit<ExtArgs> | null
+    /**
+     * The data used to update WorkflowExectutions.
+     */
+    data: XOR<WorkflowExectutionUpdateManyMutationInput, WorkflowExectutionUncheckedUpdateManyInput>
+    /**
+     * Filter which WorkflowExectutions to update
+     */
+    where?: WorkflowExectutionWhereInput
+    /**
+     * Limit how many WorkflowExectutions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkflowExectutionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WorkflowExectution upsert
+   */
+  export type WorkflowExectutionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorkflowExectution
+     */
+    select?: WorkflowExectutionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WorkflowExectution
+     */
+    omit?: WorkflowExectutionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkflowExectutionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the WorkflowExectution to update in case it exists.
+     */
+    where: WorkflowExectutionWhereUniqueInput
+    /**
+     * In case the WorkflowExectution found by the `where` argument doesn't exist, create a new WorkflowExectution with this data.
+     */
+    create: XOR<WorkflowExectutionCreateInput, WorkflowExectutionUncheckedCreateInput>
+    /**
+     * In case the WorkflowExectution was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WorkflowExectutionUpdateInput, WorkflowExectutionUncheckedUpdateInput>
+  }
+
+  /**
+   * WorkflowExectution delete
+   */
+  export type WorkflowExectutionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorkflowExectution
+     */
+    select?: WorkflowExectutionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WorkflowExectution
+     */
+    omit?: WorkflowExectutionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkflowExectutionInclude<ExtArgs> | null
+    /**
+     * Filter which WorkflowExectution to delete.
+     */
+    where: WorkflowExectutionWhereUniqueInput
+  }
+
+  /**
+   * WorkflowExectution deleteMany
+   */
+  export type WorkflowExectutionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WorkflowExectutions to delete
+     */
+    where?: WorkflowExectutionWhereInput
+    /**
+     * Limit how many WorkflowExectutions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * WorkflowExectution.phases
+   */
+  export type WorkflowExectution$phasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExecutionPhase
+     */
+    select?: ExecutionPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExecutionPhase
+     */
+    omit?: ExecutionPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExecutionPhaseInclude<ExtArgs> | null
+    where?: ExecutionPhaseWhereInput
+    orderBy?: ExecutionPhaseOrderByWithRelationInput | ExecutionPhaseOrderByWithRelationInput[]
+    cursor?: ExecutionPhaseWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ExecutionPhaseScalarFieldEnum | ExecutionPhaseScalarFieldEnum[]
+  }
+
+  /**
+   * WorkflowExectution without action
+   */
+  export type WorkflowExectutionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorkflowExectution
+     */
+    select?: WorkflowExectutionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WorkflowExectution
+     */
+    omit?: WorkflowExectutionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkflowExectutionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ExecutionPhase
+   */
+
+  export type AggregateExecutionPhase = {
+    _count: ExecutionPhaseCountAggregateOutputType | null
+    _avg: ExecutionPhaseAvgAggregateOutputType | null
+    _sum: ExecutionPhaseSumAggregateOutputType | null
+    _min: ExecutionPhaseMinAggregateOutputType | null
+    _max: ExecutionPhaseMaxAggregateOutputType | null
+  }
+
+  export type ExecutionPhaseAvgAggregateOutputType = {
+    number: number | null
+    creditsCost: number | null
+  }
+
+  export type ExecutionPhaseSumAggregateOutputType = {
+    number: number | null
+    creditsCost: number | null
+  }
+
+  export type ExecutionPhaseMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    status: string | null
+    number: number | null
+    node: string | null
+    name: string | null
+    startedAt: Date | null
+    completedAt: Date | null
+    inputs: string | null
+    outputs: string | null
+    creditsCost: number | null
+    workflowExecutionId: string | null
+  }
+
+  export type ExecutionPhaseMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    status: string | null
+    number: number | null
+    node: string | null
+    name: string | null
+    startedAt: Date | null
+    completedAt: Date | null
+    inputs: string | null
+    outputs: string | null
+    creditsCost: number | null
+    workflowExecutionId: string | null
+  }
+
+  export type ExecutionPhaseCountAggregateOutputType = {
+    id: number
+    userId: number
+    status: number
+    number: number
+    node: number
+    name: number
+    startedAt: number
+    completedAt: number
+    inputs: number
+    outputs: number
+    creditsCost: number
+    workflowExecutionId: number
+    _all: number
+  }
+
+
+  export type ExecutionPhaseAvgAggregateInputType = {
+    number?: true
+    creditsCost?: true
+  }
+
+  export type ExecutionPhaseSumAggregateInputType = {
+    number?: true
+    creditsCost?: true
+  }
+
+  export type ExecutionPhaseMinAggregateInputType = {
+    id?: true
+    userId?: true
+    status?: true
+    number?: true
+    node?: true
+    name?: true
+    startedAt?: true
+    completedAt?: true
+    inputs?: true
+    outputs?: true
+    creditsCost?: true
+    workflowExecutionId?: true
+  }
+
+  export type ExecutionPhaseMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    status?: true
+    number?: true
+    node?: true
+    name?: true
+    startedAt?: true
+    completedAt?: true
+    inputs?: true
+    outputs?: true
+    creditsCost?: true
+    workflowExecutionId?: true
+  }
+
+  export type ExecutionPhaseCountAggregateInputType = {
+    id?: true
+    userId?: true
+    status?: true
+    number?: true
+    node?: true
+    name?: true
+    startedAt?: true
+    completedAt?: true
+    inputs?: true
+    outputs?: true
+    creditsCost?: true
+    workflowExecutionId?: true
+    _all?: true
+  }
+
+  export type ExecutionPhaseAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ExecutionPhase to aggregate.
+     */
+    where?: ExecutionPhaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExecutionPhases to fetch.
+     */
+    orderBy?: ExecutionPhaseOrderByWithRelationInput | ExecutionPhaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ExecutionPhaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExecutionPhases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExecutionPhases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ExecutionPhases
+    **/
+    _count?: true | ExecutionPhaseCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ExecutionPhaseAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ExecutionPhaseSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ExecutionPhaseMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ExecutionPhaseMaxAggregateInputType
+  }
+
+  export type GetExecutionPhaseAggregateType<T extends ExecutionPhaseAggregateArgs> = {
+        [P in keyof T & keyof AggregateExecutionPhase]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateExecutionPhase[P]>
+      : GetScalarType<T[P], AggregateExecutionPhase[P]>
+  }
+
+
+
+
+  export type ExecutionPhaseGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExecutionPhaseWhereInput
+    orderBy?: ExecutionPhaseOrderByWithAggregationInput | ExecutionPhaseOrderByWithAggregationInput[]
+    by: ExecutionPhaseScalarFieldEnum[] | ExecutionPhaseScalarFieldEnum
+    having?: ExecutionPhaseScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ExecutionPhaseCountAggregateInputType | true
+    _avg?: ExecutionPhaseAvgAggregateInputType
+    _sum?: ExecutionPhaseSumAggregateInputType
+    _min?: ExecutionPhaseMinAggregateInputType
+    _max?: ExecutionPhaseMaxAggregateInputType
+  }
+
+  export type ExecutionPhaseGroupByOutputType = {
+    id: string
+    userId: string
+    status: string
+    number: number
+    node: string
+    name: string
+    startedAt: Date | null
+    completedAt: Date | null
+    inputs: string | null
+    outputs: string | null
+    creditsCost: number | null
+    workflowExecutionId: string
+    _count: ExecutionPhaseCountAggregateOutputType | null
+    _avg: ExecutionPhaseAvgAggregateOutputType | null
+    _sum: ExecutionPhaseSumAggregateOutputType | null
+    _min: ExecutionPhaseMinAggregateOutputType | null
+    _max: ExecutionPhaseMaxAggregateOutputType | null
+  }
+
+  type GetExecutionPhaseGroupByPayload<T extends ExecutionPhaseGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ExecutionPhaseGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ExecutionPhaseGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ExecutionPhaseGroupByOutputType[P]>
+            : GetScalarType<T[P], ExecutionPhaseGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ExecutionPhaseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    status?: boolean
+    number?: boolean
+    node?: boolean
+    name?: boolean
+    startedAt?: boolean
+    completedAt?: boolean
+    inputs?: boolean
+    outputs?: boolean
+    creditsCost?: boolean
+    workflowExecutionId?: boolean
+    execution?: boolean | WorkflowExectutionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["executionPhase"]>
+
+  export type ExecutionPhaseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    status?: boolean
+    number?: boolean
+    node?: boolean
+    name?: boolean
+    startedAt?: boolean
+    completedAt?: boolean
+    inputs?: boolean
+    outputs?: boolean
+    creditsCost?: boolean
+    workflowExecutionId?: boolean
+    execution?: boolean | WorkflowExectutionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["executionPhase"]>
+
+  export type ExecutionPhaseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    status?: boolean
+    number?: boolean
+    node?: boolean
+    name?: boolean
+    startedAt?: boolean
+    completedAt?: boolean
+    inputs?: boolean
+    outputs?: boolean
+    creditsCost?: boolean
+    workflowExecutionId?: boolean
+    execution?: boolean | WorkflowExectutionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["executionPhase"]>
+
+  export type ExecutionPhaseSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    status?: boolean
+    number?: boolean
+    node?: boolean
+    name?: boolean
+    startedAt?: boolean
+    completedAt?: boolean
+    inputs?: boolean
+    outputs?: boolean
+    creditsCost?: boolean
+    workflowExecutionId?: boolean
+  }
+
+  export type ExecutionPhaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "status" | "number" | "node" | "name" | "startedAt" | "completedAt" | "inputs" | "outputs" | "creditsCost" | "workflowExecutionId", ExtArgs["result"]["executionPhase"]>
+  export type ExecutionPhaseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    execution?: boolean | WorkflowExectutionDefaultArgs<ExtArgs>
+  }
+  export type ExecutionPhaseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    execution?: boolean | WorkflowExectutionDefaultArgs<ExtArgs>
+  }
+  export type ExecutionPhaseIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    execution?: boolean | WorkflowExectutionDefaultArgs<ExtArgs>
+  }
+
+  export type $ExecutionPhasePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ExecutionPhase"
+    objects: {
+      execution: Prisma.$WorkflowExectutionPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      status: string
+      number: number
+      node: string
+      name: string
+      startedAt: Date | null
+      completedAt: Date | null
+      inputs: string | null
+      outputs: string | null
+      creditsCost: number | null
+      workflowExecutionId: string
+    }, ExtArgs["result"]["executionPhase"]>
+    composites: {}
+  }
+
+  type ExecutionPhaseGetPayload<S extends boolean | null | undefined | ExecutionPhaseDefaultArgs> = $Result.GetResult<Prisma.$ExecutionPhasePayload, S>
+
+  type ExecutionPhaseCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ExecutionPhaseFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ExecutionPhaseCountAggregateInputType | true
+    }
+
+  export interface ExecutionPhaseDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ExecutionPhase'], meta: { name: 'ExecutionPhase' } }
+    /**
+     * Find zero or one ExecutionPhase that matches the filter.
+     * @param {ExecutionPhaseFindUniqueArgs} args - Arguments to find a ExecutionPhase
+     * @example
+     * // Get one ExecutionPhase
+     * const executionPhase = await prisma.executionPhase.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ExecutionPhaseFindUniqueArgs>(args: SelectSubset<T, ExecutionPhaseFindUniqueArgs<ExtArgs>>): Prisma__ExecutionPhaseClient<$Result.GetResult<Prisma.$ExecutionPhasePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ExecutionPhase that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ExecutionPhaseFindUniqueOrThrowArgs} args - Arguments to find a ExecutionPhase
+     * @example
+     * // Get one ExecutionPhase
+     * const executionPhase = await prisma.executionPhase.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ExecutionPhaseFindUniqueOrThrowArgs>(args: SelectSubset<T, ExecutionPhaseFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ExecutionPhaseClient<$Result.GetResult<Prisma.$ExecutionPhasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ExecutionPhase that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExecutionPhaseFindFirstArgs} args - Arguments to find a ExecutionPhase
+     * @example
+     * // Get one ExecutionPhase
+     * const executionPhase = await prisma.executionPhase.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ExecutionPhaseFindFirstArgs>(args?: SelectSubset<T, ExecutionPhaseFindFirstArgs<ExtArgs>>): Prisma__ExecutionPhaseClient<$Result.GetResult<Prisma.$ExecutionPhasePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ExecutionPhase that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExecutionPhaseFindFirstOrThrowArgs} args - Arguments to find a ExecutionPhase
+     * @example
+     * // Get one ExecutionPhase
+     * const executionPhase = await prisma.executionPhase.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ExecutionPhaseFindFirstOrThrowArgs>(args?: SelectSubset<T, ExecutionPhaseFindFirstOrThrowArgs<ExtArgs>>): Prisma__ExecutionPhaseClient<$Result.GetResult<Prisma.$ExecutionPhasePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ExecutionPhases that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExecutionPhaseFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ExecutionPhases
+     * const executionPhases = await prisma.executionPhase.findMany()
+     * 
+     * // Get first 10 ExecutionPhases
+     * const executionPhases = await prisma.executionPhase.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const executionPhaseWithIdOnly = await prisma.executionPhase.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ExecutionPhaseFindManyArgs>(args?: SelectSubset<T, ExecutionPhaseFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExecutionPhasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ExecutionPhase.
+     * @param {ExecutionPhaseCreateArgs} args - Arguments to create a ExecutionPhase.
+     * @example
+     * // Create one ExecutionPhase
+     * const ExecutionPhase = await prisma.executionPhase.create({
+     *   data: {
+     *     // ... data to create a ExecutionPhase
+     *   }
+     * })
+     * 
+     */
+    create<T extends ExecutionPhaseCreateArgs>(args: SelectSubset<T, ExecutionPhaseCreateArgs<ExtArgs>>): Prisma__ExecutionPhaseClient<$Result.GetResult<Prisma.$ExecutionPhasePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ExecutionPhases.
+     * @param {ExecutionPhaseCreateManyArgs} args - Arguments to create many ExecutionPhases.
+     * @example
+     * // Create many ExecutionPhases
+     * const executionPhase = await prisma.executionPhase.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ExecutionPhaseCreateManyArgs>(args?: SelectSubset<T, ExecutionPhaseCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ExecutionPhases and returns the data saved in the database.
+     * @param {ExecutionPhaseCreateManyAndReturnArgs} args - Arguments to create many ExecutionPhases.
+     * @example
+     * // Create many ExecutionPhases
+     * const executionPhase = await prisma.executionPhase.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ExecutionPhases and only return the `id`
+     * const executionPhaseWithIdOnly = await prisma.executionPhase.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ExecutionPhaseCreateManyAndReturnArgs>(args?: SelectSubset<T, ExecutionPhaseCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExecutionPhasePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ExecutionPhase.
+     * @param {ExecutionPhaseDeleteArgs} args - Arguments to delete one ExecutionPhase.
+     * @example
+     * // Delete one ExecutionPhase
+     * const ExecutionPhase = await prisma.executionPhase.delete({
+     *   where: {
+     *     // ... filter to delete one ExecutionPhase
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ExecutionPhaseDeleteArgs>(args: SelectSubset<T, ExecutionPhaseDeleteArgs<ExtArgs>>): Prisma__ExecutionPhaseClient<$Result.GetResult<Prisma.$ExecutionPhasePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ExecutionPhase.
+     * @param {ExecutionPhaseUpdateArgs} args - Arguments to update one ExecutionPhase.
+     * @example
+     * // Update one ExecutionPhase
+     * const executionPhase = await prisma.executionPhase.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ExecutionPhaseUpdateArgs>(args: SelectSubset<T, ExecutionPhaseUpdateArgs<ExtArgs>>): Prisma__ExecutionPhaseClient<$Result.GetResult<Prisma.$ExecutionPhasePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ExecutionPhases.
+     * @param {ExecutionPhaseDeleteManyArgs} args - Arguments to filter ExecutionPhases to delete.
+     * @example
+     * // Delete a few ExecutionPhases
+     * const { count } = await prisma.executionPhase.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ExecutionPhaseDeleteManyArgs>(args?: SelectSubset<T, ExecutionPhaseDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ExecutionPhases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExecutionPhaseUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ExecutionPhases
+     * const executionPhase = await prisma.executionPhase.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ExecutionPhaseUpdateManyArgs>(args: SelectSubset<T, ExecutionPhaseUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ExecutionPhases and returns the data updated in the database.
+     * @param {ExecutionPhaseUpdateManyAndReturnArgs} args - Arguments to update many ExecutionPhases.
+     * @example
+     * // Update many ExecutionPhases
+     * const executionPhase = await prisma.executionPhase.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ExecutionPhases and only return the `id`
+     * const executionPhaseWithIdOnly = await prisma.executionPhase.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ExecutionPhaseUpdateManyAndReturnArgs>(args: SelectSubset<T, ExecutionPhaseUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExecutionPhasePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ExecutionPhase.
+     * @param {ExecutionPhaseUpsertArgs} args - Arguments to update or create a ExecutionPhase.
+     * @example
+     * // Update or create a ExecutionPhase
+     * const executionPhase = await prisma.executionPhase.upsert({
+     *   create: {
+     *     // ... data to create a ExecutionPhase
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ExecutionPhase we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ExecutionPhaseUpsertArgs>(args: SelectSubset<T, ExecutionPhaseUpsertArgs<ExtArgs>>): Prisma__ExecutionPhaseClient<$Result.GetResult<Prisma.$ExecutionPhasePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ExecutionPhases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExecutionPhaseCountArgs} args - Arguments to filter ExecutionPhases to count.
+     * @example
+     * // Count the number of ExecutionPhases
+     * const count = await prisma.executionPhase.count({
+     *   where: {
+     *     // ... the filter for the ExecutionPhases we want to count
+     *   }
+     * })
+    **/
+    count<T extends ExecutionPhaseCountArgs>(
+      args?: Subset<T, ExecutionPhaseCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ExecutionPhaseCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ExecutionPhase.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExecutionPhaseAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ExecutionPhaseAggregateArgs>(args: Subset<T, ExecutionPhaseAggregateArgs>): Prisma.PrismaPromise<GetExecutionPhaseAggregateType<T>>
+
+    /**
+     * Group by ExecutionPhase.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExecutionPhaseGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ExecutionPhaseGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ExecutionPhaseGroupByArgs['orderBy'] }
+        : { orderBy?: ExecutionPhaseGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ExecutionPhaseGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetExecutionPhaseGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ExecutionPhase model
+   */
+  readonly fields: ExecutionPhaseFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ExecutionPhase.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ExecutionPhaseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    execution<T extends WorkflowExectutionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, WorkflowExectutionDefaultArgs<ExtArgs>>): Prisma__WorkflowExectutionClient<$Result.GetResult<Prisma.$WorkflowExectutionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ExecutionPhase model
+   */
+  interface ExecutionPhaseFieldRefs {
+    readonly id: FieldRef<"ExecutionPhase", 'String'>
+    readonly userId: FieldRef<"ExecutionPhase", 'String'>
+    readonly status: FieldRef<"ExecutionPhase", 'String'>
+    readonly number: FieldRef<"ExecutionPhase", 'Int'>
+    readonly node: FieldRef<"ExecutionPhase", 'String'>
+    readonly name: FieldRef<"ExecutionPhase", 'String'>
+    readonly startedAt: FieldRef<"ExecutionPhase", 'DateTime'>
+    readonly completedAt: FieldRef<"ExecutionPhase", 'DateTime'>
+    readonly inputs: FieldRef<"ExecutionPhase", 'String'>
+    readonly outputs: FieldRef<"ExecutionPhase", 'String'>
+    readonly creditsCost: FieldRef<"ExecutionPhase", 'Int'>
+    readonly workflowExecutionId: FieldRef<"ExecutionPhase", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ExecutionPhase findUnique
+   */
+  export type ExecutionPhaseFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExecutionPhase
+     */
+    select?: ExecutionPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExecutionPhase
+     */
+    omit?: ExecutionPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExecutionPhaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ExecutionPhase to fetch.
+     */
+    where: ExecutionPhaseWhereUniqueInput
+  }
+
+  /**
+   * ExecutionPhase findUniqueOrThrow
+   */
+  export type ExecutionPhaseFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExecutionPhase
+     */
+    select?: ExecutionPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExecutionPhase
+     */
+    omit?: ExecutionPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExecutionPhaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ExecutionPhase to fetch.
+     */
+    where: ExecutionPhaseWhereUniqueInput
+  }
+
+  /**
+   * ExecutionPhase findFirst
+   */
+  export type ExecutionPhaseFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExecutionPhase
+     */
+    select?: ExecutionPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExecutionPhase
+     */
+    omit?: ExecutionPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExecutionPhaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ExecutionPhase to fetch.
+     */
+    where?: ExecutionPhaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExecutionPhases to fetch.
+     */
+    orderBy?: ExecutionPhaseOrderByWithRelationInput | ExecutionPhaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ExecutionPhases.
+     */
+    cursor?: ExecutionPhaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExecutionPhases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExecutionPhases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ExecutionPhases.
+     */
+    distinct?: ExecutionPhaseScalarFieldEnum | ExecutionPhaseScalarFieldEnum[]
+  }
+
+  /**
+   * ExecutionPhase findFirstOrThrow
+   */
+  export type ExecutionPhaseFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExecutionPhase
+     */
+    select?: ExecutionPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExecutionPhase
+     */
+    omit?: ExecutionPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExecutionPhaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ExecutionPhase to fetch.
+     */
+    where?: ExecutionPhaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExecutionPhases to fetch.
+     */
+    orderBy?: ExecutionPhaseOrderByWithRelationInput | ExecutionPhaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ExecutionPhases.
+     */
+    cursor?: ExecutionPhaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExecutionPhases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExecutionPhases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ExecutionPhases.
+     */
+    distinct?: ExecutionPhaseScalarFieldEnum | ExecutionPhaseScalarFieldEnum[]
+  }
+
+  /**
+   * ExecutionPhase findMany
+   */
+  export type ExecutionPhaseFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExecutionPhase
+     */
+    select?: ExecutionPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExecutionPhase
+     */
+    omit?: ExecutionPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExecutionPhaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ExecutionPhases to fetch.
+     */
+    where?: ExecutionPhaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExecutionPhases to fetch.
+     */
+    orderBy?: ExecutionPhaseOrderByWithRelationInput | ExecutionPhaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ExecutionPhases.
+     */
+    cursor?: ExecutionPhaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExecutionPhases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExecutionPhases.
+     */
+    skip?: number
+    distinct?: ExecutionPhaseScalarFieldEnum | ExecutionPhaseScalarFieldEnum[]
+  }
+
+  /**
+   * ExecutionPhase create
+   */
+  export type ExecutionPhaseCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExecutionPhase
+     */
+    select?: ExecutionPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExecutionPhase
+     */
+    omit?: ExecutionPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExecutionPhaseInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ExecutionPhase.
+     */
+    data: XOR<ExecutionPhaseCreateInput, ExecutionPhaseUncheckedCreateInput>
+  }
+
+  /**
+   * ExecutionPhase createMany
+   */
+  export type ExecutionPhaseCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ExecutionPhases.
+     */
+    data: ExecutionPhaseCreateManyInput | ExecutionPhaseCreateManyInput[]
+  }
+
+  /**
+   * ExecutionPhase createManyAndReturn
+   */
+  export type ExecutionPhaseCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExecutionPhase
+     */
+    select?: ExecutionPhaseSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExecutionPhase
+     */
+    omit?: ExecutionPhaseOmit<ExtArgs> | null
+    /**
+     * The data used to create many ExecutionPhases.
+     */
+    data: ExecutionPhaseCreateManyInput | ExecutionPhaseCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExecutionPhaseIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ExecutionPhase update
+   */
+  export type ExecutionPhaseUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExecutionPhase
+     */
+    select?: ExecutionPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExecutionPhase
+     */
+    omit?: ExecutionPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExecutionPhaseInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ExecutionPhase.
+     */
+    data: XOR<ExecutionPhaseUpdateInput, ExecutionPhaseUncheckedUpdateInput>
+    /**
+     * Choose, which ExecutionPhase to update.
+     */
+    where: ExecutionPhaseWhereUniqueInput
+  }
+
+  /**
+   * ExecutionPhase updateMany
+   */
+  export type ExecutionPhaseUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ExecutionPhases.
+     */
+    data: XOR<ExecutionPhaseUpdateManyMutationInput, ExecutionPhaseUncheckedUpdateManyInput>
+    /**
+     * Filter which ExecutionPhases to update
+     */
+    where?: ExecutionPhaseWhereInput
+    /**
+     * Limit how many ExecutionPhases to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ExecutionPhase updateManyAndReturn
+   */
+  export type ExecutionPhaseUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExecutionPhase
+     */
+    select?: ExecutionPhaseSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExecutionPhase
+     */
+    omit?: ExecutionPhaseOmit<ExtArgs> | null
+    /**
+     * The data used to update ExecutionPhases.
+     */
+    data: XOR<ExecutionPhaseUpdateManyMutationInput, ExecutionPhaseUncheckedUpdateManyInput>
+    /**
+     * Filter which ExecutionPhases to update
+     */
+    where?: ExecutionPhaseWhereInput
+    /**
+     * Limit how many ExecutionPhases to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExecutionPhaseIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ExecutionPhase upsert
+   */
+  export type ExecutionPhaseUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExecutionPhase
+     */
+    select?: ExecutionPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExecutionPhase
+     */
+    omit?: ExecutionPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExecutionPhaseInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ExecutionPhase to update in case it exists.
+     */
+    where: ExecutionPhaseWhereUniqueInput
+    /**
+     * In case the ExecutionPhase found by the `where` argument doesn't exist, create a new ExecutionPhase with this data.
+     */
+    create: XOR<ExecutionPhaseCreateInput, ExecutionPhaseUncheckedCreateInput>
+    /**
+     * In case the ExecutionPhase was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ExecutionPhaseUpdateInput, ExecutionPhaseUncheckedUpdateInput>
+  }
+
+  /**
+   * ExecutionPhase delete
+   */
+  export type ExecutionPhaseDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExecutionPhase
+     */
+    select?: ExecutionPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExecutionPhase
+     */
+    omit?: ExecutionPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExecutionPhaseInclude<ExtArgs> | null
+    /**
+     * Filter which ExecutionPhase to delete.
+     */
+    where: ExecutionPhaseWhereUniqueInput
+  }
+
+  /**
+   * ExecutionPhase deleteMany
+   */
+  export type ExecutionPhaseDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ExecutionPhases to delete
+     */
+    where?: ExecutionPhaseWhereInput
+    /**
+     * Limit how many ExecutionPhases to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ExecutionPhase without action
+   */
+  export type ExecutionPhaseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExecutionPhase
+     */
+    select?: ExecutionPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExecutionPhase
+     */
+    omit?: ExecutionPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExecutionPhaseInclude<ExtArgs> | null
   }
 
 
@@ -1926,12 +4554,52 @@ export namespace Prisma {
   export type WorkFlowScalarFieldEnum = (typeof WorkFlowScalarFieldEnum)[keyof typeof WorkFlowScalarFieldEnum]
 
 
+  export const WorkflowExectutionScalarFieldEnum: {
+    id: 'id',
+    workflowId: 'workflowId',
+    userId: 'userId',
+    trigger: 'trigger',
+    status: 'status',
+    createdAt: 'createdAt',
+    startedAt: 'startedAt',
+    completedAt: 'completedAt'
+  };
+
+  export type WorkflowExectutionScalarFieldEnum = (typeof WorkflowExectutionScalarFieldEnum)[keyof typeof WorkflowExectutionScalarFieldEnum]
+
+
+  export const ExecutionPhaseScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    status: 'status',
+    number: 'number',
+    node: 'node',
+    name: 'name',
+    startedAt: 'startedAt',
+    completedAt: 'completedAt',
+    inputs: 'inputs',
+    outputs: 'outputs',
+    creditsCost: 'creditsCost',
+    workflowExecutionId: 'workflowExecutionId'
+  };
+
+  export type ExecutionPhaseScalarFieldEnum = (typeof ExecutionPhaseScalarFieldEnum)[keyof typeof ExecutionPhaseScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -1958,6 +4626,13 @@ export namespace Prisma {
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
   /**
    * Deep Input Types
    */
@@ -1975,6 +4650,7 @@ export namespace Prisma {
     status?: StringFilter<"WorkFlow"> | string
     createdAt?: DateTimeFilter<"WorkFlow"> | Date | string
     updatedAt?: DateTimeFilter<"WorkFlow"> | Date | string
+    executions?: WorkflowExectutionListRelationFilter
   }
 
   export type WorkFlowOrderByWithRelationInput = {
@@ -1986,6 +4662,7 @@ export namespace Prisma {
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    executions?: WorkflowExectutionOrderByRelationAggregateInput
   }
 
   export type WorkFlowWhereUniqueInput = Prisma.AtLeast<{
@@ -2001,6 +4678,7 @@ export namespace Prisma {
     status?: StringFilter<"WorkFlow"> | string
     createdAt?: DateTimeFilter<"WorkFlow"> | Date | string
     updatedAt?: DateTimeFilter<"WorkFlow"> | Date | string
+    executions?: WorkflowExectutionListRelationFilter
   }, "id" | "name_userId">
 
   export type WorkFlowOrderByWithAggregationInput = {
@@ -2031,6 +4709,171 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"WorkFlow"> | Date | string
   }
 
+  export type WorkflowExectutionWhereInput = {
+    AND?: WorkflowExectutionWhereInput | WorkflowExectutionWhereInput[]
+    OR?: WorkflowExectutionWhereInput[]
+    NOT?: WorkflowExectutionWhereInput | WorkflowExectutionWhereInput[]
+    id?: StringFilter<"WorkflowExectution"> | string
+    workflowId?: StringFilter<"WorkflowExectution"> | string
+    userId?: StringFilter<"WorkflowExectution"> | string
+    trigger?: StringFilter<"WorkflowExectution"> | string
+    status?: StringFilter<"WorkflowExectution"> | string
+    createdAt?: DateTimeFilter<"WorkflowExectution"> | Date | string
+    startedAt?: DateTimeNullableFilter<"WorkflowExectution"> | Date | string | null
+    completedAt?: DateTimeNullableFilter<"WorkflowExectution"> | Date | string | null
+    phases?: ExecutionPhaseListRelationFilter
+    workflow?: XOR<WorkFlowScalarRelationFilter, WorkFlowWhereInput>
+  }
+
+  export type WorkflowExectutionOrderByWithRelationInput = {
+    id?: SortOrder
+    workflowId?: SortOrder
+    userId?: SortOrder
+    trigger?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    startedAt?: SortOrderInput | SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    phases?: ExecutionPhaseOrderByRelationAggregateInput
+    workflow?: WorkFlowOrderByWithRelationInput
+  }
+
+  export type WorkflowExectutionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: WorkflowExectutionWhereInput | WorkflowExectutionWhereInput[]
+    OR?: WorkflowExectutionWhereInput[]
+    NOT?: WorkflowExectutionWhereInput | WorkflowExectutionWhereInput[]
+    workflowId?: StringFilter<"WorkflowExectution"> | string
+    userId?: StringFilter<"WorkflowExectution"> | string
+    trigger?: StringFilter<"WorkflowExectution"> | string
+    status?: StringFilter<"WorkflowExectution"> | string
+    createdAt?: DateTimeFilter<"WorkflowExectution"> | Date | string
+    startedAt?: DateTimeNullableFilter<"WorkflowExectution"> | Date | string | null
+    completedAt?: DateTimeNullableFilter<"WorkflowExectution"> | Date | string | null
+    phases?: ExecutionPhaseListRelationFilter
+    workflow?: XOR<WorkFlowScalarRelationFilter, WorkFlowWhereInput>
+  }, "id">
+
+  export type WorkflowExectutionOrderByWithAggregationInput = {
+    id?: SortOrder
+    workflowId?: SortOrder
+    userId?: SortOrder
+    trigger?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    startedAt?: SortOrderInput | SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    _count?: WorkflowExectutionCountOrderByAggregateInput
+    _max?: WorkflowExectutionMaxOrderByAggregateInput
+    _min?: WorkflowExectutionMinOrderByAggregateInput
+  }
+
+  export type WorkflowExectutionScalarWhereWithAggregatesInput = {
+    AND?: WorkflowExectutionScalarWhereWithAggregatesInput | WorkflowExectutionScalarWhereWithAggregatesInput[]
+    OR?: WorkflowExectutionScalarWhereWithAggregatesInput[]
+    NOT?: WorkflowExectutionScalarWhereWithAggregatesInput | WorkflowExectutionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"WorkflowExectution"> | string
+    workflowId?: StringWithAggregatesFilter<"WorkflowExectution"> | string
+    userId?: StringWithAggregatesFilter<"WorkflowExectution"> | string
+    trigger?: StringWithAggregatesFilter<"WorkflowExectution"> | string
+    status?: StringWithAggregatesFilter<"WorkflowExectution"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"WorkflowExectution"> | Date | string
+    startedAt?: DateTimeNullableWithAggregatesFilter<"WorkflowExectution"> | Date | string | null
+    completedAt?: DateTimeNullableWithAggregatesFilter<"WorkflowExectution"> | Date | string | null
+  }
+
+  export type ExecutionPhaseWhereInput = {
+    AND?: ExecutionPhaseWhereInput | ExecutionPhaseWhereInput[]
+    OR?: ExecutionPhaseWhereInput[]
+    NOT?: ExecutionPhaseWhereInput | ExecutionPhaseWhereInput[]
+    id?: StringFilter<"ExecutionPhase"> | string
+    userId?: StringFilter<"ExecutionPhase"> | string
+    status?: StringFilter<"ExecutionPhase"> | string
+    number?: IntFilter<"ExecutionPhase"> | number
+    node?: StringFilter<"ExecutionPhase"> | string
+    name?: StringFilter<"ExecutionPhase"> | string
+    startedAt?: DateTimeNullableFilter<"ExecutionPhase"> | Date | string | null
+    completedAt?: DateTimeNullableFilter<"ExecutionPhase"> | Date | string | null
+    inputs?: StringNullableFilter<"ExecutionPhase"> | string | null
+    outputs?: StringNullableFilter<"ExecutionPhase"> | string | null
+    creditsCost?: IntNullableFilter<"ExecutionPhase"> | number | null
+    workflowExecutionId?: StringFilter<"ExecutionPhase"> | string
+    execution?: XOR<WorkflowExectutionScalarRelationFilter, WorkflowExectutionWhereInput>
+  }
+
+  export type ExecutionPhaseOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    status?: SortOrder
+    number?: SortOrder
+    node?: SortOrder
+    name?: SortOrder
+    startedAt?: SortOrderInput | SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    inputs?: SortOrderInput | SortOrder
+    outputs?: SortOrderInput | SortOrder
+    creditsCost?: SortOrderInput | SortOrder
+    workflowExecutionId?: SortOrder
+    execution?: WorkflowExectutionOrderByWithRelationInput
+  }
+
+  export type ExecutionPhaseWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ExecutionPhaseWhereInput | ExecutionPhaseWhereInput[]
+    OR?: ExecutionPhaseWhereInput[]
+    NOT?: ExecutionPhaseWhereInput | ExecutionPhaseWhereInput[]
+    userId?: StringFilter<"ExecutionPhase"> | string
+    status?: StringFilter<"ExecutionPhase"> | string
+    number?: IntFilter<"ExecutionPhase"> | number
+    node?: StringFilter<"ExecutionPhase"> | string
+    name?: StringFilter<"ExecutionPhase"> | string
+    startedAt?: DateTimeNullableFilter<"ExecutionPhase"> | Date | string | null
+    completedAt?: DateTimeNullableFilter<"ExecutionPhase"> | Date | string | null
+    inputs?: StringNullableFilter<"ExecutionPhase"> | string | null
+    outputs?: StringNullableFilter<"ExecutionPhase"> | string | null
+    creditsCost?: IntNullableFilter<"ExecutionPhase"> | number | null
+    workflowExecutionId?: StringFilter<"ExecutionPhase"> | string
+    execution?: XOR<WorkflowExectutionScalarRelationFilter, WorkflowExectutionWhereInput>
+  }, "id">
+
+  export type ExecutionPhaseOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    status?: SortOrder
+    number?: SortOrder
+    node?: SortOrder
+    name?: SortOrder
+    startedAt?: SortOrderInput | SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    inputs?: SortOrderInput | SortOrder
+    outputs?: SortOrderInput | SortOrder
+    creditsCost?: SortOrderInput | SortOrder
+    workflowExecutionId?: SortOrder
+    _count?: ExecutionPhaseCountOrderByAggregateInput
+    _avg?: ExecutionPhaseAvgOrderByAggregateInput
+    _max?: ExecutionPhaseMaxOrderByAggregateInput
+    _min?: ExecutionPhaseMinOrderByAggregateInput
+    _sum?: ExecutionPhaseSumOrderByAggregateInput
+  }
+
+  export type ExecutionPhaseScalarWhereWithAggregatesInput = {
+    AND?: ExecutionPhaseScalarWhereWithAggregatesInput | ExecutionPhaseScalarWhereWithAggregatesInput[]
+    OR?: ExecutionPhaseScalarWhereWithAggregatesInput[]
+    NOT?: ExecutionPhaseScalarWhereWithAggregatesInput | ExecutionPhaseScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ExecutionPhase"> | string
+    userId?: StringWithAggregatesFilter<"ExecutionPhase"> | string
+    status?: StringWithAggregatesFilter<"ExecutionPhase"> | string
+    number?: IntWithAggregatesFilter<"ExecutionPhase"> | number
+    node?: StringWithAggregatesFilter<"ExecutionPhase"> | string
+    name?: StringWithAggregatesFilter<"ExecutionPhase"> | string
+    startedAt?: DateTimeNullableWithAggregatesFilter<"ExecutionPhase"> | Date | string | null
+    completedAt?: DateTimeNullableWithAggregatesFilter<"ExecutionPhase"> | Date | string | null
+    inputs?: StringNullableWithAggregatesFilter<"ExecutionPhase"> | string | null
+    outputs?: StringNullableWithAggregatesFilter<"ExecutionPhase"> | string | null
+    creditsCost?: IntNullableWithAggregatesFilter<"ExecutionPhase"> | number | null
+    workflowExecutionId?: StringWithAggregatesFilter<"ExecutionPhase"> | string
+  }
+
   export type WorkFlowCreateInput = {
     id?: string
     userId: string
@@ -2040,6 +4883,7 @@ export namespace Prisma {
     status: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    executions?: WorkflowExectutionCreateNestedManyWithoutWorkflowInput
   }
 
   export type WorkFlowUncheckedCreateInput = {
@@ -2051,6 +4895,7 @@ export namespace Prisma {
     status: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    executions?: WorkflowExectutionUncheckedCreateNestedManyWithoutWorkflowInput
   }
 
   export type WorkFlowUpdateInput = {
@@ -2062,6 +4907,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    executions?: WorkflowExectutionUpdateManyWithoutWorkflowNestedInput
   }
 
   export type WorkFlowUncheckedUpdateInput = {
@@ -2073,6 +4919,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    executions?: WorkflowExectutionUncheckedUpdateManyWithoutWorkflowNestedInput
   }
 
   export type WorkFlowCreateManyInput = {
@@ -2108,6 +4955,190 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type WorkflowExectutionCreateInput = {
+    id?: string
+    userId: string
+    trigger: string
+    status: string
+    createdAt?: Date | string
+    startedAt?: Date | string | null
+    completedAt?: Date | string | null
+    phases?: ExecutionPhaseCreateNestedManyWithoutExecutionInput
+    workflow: WorkFlowCreateNestedOneWithoutExecutionsInput
+  }
+
+  export type WorkflowExectutionUncheckedCreateInput = {
+    id?: string
+    workflowId: string
+    userId: string
+    trigger: string
+    status: string
+    createdAt?: Date | string
+    startedAt?: Date | string | null
+    completedAt?: Date | string | null
+    phases?: ExecutionPhaseUncheckedCreateNestedManyWithoutExecutionInput
+  }
+
+  export type WorkflowExectutionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    trigger?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phases?: ExecutionPhaseUpdateManyWithoutExecutionNestedInput
+    workflow?: WorkFlowUpdateOneRequiredWithoutExecutionsNestedInput
+  }
+
+  export type WorkflowExectutionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    workflowId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    trigger?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phases?: ExecutionPhaseUncheckedUpdateManyWithoutExecutionNestedInput
+  }
+
+  export type WorkflowExectutionCreateManyInput = {
+    id?: string
+    workflowId: string
+    userId: string
+    trigger: string
+    status: string
+    createdAt?: Date | string
+    startedAt?: Date | string | null
+    completedAt?: Date | string | null
+  }
+
+  export type WorkflowExectutionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    trigger?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type WorkflowExectutionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    workflowId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    trigger?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ExecutionPhaseCreateInput = {
+    id?: string
+    userId: string
+    status: string
+    number: number
+    node: string
+    name: string
+    startedAt?: Date | string | null
+    completedAt?: Date | string | null
+    inputs?: string | null
+    outputs?: string | null
+    creditsCost?: number | null
+    execution: WorkflowExectutionCreateNestedOneWithoutPhasesInput
+  }
+
+  export type ExecutionPhaseUncheckedCreateInput = {
+    id?: string
+    userId: string
+    status: string
+    number: number
+    node: string
+    name: string
+    startedAt?: Date | string | null
+    completedAt?: Date | string | null
+    inputs?: string | null
+    outputs?: string | null
+    creditsCost?: number | null
+    workflowExecutionId: string
+  }
+
+  export type ExecutionPhaseUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    node?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    inputs?: NullableStringFieldUpdateOperationsInput | string | null
+    outputs?: NullableStringFieldUpdateOperationsInput | string | null
+    creditsCost?: NullableIntFieldUpdateOperationsInput | number | null
+    execution?: WorkflowExectutionUpdateOneRequiredWithoutPhasesNestedInput
+  }
+
+  export type ExecutionPhaseUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    node?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    inputs?: NullableStringFieldUpdateOperationsInput | string | null
+    outputs?: NullableStringFieldUpdateOperationsInput | string | null
+    creditsCost?: NullableIntFieldUpdateOperationsInput | number | null
+    workflowExecutionId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ExecutionPhaseCreateManyInput = {
+    id?: string
+    userId: string
+    status: string
+    number: number
+    node: string
+    name: string
+    startedAt?: Date | string | null
+    completedAt?: Date | string | null
+    inputs?: string | null
+    outputs?: string | null
+    creditsCost?: number | null
+    workflowExecutionId: string
+  }
+
+  export type ExecutionPhaseUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    node?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    inputs?: NullableStringFieldUpdateOperationsInput | string | null
+    outputs?: NullableStringFieldUpdateOperationsInput | string | null
+    creditsCost?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ExecutionPhaseUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    node?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    inputs?: NullableStringFieldUpdateOperationsInput | string | null
+    outputs?: NullableStringFieldUpdateOperationsInput | string | null
+    creditsCost?: NullableIntFieldUpdateOperationsInput | number | null
+    workflowExecutionId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -2131,6 +5162,16 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type WorkflowExectutionListRelationFilter = {
+    every?: WorkflowExectutionWhereInput
+    some?: WorkflowExectutionWhereInput
+    none?: WorkflowExectutionWhereInput
+  }
+
+  export type WorkflowExectutionOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type WorkFlowNameUserIdCompoundUniqueInput = {
@@ -2202,12 +5243,371 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type ExecutionPhaseListRelationFilter = {
+    every?: ExecutionPhaseWhereInput
+    some?: ExecutionPhaseWhereInput
+    none?: ExecutionPhaseWhereInput
+  }
+
+  export type WorkFlowScalarRelationFilter = {
+    is?: WorkFlowWhereInput
+    isNot?: WorkFlowWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type ExecutionPhaseOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type WorkflowExectutionCountOrderByAggregateInput = {
+    id?: SortOrder
+    workflowId?: SortOrder
+    userId?: SortOrder
+    trigger?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    startedAt?: SortOrder
+    completedAt?: SortOrder
+  }
+
+  export type WorkflowExectutionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    workflowId?: SortOrder
+    userId?: SortOrder
+    trigger?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    startedAt?: SortOrder
+    completedAt?: SortOrder
+  }
+
+  export type WorkflowExectutionMinOrderByAggregateInput = {
+    id?: SortOrder
+    workflowId?: SortOrder
+    userId?: SortOrder
+    trigger?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    startedAt?: SortOrder
+    completedAt?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type WorkflowExectutionScalarRelationFilter = {
+    is?: WorkflowExectutionWhereInput
+    isNot?: WorkflowExectutionWhereInput
+  }
+
+  export type ExecutionPhaseCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    status?: SortOrder
+    number?: SortOrder
+    node?: SortOrder
+    name?: SortOrder
+    startedAt?: SortOrder
+    completedAt?: SortOrder
+    inputs?: SortOrder
+    outputs?: SortOrder
+    creditsCost?: SortOrder
+    workflowExecutionId?: SortOrder
+  }
+
+  export type ExecutionPhaseAvgOrderByAggregateInput = {
+    number?: SortOrder
+    creditsCost?: SortOrder
+  }
+
+  export type ExecutionPhaseMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    status?: SortOrder
+    number?: SortOrder
+    node?: SortOrder
+    name?: SortOrder
+    startedAt?: SortOrder
+    completedAt?: SortOrder
+    inputs?: SortOrder
+    outputs?: SortOrder
+    creditsCost?: SortOrder
+    workflowExecutionId?: SortOrder
+  }
+
+  export type ExecutionPhaseMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    status?: SortOrder
+    number?: SortOrder
+    node?: SortOrder
+    name?: SortOrder
+    startedAt?: SortOrder
+    completedAt?: SortOrder
+    inputs?: SortOrder
+    outputs?: SortOrder
+    creditsCost?: SortOrder
+    workflowExecutionId?: SortOrder
+  }
+
+  export type ExecutionPhaseSumOrderByAggregateInput = {
+    number?: SortOrder
+    creditsCost?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type WorkflowExectutionCreateNestedManyWithoutWorkflowInput = {
+    create?: XOR<WorkflowExectutionCreateWithoutWorkflowInput, WorkflowExectutionUncheckedCreateWithoutWorkflowInput> | WorkflowExectutionCreateWithoutWorkflowInput[] | WorkflowExectutionUncheckedCreateWithoutWorkflowInput[]
+    connectOrCreate?: WorkflowExectutionCreateOrConnectWithoutWorkflowInput | WorkflowExectutionCreateOrConnectWithoutWorkflowInput[]
+    createMany?: WorkflowExectutionCreateManyWorkflowInputEnvelope
+    connect?: WorkflowExectutionWhereUniqueInput | WorkflowExectutionWhereUniqueInput[]
+  }
+
+  export type WorkflowExectutionUncheckedCreateNestedManyWithoutWorkflowInput = {
+    create?: XOR<WorkflowExectutionCreateWithoutWorkflowInput, WorkflowExectutionUncheckedCreateWithoutWorkflowInput> | WorkflowExectutionCreateWithoutWorkflowInput[] | WorkflowExectutionUncheckedCreateWithoutWorkflowInput[]
+    connectOrCreate?: WorkflowExectutionCreateOrConnectWithoutWorkflowInput | WorkflowExectutionCreateOrConnectWithoutWorkflowInput[]
+    createMany?: WorkflowExectutionCreateManyWorkflowInputEnvelope
+    connect?: WorkflowExectutionWhereUniqueInput | WorkflowExectutionWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type WorkflowExectutionUpdateManyWithoutWorkflowNestedInput = {
+    create?: XOR<WorkflowExectutionCreateWithoutWorkflowInput, WorkflowExectutionUncheckedCreateWithoutWorkflowInput> | WorkflowExectutionCreateWithoutWorkflowInput[] | WorkflowExectutionUncheckedCreateWithoutWorkflowInput[]
+    connectOrCreate?: WorkflowExectutionCreateOrConnectWithoutWorkflowInput | WorkflowExectutionCreateOrConnectWithoutWorkflowInput[]
+    upsert?: WorkflowExectutionUpsertWithWhereUniqueWithoutWorkflowInput | WorkflowExectutionUpsertWithWhereUniqueWithoutWorkflowInput[]
+    createMany?: WorkflowExectutionCreateManyWorkflowInputEnvelope
+    set?: WorkflowExectutionWhereUniqueInput | WorkflowExectutionWhereUniqueInput[]
+    disconnect?: WorkflowExectutionWhereUniqueInput | WorkflowExectutionWhereUniqueInput[]
+    delete?: WorkflowExectutionWhereUniqueInput | WorkflowExectutionWhereUniqueInput[]
+    connect?: WorkflowExectutionWhereUniqueInput | WorkflowExectutionWhereUniqueInput[]
+    update?: WorkflowExectutionUpdateWithWhereUniqueWithoutWorkflowInput | WorkflowExectutionUpdateWithWhereUniqueWithoutWorkflowInput[]
+    updateMany?: WorkflowExectutionUpdateManyWithWhereWithoutWorkflowInput | WorkflowExectutionUpdateManyWithWhereWithoutWorkflowInput[]
+    deleteMany?: WorkflowExectutionScalarWhereInput | WorkflowExectutionScalarWhereInput[]
+  }
+
+  export type WorkflowExectutionUncheckedUpdateManyWithoutWorkflowNestedInput = {
+    create?: XOR<WorkflowExectutionCreateWithoutWorkflowInput, WorkflowExectutionUncheckedCreateWithoutWorkflowInput> | WorkflowExectutionCreateWithoutWorkflowInput[] | WorkflowExectutionUncheckedCreateWithoutWorkflowInput[]
+    connectOrCreate?: WorkflowExectutionCreateOrConnectWithoutWorkflowInput | WorkflowExectutionCreateOrConnectWithoutWorkflowInput[]
+    upsert?: WorkflowExectutionUpsertWithWhereUniqueWithoutWorkflowInput | WorkflowExectutionUpsertWithWhereUniqueWithoutWorkflowInput[]
+    createMany?: WorkflowExectutionCreateManyWorkflowInputEnvelope
+    set?: WorkflowExectutionWhereUniqueInput | WorkflowExectutionWhereUniqueInput[]
+    disconnect?: WorkflowExectutionWhereUniqueInput | WorkflowExectutionWhereUniqueInput[]
+    delete?: WorkflowExectutionWhereUniqueInput | WorkflowExectutionWhereUniqueInput[]
+    connect?: WorkflowExectutionWhereUniqueInput | WorkflowExectutionWhereUniqueInput[]
+    update?: WorkflowExectutionUpdateWithWhereUniqueWithoutWorkflowInput | WorkflowExectutionUpdateWithWhereUniqueWithoutWorkflowInput[]
+    updateMany?: WorkflowExectutionUpdateManyWithWhereWithoutWorkflowInput | WorkflowExectutionUpdateManyWithWhereWithoutWorkflowInput[]
+    deleteMany?: WorkflowExectutionScalarWhereInput | WorkflowExectutionScalarWhereInput[]
+  }
+
+  export type ExecutionPhaseCreateNestedManyWithoutExecutionInput = {
+    create?: XOR<ExecutionPhaseCreateWithoutExecutionInput, ExecutionPhaseUncheckedCreateWithoutExecutionInput> | ExecutionPhaseCreateWithoutExecutionInput[] | ExecutionPhaseUncheckedCreateWithoutExecutionInput[]
+    connectOrCreate?: ExecutionPhaseCreateOrConnectWithoutExecutionInput | ExecutionPhaseCreateOrConnectWithoutExecutionInput[]
+    createMany?: ExecutionPhaseCreateManyExecutionInputEnvelope
+    connect?: ExecutionPhaseWhereUniqueInput | ExecutionPhaseWhereUniqueInput[]
+  }
+
+  export type WorkFlowCreateNestedOneWithoutExecutionsInput = {
+    create?: XOR<WorkFlowCreateWithoutExecutionsInput, WorkFlowUncheckedCreateWithoutExecutionsInput>
+    connectOrCreate?: WorkFlowCreateOrConnectWithoutExecutionsInput
+    connect?: WorkFlowWhereUniqueInput
+  }
+
+  export type ExecutionPhaseUncheckedCreateNestedManyWithoutExecutionInput = {
+    create?: XOR<ExecutionPhaseCreateWithoutExecutionInput, ExecutionPhaseUncheckedCreateWithoutExecutionInput> | ExecutionPhaseCreateWithoutExecutionInput[] | ExecutionPhaseUncheckedCreateWithoutExecutionInput[]
+    connectOrCreate?: ExecutionPhaseCreateOrConnectWithoutExecutionInput | ExecutionPhaseCreateOrConnectWithoutExecutionInput[]
+    createMany?: ExecutionPhaseCreateManyExecutionInputEnvelope
+    connect?: ExecutionPhaseWhereUniqueInput | ExecutionPhaseWhereUniqueInput[]
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type ExecutionPhaseUpdateManyWithoutExecutionNestedInput = {
+    create?: XOR<ExecutionPhaseCreateWithoutExecutionInput, ExecutionPhaseUncheckedCreateWithoutExecutionInput> | ExecutionPhaseCreateWithoutExecutionInput[] | ExecutionPhaseUncheckedCreateWithoutExecutionInput[]
+    connectOrCreate?: ExecutionPhaseCreateOrConnectWithoutExecutionInput | ExecutionPhaseCreateOrConnectWithoutExecutionInput[]
+    upsert?: ExecutionPhaseUpsertWithWhereUniqueWithoutExecutionInput | ExecutionPhaseUpsertWithWhereUniqueWithoutExecutionInput[]
+    createMany?: ExecutionPhaseCreateManyExecutionInputEnvelope
+    set?: ExecutionPhaseWhereUniqueInput | ExecutionPhaseWhereUniqueInput[]
+    disconnect?: ExecutionPhaseWhereUniqueInput | ExecutionPhaseWhereUniqueInput[]
+    delete?: ExecutionPhaseWhereUniqueInput | ExecutionPhaseWhereUniqueInput[]
+    connect?: ExecutionPhaseWhereUniqueInput | ExecutionPhaseWhereUniqueInput[]
+    update?: ExecutionPhaseUpdateWithWhereUniqueWithoutExecutionInput | ExecutionPhaseUpdateWithWhereUniqueWithoutExecutionInput[]
+    updateMany?: ExecutionPhaseUpdateManyWithWhereWithoutExecutionInput | ExecutionPhaseUpdateManyWithWhereWithoutExecutionInput[]
+    deleteMany?: ExecutionPhaseScalarWhereInput | ExecutionPhaseScalarWhereInput[]
+  }
+
+  export type WorkFlowUpdateOneRequiredWithoutExecutionsNestedInput = {
+    create?: XOR<WorkFlowCreateWithoutExecutionsInput, WorkFlowUncheckedCreateWithoutExecutionsInput>
+    connectOrCreate?: WorkFlowCreateOrConnectWithoutExecutionsInput
+    upsert?: WorkFlowUpsertWithoutExecutionsInput
+    connect?: WorkFlowWhereUniqueInput
+    update?: XOR<XOR<WorkFlowUpdateToOneWithWhereWithoutExecutionsInput, WorkFlowUpdateWithoutExecutionsInput>, WorkFlowUncheckedUpdateWithoutExecutionsInput>
+  }
+
+  export type ExecutionPhaseUncheckedUpdateManyWithoutExecutionNestedInput = {
+    create?: XOR<ExecutionPhaseCreateWithoutExecutionInput, ExecutionPhaseUncheckedCreateWithoutExecutionInput> | ExecutionPhaseCreateWithoutExecutionInput[] | ExecutionPhaseUncheckedCreateWithoutExecutionInput[]
+    connectOrCreate?: ExecutionPhaseCreateOrConnectWithoutExecutionInput | ExecutionPhaseCreateOrConnectWithoutExecutionInput[]
+    upsert?: ExecutionPhaseUpsertWithWhereUniqueWithoutExecutionInput | ExecutionPhaseUpsertWithWhereUniqueWithoutExecutionInput[]
+    createMany?: ExecutionPhaseCreateManyExecutionInputEnvelope
+    set?: ExecutionPhaseWhereUniqueInput | ExecutionPhaseWhereUniqueInput[]
+    disconnect?: ExecutionPhaseWhereUniqueInput | ExecutionPhaseWhereUniqueInput[]
+    delete?: ExecutionPhaseWhereUniqueInput | ExecutionPhaseWhereUniqueInput[]
+    connect?: ExecutionPhaseWhereUniqueInput | ExecutionPhaseWhereUniqueInput[]
+    update?: ExecutionPhaseUpdateWithWhereUniqueWithoutExecutionInput | ExecutionPhaseUpdateWithWhereUniqueWithoutExecutionInput[]
+    updateMany?: ExecutionPhaseUpdateManyWithWhereWithoutExecutionInput | ExecutionPhaseUpdateManyWithWhereWithoutExecutionInput[]
+    deleteMany?: ExecutionPhaseScalarWhereInput | ExecutionPhaseScalarWhereInput[]
+  }
+
+  export type WorkflowExectutionCreateNestedOneWithoutPhasesInput = {
+    create?: XOR<WorkflowExectutionCreateWithoutPhasesInput, WorkflowExectutionUncheckedCreateWithoutPhasesInput>
+    connectOrCreate?: WorkflowExectutionCreateOrConnectWithoutPhasesInput
+    connect?: WorkflowExectutionWhereUniqueInput
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type WorkflowExectutionUpdateOneRequiredWithoutPhasesNestedInput = {
+    create?: XOR<WorkflowExectutionCreateWithoutPhasesInput, WorkflowExectutionUncheckedCreateWithoutPhasesInput>
+    connectOrCreate?: WorkflowExectutionCreateOrConnectWithoutPhasesInput
+    upsert?: WorkflowExectutionUpsertWithoutPhasesInput
+    connect?: WorkflowExectutionWhereUniqueInput
+    update?: XOR<XOR<WorkflowExectutionUpdateToOneWithWhereWithoutPhasesInput, WorkflowExectutionUpdateWithoutPhasesInput>, WorkflowExectutionUncheckedUpdateWithoutPhasesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2275,6 +5675,477 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type WorkflowExectutionCreateWithoutWorkflowInput = {
+    id?: string
+    userId: string
+    trigger: string
+    status: string
+    createdAt?: Date | string
+    startedAt?: Date | string | null
+    completedAt?: Date | string | null
+    phases?: ExecutionPhaseCreateNestedManyWithoutExecutionInput
+  }
+
+  export type WorkflowExectutionUncheckedCreateWithoutWorkflowInput = {
+    id?: string
+    userId: string
+    trigger: string
+    status: string
+    createdAt?: Date | string
+    startedAt?: Date | string | null
+    completedAt?: Date | string | null
+    phases?: ExecutionPhaseUncheckedCreateNestedManyWithoutExecutionInput
+  }
+
+  export type WorkflowExectutionCreateOrConnectWithoutWorkflowInput = {
+    where: WorkflowExectutionWhereUniqueInput
+    create: XOR<WorkflowExectutionCreateWithoutWorkflowInput, WorkflowExectutionUncheckedCreateWithoutWorkflowInput>
+  }
+
+  export type WorkflowExectutionCreateManyWorkflowInputEnvelope = {
+    data: WorkflowExectutionCreateManyWorkflowInput | WorkflowExectutionCreateManyWorkflowInput[]
+  }
+
+  export type WorkflowExectutionUpsertWithWhereUniqueWithoutWorkflowInput = {
+    where: WorkflowExectutionWhereUniqueInput
+    update: XOR<WorkflowExectutionUpdateWithoutWorkflowInput, WorkflowExectutionUncheckedUpdateWithoutWorkflowInput>
+    create: XOR<WorkflowExectutionCreateWithoutWorkflowInput, WorkflowExectutionUncheckedCreateWithoutWorkflowInput>
+  }
+
+  export type WorkflowExectutionUpdateWithWhereUniqueWithoutWorkflowInput = {
+    where: WorkflowExectutionWhereUniqueInput
+    data: XOR<WorkflowExectutionUpdateWithoutWorkflowInput, WorkflowExectutionUncheckedUpdateWithoutWorkflowInput>
+  }
+
+  export type WorkflowExectutionUpdateManyWithWhereWithoutWorkflowInput = {
+    where: WorkflowExectutionScalarWhereInput
+    data: XOR<WorkflowExectutionUpdateManyMutationInput, WorkflowExectutionUncheckedUpdateManyWithoutWorkflowInput>
+  }
+
+  export type WorkflowExectutionScalarWhereInput = {
+    AND?: WorkflowExectutionScalarWhereInput | WorkflowExectutionScalarWhereInput[]
+    OR?: WorkflowExectutionScalarWhereInput[]
+    NOT?: WorkflowExectutionScalarWhereInput | WorkflowExectutionScalarWhereInput[]
+    id?: StringFilter<"WorkflowExectution"> | string
+    workflowId?: StringFilter<"WorkflowExectution"> | string
+    userId?: StringFilter<"WorkflowExectution"> | string
+    trigger?: StringFilter<"WorkflowExectution"> | string
+    status?: StringFilter<"WorkflowExectution"> | string
+    createdAt?: DateTimeFilter<"WorkflowExectution"> | Date | string
+    startedAt?: DateTimeNullableFilter<"WorkflowExectution"> | Date | string | null
+    completedAt?: DateTimeNullableFilter<"WorkflowExectution"> | Date | string | null
+  }
+
+  export type ExecutionPhaseCreateWithoutExecutionInput = {
+    id?: string
+    userId: string
+    status: string
+    number: number
+    node: string
+    name: string
+    startedAt?: Date | string | null
+    completedAt?: Date | string | null
+    inputs?: string | null
+    outputs?: string | null
+    creditsCost?: number | null
+  }
+
+  export type ExecutionPhaseUncheckedCreateWithoutExecutionInput = {
+    id?: string
+    userId: string
+    status: string
+    number: number
+    node: string
+    name: string
+    startedAt?: Date | string | null
+    completedAt?: Date | string | null
+    inputs?: string | null
+    outputs?: string | null
+    creditsCost?: number | null
+  }
+
+  export type ExecutionPhaseCreateOrConnectWithoutExecutionInput = {
+    where: ExecutionPhaseWhereUniqueInput
+    create: XOR<ExecutionPhaseCreateWithoutExecutionInput, ExecutionPhaseUncheckedCreateWithoutExecutionInput>
+  }
+
+  export type ExecutionPhaseCreateManyExecutionInputEnvelope = {
+    data: ExecutionPhaseCreateManyExecutionInput | ExecutionPhaseCreateManyExecutionInput[]
+  }
+
+  export type WorkFlowCreateWithoutExecutionsInput = {
+    id?: string
+    userId: string
+    name: string
+    description: string
+    definition: string
+    status: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WorkFlowUncheckedCreateWithoutExecutionsInput = {
+    id?: string
+    userId: string
+    name: string
+    description: string
+    definition: string
+    status: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WorkFlowCreateOrConnectWithoutExecutionsInput = {
+    where: WorkFlowWhereUniqueInput
+    create: XOR<WorkFlowCreateWithoutExecutionsInput, WorkFlowUncheckedCreateWithoutExecutionsInput>
+  }
+
+  export type ExecutionPhaseUpsertWithWhereUniqueWithoutExecutionInput = {
+    where: ExecutionPhaseWhereUniqueInput
+    update: XOR<ExecutionPhaseUpdateWithoutExecutionInput, ExecutionPhaseUncheckedUpdateWithoutExecutionInput>
+    create: XOR<ExecutionPhaseCreateWithoutExecutionInput, ExecutionPhaseUncheckedCreateWithoutExecutionInput>
+  }
+
+  export type ExecutionPhaseUpdateWithWhereUniqueWithoutExecutionInput = {
+    where: ExecutionPhaseWhereUniqueInput
+    data: XOR<ExecutionPhaseUpdateWithoutExecutionInput, ExecutionPhaseUncheckedUpdateWithoutExecutionInput>
+  }
+
+  export type ExecutionPhaseUpdateManyWithWhereWithoutExecutionInput = {
+    where: ExecutionPhaseScalarWhereInput
+    data: XOR<ExecutionPhaseUpdateManyMutationInput, ExecutionPhaseUncheckedUpdateManyWithoutExecutionInput>
+  }
+
+  export type ExecutionPhaseScalarWhereInput = {
+    AND?: ExecutionPhaseScalarWhereInput | ExecutionPhaseScalarWhereInput[]
+    OR?: ExecutionPhaseScalarWhereInput[]
+    NOT?: ExecutionPhaseScalarWhereInput | ExecutionPhaseScalarWhereInput[]
+    id?: StringFilter<"ExecutionPhase"> | string
+    userId?: StringFilter<"ExecutionPhase"> | string
+    status?: StringFilter<"ExecutionPhase"> | string
+    number?: IntFilter<"ExecutionPhase"> | number
+    node?: StringFilter<"ExecutionPhase"> | string
+    name?: StringFilter<"ExecutionPhase"> | string
+    startedAt?: DateTimeNullableFilter<"ExecutionPhase"> | Date | string | null
+    completedAt?: DateTimeNullableFilter<"ExecutionPhase"> | Date | string | null
+    inputs?: StringNullableFilter<"ExecutionPhase"> | string | null
+    outputs?: StringNullableFilter<"ExecutionPhase"> | string | null
+    creditsCost?: IntNullableFilter<"ExecutionPhase"> | number | null
+    workflowExecutionId?: StringFilter<"ExecutionPhase"> | string
+  }
+
+  export type WorkFlowUpsertWithoutExecutionsInput = {
+    update: XOR<WorkFlowUpdateWithoutExecutionsInput, WorkFlowUncheckedUpdateWithoutExecutionsInput>
+    create: XOR<WorkFlowCreateWithoutExecutionsInput, WorkFlowUncheckedCreateWithoutExecutionsInput>
+    where?: WorkFlowWhereInput
+  }
+
+  export type WorkFlowUpdateToOneWithWhereWithoutExecutionsInput = {
+    where?: WorkFlowWhereInput
+    data: XOR<WorkFlowUpdateWithoutExecutionsInput, WorkFlowUncheckedUpdateWithoutExecutionsInput>
+  }
+
+  export type WorkFlowUpdateWithoutExecutionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    definition?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WorkFlowUncheckedUpdateWithoutExecutionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    definition?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WorkflowExectutionCreateWithoutPhasesInput = {
+    id?: string
+    userId: string
+    trigger: string
+    status: string
+    createdAt?: Date | string
+    startedAt?: Date | string | null
+    completedAt?: Date | string | null
+    workflow: WorkFlowCreateNestedOneWithoutExecutionsInput
+  }
+
+  export type WorkflowExectutionUncheckedCreateWithoutPhasesInput = {
+    id?: string
+    workflowId: string
+    userId: string
+    trigger: string
+    status: string
+    createdAt?: Date | string
+    startedAt?: Date | string | null
+    completedAt?: Date | string | null
+  }
+
+  export type WorkflowExectutionCreateOrConnectWithoutPhasesInput = {
+    where: WorkflowExectutionWhereUniqueInput
+    create: XOR<WorkflowExectutionCreateWithoutPhasesInput, WorkflowExectutionUncheckedCreateWithoutPhasesInput>
+  }
+
+  export type WorkflowExectutionUpsertWithoutPhasesInput = {
+    update: XOR<WorkflowExectutionUpdateWithoutPhasesInput, WorkflowExectutionUncheckedUpdateWithoutPhasesInput>
+    create: XOR<WorkflowExectutionCreateWithoutPhasesInput, WorkflowExectutionUncheckedCreateWithoutPhasesInput>
+    where?: WorkflowExectutionWhereInput
+  }
+
+  export type WorkflowExectutionUpdateToOneWithWhereWithoutPhasesInput = {
+    where?: WorkflowExectutionWhereInput
+    data: XOR<WorkflowExectutionUpdateWithoutPhasesInput, WorkflowExectutionUncheckedUpdateWithoutPhasesInput>
+  }
+
+  export type WorkflowExectutionUpdateWithoutPhasesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    trigger?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    workflow?: WorkFlowUpdateOneRequiredWithoutExecutionsNestedInput
+  }
+
+  export type WorkflowExectutionUncheckedUpdateWithoutPhasesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    workflowId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    trigger?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type WorkflowExectutionCreateManyWorkflowInput = {
+    id?: string
+    userId: string
+    trigger: string
+    status: string
+    createdAt?: Date | string
+    startedAt?: Date | string | null
+    completedAt?: Date | string | null
+  }
+
+  export type WorkflowExectutionUpdateWithoutWorkflowInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    trigger?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phases?: ExecutionPhaseUpdateManyWithoutExecutionNestedInput
+  }
+
+  export type WorkflowExectutionUncheckedUpdateWithoutWorkflowInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    trigger?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phases?: ExecutionPhaseUncheckedUpdateManyWithoutExecutionNestedInput
+  }
+
+  export type WorkflowExectutionUncheckedUpdateManyWithoutWorkflowInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    trigger?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ExecutionPhaseCreateManyExecutionInput = {
+    id?: string
+    userId: string
+    status: string
+    number: number
+    node: string
+    name: string
+    startedAt?: Date | string | null
+    completedAt?: Date | string | null
+    inputs?: string | null
+    outputs?: string | null
+    creditsCost?: number | null
+  }
+
+  export type ExecutionPhaseUpdateWithoutExecutionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    node?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    inputs?: NullableStringFieldUpdateOperationsInput | string | null
+    outputs?: NullableStringFieldUpdateOperationsInput | string | null
+    creditsCost?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ExecutionPhaseUncheckedUpdateWithoutExecutionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    node?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    inputs?: NullableStringFieldUpdateOperationsInput | string | null
+    outputs?: NullableStringFieldUpdateOperationsInput | string | null
+    creditsCost?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ExecutionPhaseUncheckedUpdateManyWithoutExecutionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    node?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    inputs?: NullableStringFieldUpdateOperationsInput | string | null
+    outputs?: NullableStringFieldUpdateOperationsInput | string | null
+    creditsCost?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
 
