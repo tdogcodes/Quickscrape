@@ -150,7 +150,7 @@ exports.Prisma.ExecutionPhaseScalarFieldEnum = {
   completedAt: 'completedAt',
   inputs: 'inputs',
   outputs: 'outputs',
-  creditsCost: 'creditsCost',
+  creditsConsumed: 'creditsConsumed',
   workflowExecutionId: 'workflowExecutionId'
 };
 

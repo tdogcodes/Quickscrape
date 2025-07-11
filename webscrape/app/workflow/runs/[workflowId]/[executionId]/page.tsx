@@ -16,7 +16,7 @@ const ExecutionViewerPage = ({
     <div className="flex flex-col h-screen w-full overflow-hidden">
       <Topbar
         workflowId={params.workflowId}
-        title="Workflow run details"
+        title="Workflow Run Details"
         subtitle={`Run Id: ${params.executionId}`}
         hideButtons
       />
@@ -50,7 +50,7 @@ const ExecutionViewerWrapper = async ({
     );
   }
 
-  return <ExecutionViewer />;
+  return <ExecutionViewer initialData={workflowExecution} />;
 };
 
 export default ExecutionViewerPage;
