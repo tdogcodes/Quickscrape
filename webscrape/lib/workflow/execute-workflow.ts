@@ -1,0 +1,125 @@
+import "server-only";
+import prisma from "../prisma";
+import { revalidatePath } from "next/cache";
+import {
+  ExecutionPhaseStatus,
+  WorkflowExecutionStatus,
+} from "@/types/workflow";
+import WaitFor from "../helper/wait-for";
+
+export const ExecuteWorkflow = async (executionId: string) => {
+  const execution = await prisma.workflowExectution.findUnique({
+    where: {
+      id: executionId,
+    },
+    include: {
+      workflow: true,
+      phases: true,
+    },
+  });
+
+  if (!execution) {
+    throw new Error("Execution not found");
+  }
+
+  const envioronment = {
+    phases: {},
+  };
+
+  await initializeWorkflowExecution(executionId, execution.workflowId);
+
+  await initializePhaseStatuses(execution);
+
+  let creditsConsumed = 0;
+
+  let executionFailed = false;
+  for (const phase of execution.phases) {
+    await WaitFor(3000); // Simulate waiting for the phase to be ready
+    //TODO 3: Consume credits
+    //TODO 4: Execute each phase
+  }
+
+  await finalizeWorkflowExecution(
+    executionId,
+    execution.workflowId,
+    executionFailed,
+    creditsConsumed
+  );
+  //TODO 6: Clean up execution envioronment
+
+  revalidatePath("/workflows/runs");
+};
+
+const initializeWorkflowExecution = async (
+  executionId: string,
+  workflowId: string
+) => {
+  await prisma.workflowExectution.update({
+    where: { id: executionId },
+    data: {
+      startedAt: new Date(),
+      status: WorkflowExecutionStatus.RUNNING,
+    },
+  });
+
+  await prisma.workFlow.update({
+    where: {
+      id: workflowId,
+    },
+    data: {
+      lastRunAt: new Date(),
+      lastRunId: executionId,
+      lastRunStatus: WorkflowExecutionStatus.RUNNING,
+    },
+  });
+};
+
+const initializePhaseStatuses = async (execution: any) => {
+  await prisma.executionPhase.updateMany({
+    where: {
+      id: { 
+        in:  execution.phases.map((phase: any) => phase.id),
+      },
+    },
+    data: {
+      status: ExecutionPhaseStatus.PENDING,
+    },
+  });
+};
+
+const finalizeWorkflowExecution = async (
+  executionId: string,
+  workflowId: string,
+  executionFailed: boolean,
+  creditsConsumed: number
+) => {
+
+  const finalStatus = executionFailed
+    ? WorkflowExecutionStatus.FAILED
+    : WorkflowExecutionStatus.COMPLETED;
+
+  await prisma.workflowExectution.update({
+    where: {
+      id: executionId,
+    },
+    data: {
+      status: finalStatus,
+      completedAt: new Date(),
+      creditsConsumed,
+    },
+  });
+
+  await prisma.workFlow.update({
+    where: {
+      id: workflowId,
+      lastRunId: executionId,
+    },
+    data: {
+      lastRunStatus: finalStatus,
+    },
+  }).catch((error) => {
+    // ignore
+    // This means we triggered other runs for this workflow
+    // while an execution was in progress
+  })
+};

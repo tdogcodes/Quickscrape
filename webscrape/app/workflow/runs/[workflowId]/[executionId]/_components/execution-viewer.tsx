@@ -1,5 +1,6 @@
 "use client";
 import GetWorkflowExecutionWithPhases from "@/actions/workflows/get-workflow-execution-with-phases";
+import { GetWorkflowPhaseDetails } from "@/actions/workflows/get-workflow-phase-details";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -17,20 +18,33 @@ import {
   LucideIcon,
   WorkflowIcon,
 } from "lucide-react";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 
 type ExecutionData = Awaited<ReturnType<typeof GetWorkflowExecutionWithPhases>>;
 
 const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
+  const [selectedPhase, setSelectedPhase] = useState<string | null>(null);
+
   const query = useQuery({
     queryKey: ["execution", initialData?.id],
     initialData,
     refetchInterval: (q) =>
-      q.state?.data?.status === WorkflowExecutionStatus.RUNNING ? 1000 : false,
+      q.state?.data?.status === WorkflowExecutionStatus.RUNNING ? 2000 : false,
     queryFn: () => GetWorkflowExecutionWithPhases(initialData!.id),
   });
 
-  const duration = DatesToDurationString(query.data?.createdAt, query.data?.startedAt);
+  const phaseDetails = useQuery({
+    queryKey: ["phaseDetails", selectedPhase],
+    enabled: selectedPhase !== null,
+    queryFn: () => GetWorkflowPhaseDetails(selectedPhase!),
+  })
+
+  const isRunning = query.data?.status === WorkflowExecutionStatus.RUNNING;
+
+  const duration = DatesToDurationString(
+    query.data?.completedAt,
+    query.data?.startedAt
+  );
 
   const creditsUsed = GetPhasesTotalCost(query.data?.phases || []);
 
@@ -63,10 +77,17 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
           />
 
           {/*  Displays the duration of the workflow execution  */}
-          <ExecutionLabel 
-            icon={ClockIcon} 
-            label="Duration" 
-            value={ duration ? duration :  <Loader className="animate-spin" size={20}/>} />
+          <ExecutionLabel
+            icon={ClockIcon}
+            label={duration}
+            value={
+              duration ? (
+                duration
+              ) : (
+                <Loader className="animate-spin" size={20} />
+              )
+            }
+          />
 
           {/*  Displays the duration of the workflow execution  */}
           <ExecutionLabel
@@ -85,9 +106,19 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
         <Separator />
         <div className="overflow-auto px-2 h-full py-4">
           {query?.data?.phases.map((phase, i) => (
-            <Button key={phase.id} variant={"ghost"} className="w-full justify-between mb-2">
+            <Button
+              key={phase.id}
+              disabled={isRunning}
+              variant={ selectedPhase === phase.id ? "secondary" : "ghost"}
+              className="w-full justify-between mb-2"
+              onClick={() =>{ 
+                setSelectedPhase(phase.id)
+              }}
+            >
               <div className="flex items-center gap-2">
-                <Badge className="" variant={"outline"}>{i + 1}</Badge>
+                <Badge className="" variant={"outline"}>
+                  {i + 1}
+                </Badge>
                 <p className="font-semibold">{phase.name}</p>
               </div>
               <p className="text-xs text-muted-foreground">{phase.status}</p>
@@ -95,6 +126,9 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
           ))}
         </div>
       </aside>
+      <div className="flex w-full h-full">
+        <pre>{JSON.stringify(phaseDetails.data, null, 4)}</pre>
+      </div>
     </div>
   );
 };

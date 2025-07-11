@@ -20,6 +20,10 @@ model WorkFlow {
   definition String
   status     String
 
+  lastRunAt     DateTime?
+  lastRunId     String?
+  lastRunStatus String?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -30,32 +34,34 @@ model WorkFlow {
 }
 
 model WorkflowExectution {
-  id         String @id @default(cuid())
-  workflowId String
-  userId     String
-  trigger String
-  status    String
-  createdAt DateTime @default(now())
-  startedAt DateTime?
+  id          String    @id @default(cuid())
+  workflowId  String
+  userId      String
+  trigger     String
+  status      String
+  createdAt   DateTime  @default(now())
+  startedAt   DateTime?
   completedAt DateTime?
 
-  phases ExecutionPhase[]
-  workflow WorkFlow @relation(fields: [workflowId], references: [id])
+  creditsConsumed     Int? @default(0)
+
+  phases   ExecutionPhase[]
+  workflow WorkFlow         @relation(fields: [workflowId], references: [id])
 }
 
 model ExecutionPhase {
-  id String @id @default(cuid())
-  userId String
-  status String
-  number Int
-  node String
-  name String
-  startedAt DateTime?
+  id          String    @id @default(cuid())
+  userId      String
+  status      String
+  number      Int
+  node        String
+  name        String
+  startedAt   DateTime?
   completedAt DateTime?
-  inputs String?
-  outputs String?
+  inputs      String?
+  outputs     String?
 
-  creditsConsumed Int?
+  creditsConsumed     Int?
   workflowExecutionId String
-  execution WorkflowExectution @relation(fields: [workflowExecutionId], references: [id], onDelete: Cascade)
+  execution           WorkflowExectution @relation(fields: [workflowExecutionId], references: [id], onDelete: Cascade)
 }

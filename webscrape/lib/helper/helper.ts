@@ -13,15 +13,21 @@ export function DatesToDurationString(
     return `${timeElapsed} ms`;
   }
 
+  if (timeElapsed < 60000) {
+    return `${Math.floor(timeElapsed / 1000)} seconds`;
+  }
+
+  if (timeElapsed < 3600000) {
+    return `${Math.floor(timeElapsed / 60000)} minutes`;
+  }
+
   // intervalToDuration does not account for values under one second
   const duration = intervalToDuration({
     start: 0,
     end: timeElapsed,
   });
 
-  return `${duration.hours || 0}h ${duration.minutes || 0}m ${
-    duration.seconds || 0
-  }s`;
+  return `${duration.minutes || 0}m ${duration.seconds || 0}s`;
 }
 
 export function CalculateWorkflowCost(nodes: AppNode[]) {

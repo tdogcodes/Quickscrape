@@ -124,6 +124,9 @@ exports.Prisma.WorkFlowScalarFieldEnum = {
   description: 'description',
   definition: 'definition',
   status: 'status',
+  lastRunAt: 'lastRunAt',
+  lastRunId: 'lastRunId',
+  lastRunStatus: 'lastRunStatus',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -136,7 +139,8 @@ exports.Prisma.WorkflowExectutionScalarFieldEnum = {
   status: 'status',
   createdAt: 'createdAt',
   startedAt: 'startedAt',
-  completedAt: 'completedAt'
+  completedAt: 'completedAt',
+  creditsConsumed: 'creditsConsumed'
 };
 
 exports.Prisma.ExecutionPhaseScalarFieldEnum = {
