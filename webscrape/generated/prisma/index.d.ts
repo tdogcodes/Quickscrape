@@ -2287,6 +2287,7 @@ export namespace Prisma {
     createdAt: Date | null
     startedAt: Date | null
     completedAt: Date | null
+    definition: string | null
     creditsConsumed: number | null
   }
 
@@ -2299,6 +2300,7 @@ export namespace Prisma {
     createdAt: Date | null
     startedAt: Date | null
     completedAt: Date | null
+    definition: string | null
     creditsConsumed: number | null
   }
 
@@ -2311,6 +2313,7 @@ export namespace Prisma {
     createdAt: number
     startedAt: number
     completedAt: number
+    definition: number
     creditsConsumed: number
     _all: number
   }
@@ -2333,6 +2336,7 @@ export namespace Prisma {
     createdAt?: true
     startedAt?: true
     completedAt?: true
+    definition?: true
     creditsConsumed?: true
   }
 
@@ -2345,6 +2349,7 @@ export namespace Prisma {
     createdAt?: true
     startedAt?: true
     completedAt?: true
+    definition?: true
     creditsConsumed?: true
   }
 
@@ -2357,6 +2362,7 @@ export namespace Prisma {
     createdAt?: true
     startedAt?: true
     completedAt?: true
+    definition?: true
     creditsConsumed?: true
     _all?: true
   }
@@ -2456,6 +2462,7 @@ export namespace Prisma {
     createdAt: Date
     startedAt: Date | null
     completedAt: Date | null
+    definition: string
     creditsConsumed: number | null
     _count: WorkflowExectutionCountAggregateOutputType | null
     _avg: WorkflowExectutionAvgAggregateOutputType | null
@@ -2487,6 +2494,7 @@ export namespace Prisma {
     createdAt?: boolean
     startedAt?: boolean
     completedAt?: boolean
+    definition?: boolean
     creditsConsumed?: boolean
     phases?: boolean | WorkflowExectution$phasesArgs<ExtArgs>
     workflow?: boolean | WorkFlowDefaultArgs<ExtArgs>
@@ -2502,6 +2510,7 @@ export namespace Prisma {
     createdAt?: boolean
     startedAt?: boolean
     completedAt?: boolean
+    definition?: boolean
     creditsConsumed?: boolean
     workflow?: boolean | WorkFlowDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["workflowExectution"]>
@@ -2515,6 +2524,7 @@ export namespace Prisma {
     createdAt?: boolean
     startedAt?: boolean
     completedAt?: boolean
+    definition?: boolean
     creditsConsumed?: boolean
     workflow?: boolean | WorkFlowDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["workflowExectution"]>
@@ -2528,10 +2538,11 @@ export namespace Prisma {
     createdAt?: boolean
     startedAt?: boolean
     completedAt?: boolean
+    definition?: boolean
     creditsConsumed?: boolean
   }
 
-  export type WorkflowExectutionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "workflowId" | "userId" | "trigger" | "status" | "createdAt" | "startedAt" | "completedAt" | "creditsConsumed", ExtArgs["result"]["workflowExectution"]>
+  export type WorkflowExectutionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "workflowId" | "userId" | "trigger" | "status" | "createdAt" | "startedAt" | "completedAt" | "definition" | "creditsConsumed", ExtArgs["result"]["workflowExectution"]>
   export type WorkflowExectutionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     phases?: boolean | WorkflowExectution$phasesArgs<ExtArgs>
     workflow?: boolean | WorkFlowDefaultArgs<ExtArgs>
@@ -2559,6 +2570,7 @@ export namespace Prisma {
       createdAt: Date
       startedAt: Date | null
       completedAt: Date | null
+      definition: string
       creditsConsumed: number | null
     }, ExtArgs["result"]["workflowExectution"]>
     composites: {}
@@ -2993,6 +3005,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"WorkflowExectution", 'DateTime'>
     readonly startedAt: FieldRef<"WorkflowExectution", 'DateTime'>
     readonly completedAt: FieldRef<"WorkflowExectution", 'DateTime'>
+    readonly definition: FieldRef<"WorkflowExectution", 'String'>
     readonly creditsConsumed: FieldRef<"WorkflowExectution", 'Int'>
   }
     
@@ -4652,6 +4665,7 @@ export namespace Prisma {
     createdAt: 'createdAt',
     startedAt: 'startedAt',
     completedAt: 'completedAt',
+    definition: 'definition',
     creditsConsumed: 'creditsConsumed'
   };
 
@@ -4826,6 +4840,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"WorkflowExectution"> | Date | string
     startedAt?: DateTimeNullableFilter<"WorkflowExectution"> | Date | string | null
     completedAt?: DateTimeNullableFilter<"WorkflowExectution"> | Date | string | null
+    definition?: StringFilter<"WorkflowExectution"> | string
     creditsConsumed?: IntNullableFilter<"WorkflowExectution"> | number | null
     phases?: ExecutionPhaseListRelationFilter
     workflow?: XOR<WorkFlowScalarRelationFilter, WorkFlowWhereInput>
@@ -4840,6 +4855,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     startedAt?: SortOrderInput | SortOrder
     completedAt?: SortOrderInput | SortOrder
+    definition?: SortOrder
     creditsConsumed?: SortOrderInput | SortOrder
     phases?: ExecutionPhaseOrderByRelationAggregateInput
     workflow?: WorkFlowOrderByWithRelationInput
@@ -4857,6 +4873,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"WorkflowExectution"> | Date | string
     startedAt?: DateTimeNullableFilter<"WorkflowExectution"> | Date | string | null
     completedAt?: DateTimeNullableFilter<"WorkflowExectution"> | Date | string | null
+    definition?: StringFilter<"WorkflowExectution"> | string
     creditsConsumed?: IntNullableFilter<"WorkflowExectution"> | number | null
     phases?: ExecutionPhaseListRelationFilter
     workflow?: XOR<WorkFlowScalarRelationFilter, WorkFlowWhereInput>
@@ -4871,6 +4888,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     startedAt?: SortOrderInput | SortOrder
     completedAt?: SortOrderInput | SortOrder
+    definition?: SortOrder
     creditsConsumed?: SortOrderInput | SortOrder
     _count?: WorkflowExectutionCountOrderByAggregateInput
     _avg?: WorkflowExectutionAvgOrderByAggregateInput
@@ -4891,6 +4909,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"WorkflowExectution"> | Date | string
     startedAt?: DateTimeNullableWithAggregatesFilter<"WorkflowExectution"> | Date | string | null
     completedAt?: DateTimeNullableWithAggregatesFilter<"WorkflowExectution"> | Date | string | null
+    definition?: StringWithAggregatesFilter<"WorkflowExectution"> | string
     creditsConsumed?: IntNullableWithAggregatesFilter<"WorkflowExectution"> | number | null
   }
 
@@ -5096,6 +5115,7 @@ export namespace Prisma {
     createdAt?: Date | string
     startedAt?: Date | string | null
     completedAt?: Date | string | null
+    definition?: string
     creditsConsumed?: number | null
     phases?: ExecutionPhaseCreateNestedManyWithoutExecutionInput
     workflow: WorkFlowCreateNestedOneWithoutExecutionsInput
@@ -5110,6 +5130,7 @@ export namespace Prisma {
     createdAt?: Date | string
     startedAt?: Date | string | null
     completedAt?: Date | string | null
+    definition?: string
     creditsConsumed?: number | null
     phases?: ExecutionPhaseUncheckedCreateNestedManyWithoutExecutionInput
   }
@@ -5122,6 +5143,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    definition?: StringFieldUpdateOperationsInput | string
     creditsConsumed?: NullableIntFieldUpdateOperationsInput | number | null
     phases?: ExecutionPhaseUpdateManyWithoutExecutionNestedInput
     workflow?: WorkFlowUpdateOneRequiredWithoutExecutionsNestedInput
@@ -5136,6 +5158,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    definition?: StringFieldUpdateOperationsInput | string
     creditsConsumed?: NullableIntFieldUpdateOperationsInput | number | null
     phases?: ExecutionPhaseUncheckedUpdateManyWithoutExecutionNestedInput
   }
@@ -5149,6 +5172,7 @@ export namespace Prisma {
     createdAt?: Date | string
     startedAt?: Date | string | null
     completedAt?: Date | string | null
+    definition?: string
     creditsConsumed?: number | null
   }
 
@@ -5160,6 +5184,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    definition?: StringFieldUpdateOperationsInput | string
     creditsConsumed?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -5172,6 +5197,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    definition?: StringFieldUpdateOperationsInput | string
     creditsConsumed?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -5488,6 +5514,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     startedAt?: SortOrder
     completedAt?: SortOrder
+    definition?: SortOrder
     creditsConsumed?: SortOrder
   }
 
@@ -5504,6 +5531,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     startedAt?: SortOrder
     completedAt?: SortOrder
+    definition?: SortOrder
     creditsConsumed?: SortOrder
   }
 
@@ -5516,6 +5544,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     startedAt?: SortOrder
     completedAt?: SortOrder
+    definition?: SortOrder
     creditsConsumed?: SortOrder
   }
 
@@ -5966,6 +5995,7 @@ export namespace Prisma {
     createdAt?: Date | string
     startedAt?: Date | string | null
     completedAt?: Date | string | null
+    definition?: string
     creditsConsumed?: number | null
     phases?: ExecutionPhaseCreateNestedManyWithoutExecutionInput
   }
@@ -5978,6 +6008,7 @@ export namespace Prisma {
     createdAt?: Date | string
     startedAt?: Date | string | null
     completedAt?: Date | string | null
+    definition?: string
     creditsConsumed?: number | null
     phases?: ExecutionPhaseUncheckedCreateNestedManyWithoutExecutionInput
   }
@@ -6019,6 +6050,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"WorkflowExectution"> | Date | string
     startedAt?: DateTimeNullableFilter<"WorkflowExectution"> | Date | string | null
     completedAt?: DateTimeNullableFilter<"WorkflowExectution"> | Date | string | null
+    definition?: StringFilter<"WorkflowExectution"> | string
     creditsConsumed?: IntNullableFilter<"WorkflowExectution"> | number | null
   }
 
@@ -6173,6 +6205,7 @@ export namespace Prisma {
     createdAt?: Date | string
     startedAt?: Date | string | null
     completedAt?: Date | string | null
+    definition?: string
     creditsConsumed?: number | null
     workflow: WorkFlowCreateNestedOneWithoutExecutionsInput
   }
@@ -6186,6 +6219,7 @@ export namespace Prisma {
     createdAt?: Date | string
     startedAt?: Date | string | null
     completedAt?: Date | string | null
+    definition?: string
     creditsConsumed?: number | null
   }
 
@@ -6213,6 +6247,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    definition?: StringFieldUpdateOperationsInput | string
     creditsConsumed?: NullableIntFieldUpdateOperationsInput | number | null
     workflow?: WorkFlowUpdateOneRequiredWithoutExecutionsNestedInput
   }
@@ -6226,6 +6261,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    definition?: StringFieldUpdateOperationsInput | string
     creditsConsumed?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -6237,6 +6273,7 @@ export namespace Prisma {
     createdAt?: Date | string
     startedAt?: Date | string | null
     completedAt?: Date | string | null
+    definition?: string
     creditsConsumed?: number | null
   }
 
@@ -6248,6 +6285,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    definition?: StringFieldUpdateOperationsInput | string
     creditsConsumed?: NullableIntFieldUpdateOperationsInput | number | null
     phases?: ExecutionPhaseUpdateManyWithoutExecutionNestedInput
   }
@@ -6260,6 +6298,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    definition?: StringFieldUpdateOperationsInput | string
     creditsConsumed?: NullableIntFieldUpdateOperationsInput | number | null
     phases?: ExecutionPhaseUncheckedUpdateManyWithoutExecutionNestedInput
   }
@@ -6272,6 +6311,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    definition?: StringFieldUpdateOperationsInput | string
     creditsConsumed?: NullableIntFieldUpdateOperationsInput | number | null
   }
 

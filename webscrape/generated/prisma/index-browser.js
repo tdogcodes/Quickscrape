@@ -140,6 +140,7 @@ exports.Prisma.WorkflowExectutionScalarFieldEnum = {
   createdAt: 'createdAt',
   startedAt: 'startedAt',
   completedAt: 'completedAt',
+  definition: 'definition',
   creditsConsumed: 'creditsConsumed'
 };
 

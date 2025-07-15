@@ -3,15 +3,18 @@ import { LaunchBrowserExecutor } from "./launch-browser-executor";
 import { PageToHtmlExecutor } from "./page-to-html-executor";
 import { ExecutionEnvironment } from "@/types/executor";
 import { WorkflowTask } from "@/types/workflow";
+import { ExtractTextFromElementExecutor } from "./extract-text-from-element";
 
-type ExecutorFunction<T extends WorkflowTask> = (environment : ExecutionEnvironment<T>) => Promise<boolean>;
+type ExecutorFunction<T extends WorkflowTask> = (
+  environment: ExecutionEnvironment<T>
+) => Promise<boolean>;
 
 type RegistryType = {
-    [K in TaskType] : ExecutorFunction<WorkflowTask & { type: K }>
-}
+  [K in TaskType]: ExecutorFunction<WorkflowTask & { type: K }>;
+};
 
-export const ExecutorRegistry : RegistryType = {
-    LAUNCH_BROWSER: LaunchBrowserExecutor,
-    PAGE_TO_HTML: PageToHtmlExecutor,
-    EXTRACT_TEXT_FROM_ELEMENT: () => Promise.resolve(true)
-}
+export const ExecutorRegistry: RegistryType = {
+  LAUNCH_BROWSER: LaunchBrowserExecutor,
+  PAGE_TO_HTML: PageToHtmlExecutor,
+  EXTRACT_TEXT_FROM_ELEMENT: ExtractTextFromElementExecutor,
+};

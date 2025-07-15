@@ -5,8 +5,8 @@ export const PageToHtmlExecutor = async (
   environment: ExecutionEnvironment<typeof PageToHTMLTask>
 ): Promise<boolean> => {
   try {
-    const websiteUrl = environment.getInput("Webpage");
-    console.log("@@ENV WEBSITE URL:", websiteUrl);
+    const html = await environment.getPage()!.content();
+    environment.setOutput("HTML", html);
     return true;
   } catch (e) {
     console.error("Error launching browser executor", e);
