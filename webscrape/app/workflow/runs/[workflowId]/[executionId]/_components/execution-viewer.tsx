@@ -127,7 +127,13 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
         </div>
       </aside>
       <div className="flex w-full h-full">
-        <pre>{JSON.stringify(phaseDetails.data, null, 4)}</pre>
+        {isRunning && (
+          <div className="flex items-center flex-col gap-2 justify-center w-full h-full">
+            <p className="font-bold">
+              Run is in progress, please wait...
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

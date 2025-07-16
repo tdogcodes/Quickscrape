@@ -159,6 +159,14 @@ exports.Prisma.ExecutionPhaseScalarFieldEnum = {
   workflowExecutionId: 'workflowExecutionId'
 };
 
+exports.Prisma.ExecutionLogScalarFieldEnum = {
+  id: 'id',
+  logLevel: 'logLevel',
+  message: 'message',
+  timestamp: 'timestamp',
+  executionPhaseId: 'executionPhaseId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -173,7 +181,8 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   WorkFlow: 'WorkFlow',
   WorkflowExectution: 'WorkflowExectution',
-  ExecutionPhase: 'ExecutionPhase'
+  ExecutionPhase: 'ExecutionPhase',
+  ExecutionLog: 'ExecutionLog'
 };
 
 /**

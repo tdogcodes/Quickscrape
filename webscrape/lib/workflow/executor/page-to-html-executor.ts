@@ -8,8 +8,8 @@ export const PageToHtmlExecutor = async (
     const html = await environment.getPage()!.content();
     environment.setOutput("HTML", html);
     return true;
-  } catch (e) {
-    console.error("Error launching browser executor", e);
+  } catch (e :any) {
+    environment.log.error(`Failed to convert page to HTML: ${e.message}`);
     return false;
   }
 };

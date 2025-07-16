@@ -8,13 +8,13 @@ export const ExtractTextFromElementExecutor = async (
   try {
     const selector = environment.getInput("Selector");
     if (!selector) {
-      console.error("Selector input is required");
+      environment.log.error("Selector input not defined");
       return false;
     }
     const html = environment.getInput("Html");
 
     if (!html) {
-      console.error("Html was not provided");
+      environment.log.error("Html input not defined");
       return false;
     }
 
@@ -22,21 +22,21 @@ export const ExtractTextFromElementExecutor = async (
     const element = $(selector);
 
     if (!element) {
-      console.error(`No element found for selector: ${selector}`);
+      environment.log.error(`Element not found for selector: ${selector}`);
       return false;
     }
 
     const extractedText = $.text(element);
 
     if (!extractedText) {
-      console.error(`No text found for selector: ${selector}`);
+      environment.log.error(`No text found for selector: ${selector}`);
       return false;
     }
 
     environment.setOutput("Extracted Text", extractedText);
     return true;
-  } catch (e) {
-    console.error("Error launching browser executor", e);
+  } catch (e : any) {
+    environment.log.error(`Failed to extract text from element: ${e.message}`);
     return false;
   }
 };

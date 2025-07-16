@@ -15,6 +15,8 @@ import { TaskParamType } from "@/types/task";
 import { get } from "http";
 import { Browser, Page } from "puppeteer";
 import { Edge } from "@xyflow/react";
+import { LogCollector } from "@/types/log";
+import { createLogCollector } from "../log";
 
 export const ExecuteWorkflow = async (executionId: string) => {
   const execution = await prisma.workflowExectution.findUnique({
@@ -45,7 +47,11 @@ export const ExecuteWorkflow = async (executionId: string) => {
   let executionFailed = false;
 
   for (const phase of execution.phases) {
-    const phaseExecution = await executeWorkflowPhase(phase, envioronment, edges);
+    const phaseExecution = await executeWorkflowPhase(
+      phase,
+      envioronment,
+      edges,
+    );
     if (phaseExecution === undefined) {
       executionFailed = true;
       break;
@@ -143,8 +149,9 @@ const finalizeWorkflowExecution = async (
 const executeWorkflowPhase = async (
   phase: ExecutionPhase,
   environment: Environment,
-  edge: Edge[]
+  edge: Edge[],
 ) => {
+  const logCollector = createLogCollector();
   const startedAt = new Date();
   const node = JSON.parse(phase.node) as AppNode;
 
@@ -169,15 +176,20 @@ const executeWorkflowPhase = async (
   //TODO: Document user's credit balance
 
   // Simulate phase execution
-  const success = await executePhase(phase, node, environment);
+  const success = await executePhase(phase, node, environment, logCollector);
 
   const outputs = environment.phases[node.id].outputs;
 
-  await finalizePhase(phase.id, success, outputs);
+  await finalizePhase(phase.id, success, outputs, logCollector);
   return { success };
 };
 
-const finalizePhase = async (phaseId: string, success: boolean, outputs: any) => {
+const finalizePhase = async (
+  phaseId: string,
+  success: boolean,
+  outputs: any,
+  logCollector: LogCollector
+) => {
   const finalStatus = success
     ? ExecutionPhaseStatus.COMPLETED
     : ExecutionPhaseStatus.FAILED;
@@ -190,6 +202,15 @@ const finalizePhase = async (phaseId: string, success: boolean, outputs: any) =>
       status: finalStatus,
       completedAt: new Date(),
       outputs: JSON.stringify(outputs),
+      logs: {
+        createMany: {
+          data: logCollector.getAll().map((log) => ({
+            message: log.message,
+            logLevel: log.level,
+            timestamp: log.timestamp,
+          })),
+        },
+      },
     },
   });
 };
@@ -197,7 +218,8 @@ const finalizePhase = async (phaseId: string, success: boolean, outputs: any) =>
 const executePhase = async (
   phase: ExecutionPhase,
   node: AppNode,
-  environment: Environment
+  environment: Environment,
+  logCollector: LogCollector
 ): Promise<boolean> => {
   const runFn = ExecutorRegistry[node.data.type];
   if (!runFn) {
@@ -205,12 +227,16 @@ const executePhase = async (
     return false;
   }
   const executionEnvironment: ExecutionEnvironment<any> =
-    createExecutionEnvironment(node, environment);
+    createExecutionEnvironment(node, environment, logCollector);
 
   return await runFn(executionEnvironment);
 };
 
-const setupEnvironmentForPhase = (node: AppNode, environment: Environment, edge: Edge[]) => {
+const setupEnvironmentForPhase = (
+  node: AppNode,
+  environment: Environment,
+  edge: Edge[]
+) => {
   environment.phases[node.id] = {
     inputs: {},
     outputs: {},
@@ -225,33 +251,39 @@ const setupEnvironmentForPhase = (node: AppNode, environment: Environment, edge:
     }
 
     // Get input value from an output of another node
-    const connectedEdge = edge.find(e => e.target ==  node.id && e.targetHandle === input.name);
+    const connectedEdge = edge.find(
+      (e) => e.target == node.id && e.targetHandle === input.name
+    );
 
-    if(!connectedEdge){
+    if (!connectedEdge) {
       console.error("missing edge for input", input.name, "node id: ", node.id);
       continue;
     }
 
-    const outputValue = environment.phases[connectedEdge.source]?.outputs[connectedEdge.sourceHandle!];
-    
-    environment.phases[node.id].inputs[input.name] = outputValue;
+    const outputValue =
+      environment.phases[connectedEdge.source]?.outputs[
+        connectedEdge.sourceHandle!
+      ];
 
+    environment.phases[node.id].inputs[input.name] = outputValue;
   }
 };
 
 const createExecutionEnvironment = (
   node: AppNode,
-  environment: Environment
+  environment: Environment,
+  LogCollector: LogCollector
 ): ExecutionEnvironment<any> => {
   return {
     getInput: (name: string) => environment.phases[node.id]?.inputs[name],
     setOutput: (name: string, value: string) => {
-      environment.phases[node.id].outputs[name] = value
+      environment.phases[node.id].outputs[name] = value;
     },
     getBrowser: () => environment.browser,
     setBrowser: (browser: Browser) => (environment.browser = browser),
     getPage: () => environment.page,
     setPage: (page: Page) => (environment.page = page),
+    log: LogCollector,
   };
 };
 
