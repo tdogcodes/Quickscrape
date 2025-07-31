@@ -13,6 +13,10 @@ export function DatesToDurationString(
     return `${timeElapsed} ms`;
   }
 
+    if (timeElapsed < 2000 && timeElapsed >= 1000) {
+    return `${Math.floor(timeElapsed / 1000)} second`;
+  }
+
   if (timeElapsed < 60000) {
     return `${Math.floor(timeElapsed / 1000)} seconds`;
   }

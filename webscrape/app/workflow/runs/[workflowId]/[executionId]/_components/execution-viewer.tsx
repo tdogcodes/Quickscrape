@@ -44,6 +44,7 @@ import {
 import { cn } from "@/lib/utils";
 import { LogLevel } from "@/types/log";
 import PhaseStatusBadge from "./phase-status-badge";
+import ReactCountWrapper from "@/components/react-count-wrapper";
 
 type ExecutionData = Awaited<ReturnType<typeof GetWorkflowExecutionWithPhases>>;
 
@@ -74,7 +75,7 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
         a.startedAt! > b.startedAt! ? -1 : 1
       )[0];
       setSelectedPhase(phaseToSelect.id);
-       return;
+      return;
     }
     const phaseToSelect = phases.toSorted((a, b) =>
         a.completedAt! > b.completedAt! ? -1 : 1
@@ -134,7 +135,7 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
           <ExecutionLabel
             icon={CoinsIcon}
             label="Credits Used"
-            value={creditsUsed}
+            value={<ReactCountWrapper value={creditsUsed}/>}
           />
         </div>
         <Separator />
@@ -191,7 +192,7 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
                   <Coins size={18} className="stroke-muted-foreground" />
                   <span>Credits</span>
                 </div>
-                <span>TODO</span>
+                <span>{phaseDetails?.data.creditsConsumed}</span>
               </Badge>
               <Badge className="space-x-2" variant={"outline"}>
                 <div className="flex items-center gap-1">

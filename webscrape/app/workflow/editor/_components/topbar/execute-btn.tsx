@@ -15,12 +15,12 @@ const ExecuteBtn = ({ workflowId }: { workflowId: string }) => {
   const mutation = useMutation({
     mutationFn: RunWorkflow,
     onSuccess: (data) => {
-      toast.success("Workflow executed successfully", {id: "flow-execution"});
+      toast.success("Workflow executed successfully", { id: "flow-execution" });
     },
     onError: (data) => {
-      toast.error("Something went wrong", {id: "flow-execution"});
+      toast.error("Something went wrong", { id: "flow-execution" });
     },
-  })
+  });
 
   return (
     <Button
@@ -40,6 +40,7 @@ const ExecuteBtn = ({ workflowId }: { workflowId: string }) => {
       }}
     >
       <PlayIcon size={16} className="stroke-orange-400" />
+      Execute
     </Button>
   );
 };

@@ -6,12 +6,13 @@ import {
   Menu,
   ShieldCheckIcon,
 } from "lucide-react";
-import React, { Fragment } from "react";
+import React from "react";
 import Logo from "./logo";
 import Link from "next/link";
 import { Button, buttonVariants } from "./ui/button";
 import { usePathname } from "next/navigation";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import UserAvailableCreditsBadge from "./user-available-credits-badge";
 
 const routes = [
   {
@@ -53,7 +54,9 @@ const DesktopSidebar = () => {
       <div className="flex items-center justfy-center gap-2 border-b-2 border-separate p-4">
         <Logo />
       </div>
-      <div className="p-2">TODO: Credits</div>
+      <div className="p-2">
+        <UserAvailableCreditsBadge />
+      </div>
       <div className="flex flex-col p-2">
         {routes.map((route) => (
           <Link
@@ -97,6 +100,7 @@ export const MobileSidebar = () => {
             side={"left"}
           >
             <Logo />
+            <UserAvailableCreditsBadge />
             <div className="flex flex-col gap-1">
               {routes.map((route) => (
                 <Link

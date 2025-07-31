@@ -167,6 +167,11 @@ exports.Prisma.ExecutionLogScalarFieldEnum = {
   executionPhaseId: 'executionPhaseId'
 };
 
+exports.Prisma.UserBalanceScalarFieldEnum = {
+  userId: 'userId',
+  credits: 'credits'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -182,7 +187,8 @@ exports.Prisma.ModelName = {
   WorkFlow: 'WorkFlow',
   WorkflowExectution: 'WorkflowExectution',
   ExecutionPhase: 'ExecutionPhase',
-  ExecutionLog: 'ExecutionLog'
+  ExecutionLog: 'ExecutionLog',
+  UserBalance: 'UserBalance'
 };
 
 /**
