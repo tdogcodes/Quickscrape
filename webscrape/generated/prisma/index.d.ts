@@ -1353,10 +1353,12 @@ export namespace Prisma {
     definition: string | null
     executionPlan: string | null
     creditsCost: number | null
+    cron: string | null
     status: string | null
     lastRunAt: Date | null
     lastRunId: string | null
     lastRunStatus: string | null
+    nextRunAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1369,10 +1371,12 @@ export namespace Prisma {
     definition: string | null
     executionPlan: string | null
     creditsCost: number | null
+    cron: string | null
     status: string | null
     lastRunAt: Date | null
     lastRunId: string | null
     lastRunStatus: string | null
+    nextRunAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1385,10 +1389,12 @@ export namespace Prisma {
     definition: number
     executionPlan: number
     creditsCost: number
+    cron: number
     status: number
     lastRunAt: number
     lastRunId: number
     lastRunStatus: number
+    nextRunAt: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1411,10 +1417,12 @@ export namespace Prisma {
     definition?: true
     executionPlan?: true
     creditsCost?: true
+    cron?: true
     status?: true
     lastRunAt?: true
     lastRunId?: true
     lastRunStatus?: true
+    nextRunAt?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1427,10 +1435,12 @@ export namespace Prisma {
     definition?: true
     executionPlan?: true
     creditsCost?: true
+    cron?: true
     status?: true
     lastRunAt?: true
     lastRunId?: true
     lastRunStatus?: true
+    nextRunAt?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1443,10 +1453,12 @@ export namespace Prisma {
     definition?: true
     executionPlan?: true
     creditsCost?: true
+    cron?: true
     status?: true
     lastRunAt?: true
     lastRunId?: true
     lastRunStatus?: true
+    nextRunAt?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1546,10 +1558,12 @@ export namespace Prisma {
     definition: string
     executionPlan: string | null
     creditsCost: number
+    cron: string | null
     status: string
     lastRunAt: Date | null
     lastRunId: string | null
     lastRunStatus: string | null
+    nextRunAt: Date | null
     createdAt: Date
     updatedAt: Date
     _count: WorkFlowCountAggregateOutputType | null
@@ -1581,10 +1595,12 @@ export namespace Prisma {
     definition?: boolean
     executionPlan?: boolean
     creditsCost?: boolean
+    cron?: boolean
     status?: boolean
     lastRunAt?: boolean
     lastRunId?: boolean
     lastRunStatus?: boolean
+    nextRunAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     executions?: boolean | WorkFlow$executionsArgs<ExtArgs>
@@ -1599,10 +1615,12 @@ export namespace Prisma {
     definition?: boolean
     executionPlan?: boolean
     creditsCost?: boolean
+    cron?: boolean
     status?: boolean
     lastRunAt?: boolean
     lastRunId?: boolean
     lastRunStatus?: boolean
+    nextRunAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["workFlow"]>
@@ -1615,10 +1633,12 @@ export namespace Prisma {
     definition?: boolean
     executionPlan?: boolean
     creditsCost?: boolean
+    cron?: boolean
     status?: boolean
     lastRunAt?: boolean
     lastRunId?: boolean
     lastRunStatus?: boolean
+    nextRunAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["workFlow"]>
@@ -1631,15 +1651,17 @@ export namespace Prisma {
     definition?: boolean
     executionPlan?: boolean
     creditsCost?: boolean
+    cron?: boolean
     status?: boolean
     lastRunAt?: boolean
     lastRunId?: boolean
     lastRunStatus?: boolean
+    nextRunAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type WorkFlowOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "description" | "definition" | "executionPlan" | "creditsCost" | "status" | "lastRunAt" | "lastRunId" | "lastRunStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["workFlow"]>
+  export type WorkFlowOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "description" | "definition" | "executionPlan" | "creditsCost" | "cron" | "status" | "lastRunAt" | "lastRunId" | "lastRunStatus" | "nextRunAt" | "createdAt" | "updatedAt", ExtArgs["result"]["workFlow"]>
   export type WorkFlowInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     executions?: boolean | WorkFlow$executionsArgs<ExtArgs>
     _count?: boolean | WorkFlowCountOutputTypeDefaultArgs<ExtArgs>
@@ -1660,10 +1682,12 @@ export namespace Prisma {
       definition: string
       executionPlan: string | null
       creditsCost: number
+      cron: string | null
       status: string
       lastRunAt: Date | null
       lastRunId: string | null
       lastRunStatus: string | null
+      nextRunAt: Date | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["workFlow"]>
@@ -2097,10 +2121,12 @@ export namespace Prisma {
     readonly definition: FieldRef<"WorkFlow", 'String'>
     readonly executionPlan: FieldRef<"WorkFlow", 'String'>
     readonly creditsCost: FieldRef<"WorkFlow", 'Int'>
+    readonly cron: FieldRef<"WorkFlow", 'String'>
     readonly status: FieldRef<"WorkFlow", 'String'>
     readonly lastRunAt: FieldRef<"WorkFlow", 'DateTime'>
     readonly lastRunId: FieldRef<"WorkFlow", 'String'>
     readonly lastRunStatus: FieldRef<"WorkFlow", 'String'>
+    readonly nextRunAt: FieldRef<"WorkFlow", 'DateTime'>
     readonly createdAt: FieldRef<"WorkFlow", 'DateTime'>
     readonly updatedAt: FieldRef<"WorkFlow", 'DateTime'>
   }
@@ -6994,10 +7020,12 @@ export namespace Prisma {
     definition: 'definition',
     executionPlan: 'executionPlan',
     creditsCost: 'creditsCost',
+    cron: 'cron',
     status: 'status',
     lastRunAt: 'lastRunAt',
     lastRunId: 'lastRunId',
     lastRunStatus: 'lastRunStatus',
+    nextRunAt: 'nextRunAt',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -7121,10 +7149,12 @@ export namespace Prisma {
     definition?: StringFilter<"WorkFlow"> | string
     executionPlan?: StringNullableFilter<"WorkFlow"> | string | null
     creditsCost?: IntFilter<"WorkFlow"> | number
+    cron?: StringNullableFilter<"WorkFlow"> | string | null
     status?: StringFilter<"WorkFlow"> | string
     lastRunAt?: DateTimeNullableFilter<"WorkFlow"> | Date | string | null
     lastRunId?: StringNullableFilter<"WorkFlow"> | string | null
     lastRunStatus?: StringNullableFilter<"WorkFlow"> | string | null
+    nextRunAt?: DateTimeNullableFilter<"WorkFlow"> | Date | string | null
     createdAt?: DateTimeFilter<"WorkFlow"> | Date | string
     updatedAt?: DateTimeFilter<"WorkFlow"> | Date | string
     executions?: WorkflowExectutionListRelationFilter
@@ -7138,10 +7168,12 @@ export namespace Prisma {
     definition?: SortOrder
     executionPlan?: SortOrderInput | SortOrder
     creditsCost?: SortOrder
+    cron?: SortOrderInput | SortOrder
     status?: SortOrder
     lastRunAt?: SortOrderInput | SortOrder
     lastRunId?: SortOrderInput | SortOrder
     lastRunStatus?: SortOrderInput | SortOrder
+    nextRunAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     executions?: WorkflowExectutionOrderByRelationAggregateInput
@@ -7159,10 +7191,12 @@ export namespace Prisma {
     definition?: StringFilter<"WorkFlow"> | string
     executionPlan?: StringNullableFilter<"WorkFlow"> | string | null
     creditsCost?: IntFilter<"WorkFlow"> | number
+    cron?: StringNullableFilter<"WorkFlow"> | string | null
     status?: StringFilter<"WorkFlow"> | string
     lastRunAt?: DateTimeNullableFilter<"WorkFlow"> | Date | string | null
     lastRunId?: StringNullableFilter<"WorkFlow"> | string | null
     lastRunStatus?: StringNullableFilter<"WorkFlow"> | string | null
+    nextRunAt?: DateTimeNullableFilter<"WorkFlow"> | Date | string | null
     createdAt?: DateTimeFilter<"WorkFlow"> | Date | string
     updatedAt?: DateTimeFilter<"WorkFlow"> | Date | string
     executions?: WorkflowExectutionListRelationFilter
@@ -7176,10 +7210,12 @@ export namespace Prisma {
     definition?: SortOrder
     executionPlan?: SortOrderInput | SortOrder
     creditsCost?: SortOrder
+    cron?: SortOrderInput | SortOrder
     status?: SortOrder
     lastRunAt?: SortOrderInput | SortOrder
     lastRunId?: SortOrderInput | SortOrder
     lastRunStatus?: SortOrderInput | SortOrder
+    nextRunAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: WorkFlowCountOrderByAggregateInput
@@ -7200,10 +7236,12 @@ export namespace Prisma {
     definition?: StringWithAggregatesFilter<"WorkFlow"> | string
     executionPlan?: StringNullableWithAggregatesFilter<"WorkFlow"> | string | null
     creditsCost?: IntWithAggregatesFilter<"WorkFlow"> | number
+    cron?: StringNullableWithAggregatesFilter<"WorkFlow"> | string | null
     status?: StringWithAggregatesFilter<"WorkFlow"> | string
     lastRunAt?: DateTimeNullableWithAggregatesFilter<"WorkFlow"> | Date | string | null
     lastRunId?: StringNullableWithAggregatesFilter<"WorkFlow"> | string | null
     lastRunStatus?: StringNullableWithAggregatesFilter<"WorkFlow"> | string | null
+    nextRunAt?: DateTimeNullableWithAggregatesFilter<"WorkFlow"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"WorkFlow"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"WorkFlow"> | Date | string
   }
@@ -7490,10 +7528,12 @@ export namespace Prisma {
     definition: string
     executionPlan?: string | null
     creditsCost?: number
+    cron?: string | null
     status: string
     lastRunAt?: Date | string | null
     lastRunId?: string | null
     lastRunStatus?: string | null
+    nextRunAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     executions?: WorkflowExectutionCreateNestedManyWithoutWorkflowInput
@@ -7507,10 +7547,12 @@ export namespace Prisma {
     definition: string
     executionPlan?: string | null
     creditsCost?: number
+    cron?: string | null
     status: string
     lastRunAt?: Date | string | null
     lastRunId?: string | null
     lastRunStatus?: string | null
+    nextRunAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     executions?: WorkflowExectutionUncheckedCreateNestedManyWithoutWorkflowInput
@@ -7524,10 +7566,12 @@ export namespace Prisma {
     definition?: StringFieldUpdateOperationsInput | string
     executionPlan?: NullableStringFieldUpdateOperationsInput | string | null
     creditsCost?: IntFieldUpdateOperationsInput | number
+    cron?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastRunId?: NullableStringFieldUpdateOperationsInput | string | null
     lastRunStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     executions?: WorkflowExectutionUpdateManyWithoutWorkflowNestedInput
@@ -7541,10 +7585,12 @@ export namespace Prisma {
     definition?: StringFieldUpdateOperationsInput | string
     executionPlan?: NullableStringFieldUpdateOperationsInput | string | null
     creditsCost?: IntFieldUpdateOperationsInput | number
+    cron?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastRunId?: NullableStringFieldUpdateOperationsInput | string | null
     lastRunStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     executions?: WorkflowExectutionUncheckedUpdateManyWithoutWorkflowNestedInput
@@ -7558,10 +7604,12 @@ export namespace Prisma {
     definition: string
     executionPlan?: string | null
     creditsCost?: number
+    cron?: string | null
     status: string
     lastRunAt?: Date | string | null
     lastRunId?: string | null
     lastRunStatus?: string | null
+    nextRunAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7574,10 +7622,12 @@ export namespace Prisma {
     definition?: StringFieldUpdateOperationsInput | string
     executionPlan?: NullableStringFieldUpdateOperationsInput | string | null
     creditsCost?: IntFieldUpdateOperationsInput | number
+    cron?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastRunId?: NullableStringFieldUpdateOperationsInput | string | null
     lastRunStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7590,10 +7640,12 @@ export namespace Prisma {
     definition?: StringFieldUpdateOperationsInput | string
     executionPlan?: NullableStringFieldUpdateOperationsInput | string | null
     creditsCost?: IntFieldUpdateOperationsInput | number
+    cron?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastRunId?: NullableStringFieldUpdateOperationsInput | string | null
     lastRunStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7979,10 +8031,12 @@ export namespace Prisma {
     definition?: SortOrder
     executionPlan?: SortOrder
     creditsCost?: SortOrder
+    cron?: SortOrder
     status?: SortOrder
     lastRunAt?: SortOrder
     lastRunId?: SortOrder
     lastRunStatus?: SortOrder
+    nextRunAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7999,10 +8053,12 @@ export namespace Prisma {
     definition?: SortOrder
     executionPlan?: SortOrder
     creditsCost?: SortOrder
+    cron?: SortOrder
     status?: SortOrder
     lastRunAt?: SortOrder
     lastRunId?: SortOrder
     lastRunStatus?: SortOrder
+    nextRunAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -8015,10 +8071,12 @@ export namespace Prisma {
     definition?: SortOrder
     executionPlan?: SortOrder
     creditsCost?: SortOrder
+    cron?: SortOrder
     status?: SortOrder
     lastRunAt?: SortOrder
     lastRunId?: SortOrder
     lastRunStatus?: SortOrder
+    nextRunAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -8818,10 +8876,12 @@ export namespace Prisma {
     definition: string
     executionPlan?: string | null
     creditsCost?: number
+    cron?: string | null
     status: string
     lastRunAt?: Date | string | null
     lastRunId?: string | null
     lastRunStatus?: string | null
+    nextRunAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8834,10 +8894,12 @@ export namespace Prisma {
     definition: string
     executionPlan?: string | null
     creditsCost?: number
+    cron?: string | null
     status: string
     lastRunAt?: Date | string | null
     lastRunId?: string | null
     lastRunStatus?: string | null
+    nextRunAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8900,10 +8962,12 @@ export namespace Prisma {
     definition?: StringFieldUpdateOperationsInput | string
     executionPlan?: NullableStringFieldUpdateOperationsInput | string | null
     creditsCost?: IntFieldUpdateOperationsInput | number
+    cron?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastRunId?: NullableStringFieldUpdateOperationsInput | string | null
     lastRunStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8916,10 +8980,12 @@ export namespace Prisma {
     definition?: StringFieldUpdateOperationsInput | string
     executionPlan?: NullableStringFieldUpdateOperationsInput | string | null
     creditsCost?: IntFieldUpdateOperationsInput | number
+    cron?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastRunId?: NullableStringFieldUpdateOperationsInput | string | null
     lastRunStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

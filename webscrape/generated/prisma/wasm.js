@@ -125,10 +125,12 @@ exports.Prisma.WorkFlowScalarFieldEnum = {
   definition: 'definition',
   executionPlan: 'executionPlan',
   creditsCost: 'creditsCost',
+  cron: 'cron',
   status: 'status',
   lastRunAt: 'lastRunAt',
   lastRunId: 'lastRunId',
   lastRunStatus: 'lastRunStatus',
+  nextRunAt: 'nextRunAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

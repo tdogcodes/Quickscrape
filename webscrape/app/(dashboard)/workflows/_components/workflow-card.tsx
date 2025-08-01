@@ -9,7 +9,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MoreVerticalIcon, TrashIcon } from "lucide-react";
+import {
+  CoinsIcon,
+  CornerDownRightIcon,
+  MoreVerticalIcon,
+  MoveRightIcon,
+  TrashIcon,
+} from "lucide-react";
 import React, { useState } from "react";
 import DeleteWorkflowDialog from "./delete-workflow-dialog";
 import { buttonVariants } from "@/components/ui/button";
@@ -19,6 +25,9 @@ import { cn } from "@/lib/utils";
 import { WorkflowStatus } from "@/types/workflow";
 import { FileTextIcon, PlayIcon, ShuffleIcon } from "lucide-react";
 import Link from "next/link";
+import RunBtn from "./run-btn";
+import SchedulerDialog from "./scheduler-dialog";
+import { Badge } from "@/components/ui/badge";
 
 const statusColors = {
   [WorkflowStatus.DRAFT]: "bg-yellow-400 text-yellow-600",
@@ -61,9 +70,15 @@ const WorkflowCard = ({ workflow }: { workflow: WorkFlow }) => {
                 </span>
               )}
             </h3>
+            <ScheduleSection
+              workflowId={workflow.id}
+              isDraft={isDraft}
+              creditsCost={workflow.creditsCost}
+            />
           </div>
         </div>
         <div className="flex items-center space-x-2">
+          {!isDraft && <RunBtn workflowId={workflow.id} />}
           <Link
             href={`/workflow/editor/${workflow.id}`}
             className={cn(
@@ -75,8 +90,12 @@ const WorkflowCard = ({ workflow }: { workflow: WorkFlow }) => {
             )}
           >
             <ShuffleIcon size={16} />
+            Editor
           </Link>
-          <WorkflowActions workflowId={workflow.id} workflowName={workflow.name} />
+          <WorkflowActions
+            workflowId={workflow.id}
+            workflowName={workflow.name}
+          />
         </div>
       </CardContent>
     </Card>
@@ -127,5 +146,39 @@ const WorkflowActions = ({
         </DropdownMenuContent>
       </DropdownMenu>
     </>
+  );
+};
+
+const ScheduleSection = ({
+  isDraft,
+  creditsCost,
+  workflowId,
+}: {
+  isDraft: boolean;
+  creditsCost: number;
+  workflowId: string;
+}) => {
+  if (isDraft) return null;
+
+  return (
+    <div className="flex items-center gap-2">
+      <CornerDownRightIcon
+        size={16}
+        className="h-4 w-4 text-muted-foreground"
+      />
+      <SchedulerDialog workflowId={workflowId} />
+      <MoveRightIcon className="h-4 w-4 text-muted-foreground" />
+      <TooltipWrapper content="credit consumption for to execute the workflow">
+        <div className="flex items-center gap-3">
+          <Badge
+            variant={"outline"}
+            className="space-x-2 text-muted-foreground rounded-sm"
+          >
+            <span className="text-sm">{creditsCost}</span>
+            <CoinsIcon className="h-4 w-4" />
+          </Badge>
+        </div>
+      </TooltipWrapper>
+    </div>
   );
 };
