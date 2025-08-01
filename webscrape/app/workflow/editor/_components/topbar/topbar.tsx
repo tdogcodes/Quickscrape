@@ -36,7 +36,7 @@ const Topbar = ({
         <div className="flex justify-center items-center gap-3">
           <p
             className="font-bold text-ellipsis truncate bg-gradient-to-r
-        bg-clip-text text-transparent from-emerald-500 to-emerald-400"
+        bg-clip-text text-transparent from-primary to-white"
           >
             {title}
           </p>

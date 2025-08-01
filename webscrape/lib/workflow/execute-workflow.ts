@@ -17,7 +17,6 @@ import { Browser, Page } from "puppeteer";
 import { Edge } from "@xyflow/react";
 import { LogCollector } from "@/types/log";
 import { createLogCollector } from "../log";
-import WaitFor from "../helper/wait-for";
 
 export const ExecuteWorkflow = async (executionId: string) => {
   const execution = await prisma.workflowExectution.findUnique({

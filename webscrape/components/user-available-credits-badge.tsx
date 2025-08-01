@@ -16,7 +16,7 @@ const UserAvailableCreditsBadge = () => {
 
   return (
     <Link href={"/billing"} className={cn("w-full space-x-2 items-center", buttonVariants({ variant: "outline" }))}>
-      <Coins size={20} className="text-primary" />
+      <Coins size={20} className="text-white" />
       <span className="font-semibold capitalize">
         {query.isLoading && <Loader2Icon className="w-4 h-4 animate-spin" />}
         {!query.isLoading && query.data && <ReactCountWrapper value={query.data} />}

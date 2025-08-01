@@ -45,6 +45,7 @@ import { cn } from "@/lib/utils";
 import { LogLevel } from "@/types/log";
 import PhaseStatusBadge from "./phase-status-badge";
 import ReactCountWrapper from "@/components/react-count-wrapper";
+import waitFor from "@/lib/helper/wait-for";
 
 type ExecutionData = Awaited<ReturnType<typeof GetWorkflowExecutionWithPhases>>;
 
@@ -69,6 +70,7 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
 
   useEffect(() => {
     //while runnning, auto select the current runnning phase in the sidebar
+    waitFor(5000)
     const phases = query.data?.phases || [];
     if (isRunning) {
       const phaseToSelect = phases.toSorted((a, b) =>
@@ -78,9 +80,9 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
       return;
     }
     const phaseToSelect = phases.toSorted((a, b) =>
-        a.completedAt! > b.completedAt! ? -1 : 1
-      )[0];
-      setSelectedPhase(phaseToSelect.id);
+      a.completedAt! > b.completedAt! ? -1 : 1
+    )[0];
+    setSelectedPhase(phaseToSelect.id);
   }, [query.data?.phases, isRunning, setSelectedPhase]);
 
   const duration = DatesToDurationString(
@@ -102,7 +104,14 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
           <ExecutionLabel
             icon={CircleDashedIcon}
             label="Status"
-            value={query.data?.status}
+            value={
+              <div className="flex items-center gap-2 font-semibold capitalize">
+                <PhaseStatusBadge
+                  status={phaseDetails?.data?.status as ExecutionPhaseStatus}
+                />
+                <span className="">{query?.data?.status}</span>
+              </div>
+            }
           />
 
           {/*  Displays the started at of the workflow execution  */}
@@ -135,7 +144,7 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
           <ExecutionLabel
             icon={CoinsIcon}
             label="Credits Used"
-            value={<ReactCountWrapper value={creditsUsed}/>}
+            value={<ReactCountWrapper value={creditsUsed} />}
           />
         </div>
         <Separator />
@@ -336,11 +345,11 @@ const LogViewer = ({ logs }: { logs: ExecutionLog[] | undefined }) => {
                   className={cn(
                     "uppercase text-xs font-bold p-[3px] pl-4",
                     (log.logLevel as LogLevel) === "error"
-                      ? "text-destructive"
+                      ? "text-primary"
                       : (log.logLevel as LogLevel) === "warning"
                       ? "text-yellow-500"
                       : (log.logLevel as LogLevel) === "info"
-                      ? "text-primary"
+                      ? "text-emerald-600"
                       : "text-gray-500"
                   )}
                 >

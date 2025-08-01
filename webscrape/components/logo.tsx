@@ -16,20 +16,20 @@ const Logo = ({
     <Link
       href="/"
       className={cn(
-        "text-2xl items-center gap-2 font-extrabold flex",
+        "text-2xl items-center gap-2 font-extrabold flex justify-center mx-auto ml-2",
         fontSize ? `text-${fontSize}` : "text-2xl",
         className
       )}
     >
       <div
-        className="rounded-xl bg-gradient-to-r
-        bg-clip-text text-transparent from-emerald-500 to-emerald-500 p-2"
+        className="rounded-xl 
+         p-2"
       >
-        <ScanText size={iconSize} color="#10b981" />
+        <ScanText size={iconSize} className="stroke-primary" />
       </div>
       <span
         className="bg-gradient-to-r
-        bg-clip-text text-transparent from-emerald-500 to-emerald-400"
+        bg-clip-text text-transparent from-primary to-white"
       >
         Quick<span className="bg-gradient-to-r
         bg-clip-text text-transparent from-stone-400 to-stone-500 dark:text-stone-300">Scrape</span>

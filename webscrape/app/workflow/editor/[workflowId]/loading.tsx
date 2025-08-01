@@ -1,9 +1,9 @@
-import { LoaderPinwheel } from "lucide-react";
+import { Loader2Icon} from "lucide-react";
 import React from "react";
 
 const Loading = () => {
   return (
-    <LoaderPinwheel
+    <Loader2Icon
       className="animate-spin h-screen stroke-primary flex mx-auto justify-center items-center"
       size={50}
     />

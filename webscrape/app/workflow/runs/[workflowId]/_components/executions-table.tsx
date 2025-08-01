@@ -94,9 +94,9 @@ const ExecutionTable = ({
                   </div>
                 </TableCell>
                 <TableCell>
-                  <div className="flex flex-col">
+                  <div className="flex items-center justify-center flex-col">
                     <div className="flex items-center gap-2">
-                      <CoinsIcon size={16} className="text-primary" />
+                      <CoinsIcon size={16} className="text-white" />
                       <span className="font-semibold capitalize">
                         {execution.creditsConsumed}
                       </span>

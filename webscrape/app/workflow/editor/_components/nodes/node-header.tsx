@@ -30,7 +30,7 @@ const NodeHeader = ({
         <div className="gap-1 items-center flex">
           {task.isEntryPoint && <Badge>Entry Point</Badge>}
           <Badge className="gap-2 flex items-center text-xs">
-            <CoinsIcon size={16} />
+            <CoinsIcon className="text-white" size={16} />
             {task.credits}
           </Badge>
           {!task.isEntryPoint && (

@@ -8,9 +8,9 @@ const PhaseStatusBadge = ({status} : {status: ExecutionPhaseStatus}) => {
     case ExecutionPhaseStatus.RUNNING:
       return <Loader2Icon size={20} className="animate-spin stroke-yellow-500" />
     case ExecutionPhaseStatus.FAILED:
-      return <CircleXIcon size={20} className="stroke-destructive" />
+      return <CircleXIcon size={20} className="stroke-primary" />
     case ExecutionPhaseStatus.COMPLETED:
-      return <CircleCheckIcon size={20} className="stroke-primary" />
+      return <CircleCheckIcon size={20} className="stroke-emerald-600" />
     default:
       return <div className='rounded-full'>{status}</div>
   }
