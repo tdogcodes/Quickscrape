@@ -20,6 +20,7 @@ import cronsTrue from "cronstrue/i18n";
 const SchedulerDialog = ({ workflowId }: { workflowId: string }) => {
   const [cron, setCron] = useState("");
   const [validCron, setValidCron] = useState(false);
+  const [readableCron, setReadableCron] = useState("");
 
   const mutation = useMutation({
     mutationFn: UpdateWorkflowCron,
@@ -37,9 +38,12 @@ const SchedulerDialog = ({ workflowId }: { workflowId: string }) => {
 
   useEffect(() => {
     try {
-        const humanCronString = cronsTrue.toString(cron)
+      const humanCronString = cronsTrue.toString(cron);
+      setValidCron(true);
+      setReadableCron(humanCronString);
     } catch (error) {
-        throw new Error("Invalid cron expression");
+      setValidCron(false);
+      setReadableCron("Invalid cron expression");
     }
   }, [cron]);
 
@@ -71,6 +75,14 @@ const SchedulerDialog = ({ workflowId }: { workflowId: string }) => {
             value={cron}
             onChange={(e) => setCron(e.target.value)}
           />
+          <div
+            className={cn(
+              "bg-accent rounded-md p-4 border text-sm border-primary text-muted-foreground",
+              validCron && "border-emerald-600"
+            )}
+          >
+            {validCron ? readableCron : "Not a valid cron expression"}
+          </div>
         </div>
         <DialogFooter className="px-6 gap-2">
           <DialogClose asChild>
