@@ -19,7 +19,6 @@ const NodeHeader = ({
   const task = TaskRegistry[taskType];
   const { deleteElements, getNode, addNodes } = useReactFlow();
 
-
   return (
     <div className="flex items-center p-2 gap-2">
       <task.icon size={16} />
@@ -46,16 +45,20 @@ const NodeHeader = ({
               >
                 <TrashIcon size={16} />
               </Button>
-              <Button variant={"ghost"} size={"icon"} onClick={() => {
-                const node  = getNode(nodeId) as AppNode
-                const newX = node.position.x;
-                const newY = node.position.y + node.measured?.height! + 20;
-                const newNode = CreateFlowNode(node.data.type, {
-                  x : newX,
-                  y: newY,
-                });
-                addNodes([newNode])
-              }}>
+              <Button
+                variant={"ghost"}
+                size={"icon"}
+                onClick={() => {
+                  const node = getNode(nodeId) as AppNode;
+                  const newX = node.position.x;
+                  const newY = node.position.y + node.measured?.height! + 20;
+                  const newNode = CreateFlowNode(node.data.type, {
+                    x: newX,
+                    y: newY,
+                  });
+                  addNodes([newNode]);
+                }}
+              >
                 <CopyIcon size={16} />
               </Button>
             </>

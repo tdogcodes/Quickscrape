@@ -52,7 +52,7 @@ const DeleteWorkflowDialog = ({
           </AlertDialogTitle>
           <AlertDialogDescription className="text-center">
             This action{" "}
-            <span className="font-semibold text-red-600">cannot</span> be
+            <span className="font-semibold text-primary">cannot</span> be
             undone.
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -66,7 +66,7 @@ const DeleteWorkflowDialog = ({
                 setIsDeleting(true);
                 deleteMutation.mutate(workflowId);
               }}
-              className="bg-red-600 text-white hover:bg-red-700"
+              className="bg-primary text-white hover:bg-red-700"
             >
               Delete
             </AlertDialogAction>

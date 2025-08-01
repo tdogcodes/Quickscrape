@@ -45,7 +45,6 @@ import { cn } from "@/lib/utils";
 import { LogLevel } from "@/types/log";
 import PhaseStatusBadge from "./phase-status-badge";
 import ReactCountWrapper from "@/components/react-count-wrapper";
-import waitFor from "@/lib/helper/wait-for";
 
 type ExecutionData = Awaited<ReturnType<typeof GetWorkflowExecutionWithPhases>>;
 
@@ -70,7 +69,6 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
 
   useEffect(() => {
     //while runnning, auto select the current runnning phase in the sidebar
-    waitFor(5000)
     const phases = query.data?.phases || [];
     if (isRunning) {
       const phaseToSelect = phases.toSorted((a, b) =>
@@ -198,7 +196,7 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
             <div className="flex gap-2 items-center">
               <Badge className="space-x-2" variant={"outline"}>
                 <div className="flex items-center gap-1">
-                  <Coins size={18} className="stroke-muted-foreground" />
+                  <Coins size={18} className="dark:stroke-white" />
                   <span>Credits</span>
                 </div>
                 <span>{phaseDetails?.data.creditsConsumed}</span>

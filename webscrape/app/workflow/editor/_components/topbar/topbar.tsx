@@ -7,12 +7,15 @@ import React from "react";
 import SaveBtn from "./save-btn";
 import ExecuteBtn from "./execute-btn";
 import NavigationTabs from "./navigation-tabs";
+import PublishBtn from "./publish-btn";
+import UnpublishBtn from "./unpublish-btn";
 
 interface Props {
   title: string;
   subtitle?: string;
   workflowId: string;
   hideButtons?: boolean;
+  isPublished?: boolean;
 }
 
 const Topbar = ({
@@ -20,6 +23,7 @@ const Topbar = ({
   subtitle,
   workflowId,
   hideButtons = false,
+  isPublished = false,
 }: Props) => {
   const router = useRouter();
   return (
@@ -35,8 +39,8 @@ const Topbar = ({
         </TooltipWrapper>
         <div className="flex justify-center items-center gap-3">
           <p
-            className="font-bold text-ellipsis truncate bg-gradient-to-r
-        bg-clip-text text-transparent from-primary to-white"
+            className="font-bold text-ellipsis truncate text-primary dark:bg-gradient-to-r
+        dark:bg-clip-text dark:text-transparent dark:from-primary dark:to-white "
           >
             {title}
           </p>
@@ -55,7 +59,17 @@ const Topbar = ({
         {!hideButtons && (
           <>
             <ExecuteBtn workflowId={workflowId} />
-            <SaveBtn workflowId={workflowId} />
+            {isPublished && (
+              <>
+                <UnpublishBtn workflowId={workflowId} />
+              </>
+            )}
+            {!isPublished && (
+              <>
+                <SaveBtn workflowId={workflowId} />
+                <PublishBtn workflowId={workflowId} />
+              </>
+            )}
           </>
         )}
       </div>

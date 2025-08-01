@@ -4,7 +4,13 @@ import prisma from "@/lib/prisma";
 import { ExecuteWorkflow } from "@/lib/workflow/execute-workflow";
 import { FlowToExecutionPlan } from "@/lib/workflow/execution-plan";
 import { TaskRegistry } from "@/lib/workflow/task/registry";
-import { ExecutionPhaseStatus, WorkflowExecutionPlan, WorkflowExecutionStatus, WorkflowExecutionTrigger} from "@/types/workflow";
+import {
+  ExecutionPhaseStatus,
+  WorkflowExecutionPlan,
+  WorkflowExecutionStatus,
+  WorkflowExecutionTrigger,
+  WorkflowStatus,
+} from "@/types/workflow";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
@@ -37,22 +43,29 @@ export const RunWorkflow = async (form: {
 
   let executionPlan: WorkflowExecutionPlan;
 
-  if (!flowDefinition) {
-    throw new Error("Flow definition is required");
+  if (workflow.status == WorkflowStatus.PUBLISHED) {
+    if (!workflow.executionPlan) {
+      throw new Error("Workflow execution plan not found");
+    }
+    executionPlan = JSON.parse(workflow.executionPlan);
+  } else {
+    if (!flowDefinition) {
+      throw new Error("Flow definition is required for draft workflows");
+    }
+    const flow = JSON.parse(flowDefinition);
+    const result = FlowToExecutionPlan(flow.nodes, flow.edges);
+
+    if (result.error) {
+      throw new Error(`Error generating execution plan: ${result.error.type}`);
+    }
+
+    if (!result.executionPlan) {
+      throw new Error("Execution plan could not be generated");
+    }
+
+    executionPlan = result.executionPlan;
   }
 
-  const flow = JSON.parse(flowDefinition);
-  const result = FlowToExecutionPlan(flow.nodes, flow.edges);
-
-  if (result.error) {
-    throw new Error(`Error generating execution plan: ${result.error.type}`);
-  }
-
-  if (!result.executionPlan) {
-    throw new Error("Execution plan could not be generated");
-  }
-
-  executionPlan = result.executionPlan;
   const execution = await prisma.workflowExectution.create({
     data: {
       workflowId,
@@ -76,16 +89,15 @@ export const RunWorkflow = async (form: {
       },
     },
     select: {
-        id: true,
-        phases: true,
+      id: true,
+      phases: true,
     },
   });
 
-  if(!execution){
+  if (!execution) {
     throw new Error("Execution could not be created");
   }
 
-  ExecuteWorkflow(execution.id)
+  ExecuteWorkflow(execution.id);
   redirect(`/workflow/runs/${workflowId}/${execution.id}`);
-
 };

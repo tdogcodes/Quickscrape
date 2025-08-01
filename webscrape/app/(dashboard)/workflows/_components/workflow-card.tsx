@@ -22,7 +22,7 @@ import Link from "next/link";
 
 const statusColors = {
   [WorkflowStatus.DRAFT]: "bg-yellow-400 text-yellow-600",
-  [WorkflowStatus.PUBLISHED]: "bg-primary",
+  [WorkflowStatus.PUBLISHED]: "bg-green-400 text-green-600",
 };
 
 const WorkflowCard = ({ workflow }: { workflow: WorkFlow }) => {
@@ -104,13 +104,13 @@ const WorkflowActions = ({
       />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <TooltipWrapper content={"More actions"}>
           <Button variant={"outline"} size={"sm"}>
+            <TooltipWrapper content={"More actions"}>
               <div className="flex items-center justify-center">
                 <MoreVerticalIcon size={18} />
               </div>
+            </TooltipWrapper>
           </Button>
-          </TooltipWrapper>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuLabel className="flex items-center justify-center">
@@ -119,7 +119,7 @@ const WorkflowActions = ({
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onSelect={() => setShowDeleteDialog((prev) => !prev)}
-            className="text-destructive flex items-center justify-center gap-2"
+            className="text-primary flex items-center justify-center gap-2"
           >
             Delete
             <TrashIcon size={16} />
