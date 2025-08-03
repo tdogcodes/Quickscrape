@@ -46,7 +46,7 @@ const CustomDialogHeader = ({
       <DialogTitle className="flex flex-col mb-2 items-center gap-2">
         {renderIcon()}
         {title && (
-          <h2 className={cn("text-xl text-primary", titleClassName)}>{title}</h2>
+          <h2 className={cn("text-xl dark:text-white", titleClassName)}>{title}</h2>
         )}
         {subTitle && (
           <p className={cn("text-muted-foreground text-sm", subTitleClassName)}>

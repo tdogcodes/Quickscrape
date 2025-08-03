@@ -12,17 +12,30 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useMutation } from "@tanstack/react-query";
-import { Calendar, TriangleAlertIcon } from "lucide-react";
+import {
+  Calendar,
+  ClockIcon,
+  RefreshCcw,
+  TimerResetIcon,
+  TriangleAlertIcon,
+} from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 import cronsTrue from "cronstrue/i18n";
+import parser from "cron-parser";
+import { RemoveWorkflowSchedule } from "@/actions/workflows/remove-workflow-schedule";
 
-const SchedulerDialog = ({ workflowId }: { workflowId: string }) => {
-  const [cron, setCron] = useState("");
+type Props = {
+  workflowId: string;
+  cron: string | null;
+};
+
+const SchedulerDialog = (props: Props) => {
+  const [cron, setCron] = useState(props.cron || "");
   const [validCron, setValidCron] = useState(false);
   const [readableCron, setReadableCron] = useState("");
 
-  const mutation = useMutation({
+  const updateScheduleMutation = useMutation({
     mutationFn: UpdateWorkflowCron,
     onSuccess: () => {
       toast.success("Workflow cron updated successfully", {
@@ -36,8 +49,23 @@ const SchedulerDialog = ({ workflowId }: { workflowId: string }) => {
     },
   });
 
+  const removeScheduleMutation = useMutation({
+    mutationFn: RemoveWorkflowSchedule,
+    onSuccess: () => {
+      toast.success("Workflow cron removed successfully", {
+        id: "remove-workflow-cron",
+      });
+    },
+    onError: () => {
+      toast.error("Failed to remove workflow cron", {
+        id: "remove-workflow-cron",
+      });
+    },
+  });
+
   useEffect(() => {
     try {
+      parser.parse(cron);
       const humanCronString = cronsTrue.toString(cron);
       setValidCron(true);
       setReadableCron(humanCronString);
@@ -47,24 +75,51 @@ const SchedulerDialog = ({ workflowId }: { workflowId: string }) => {
     }
   }, [cron]);
 
+  const workflowHasValidCron = props.cron && props.cron.length > 0;
+  const readableSavedCron =
+    workflowHasValidCron && cronsTrue.toString(props.cron!);
+
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button
           variant={"link"}
           size={"sm"}
-          className={cn("text-sm p-0 h-auto")}
+          className={cn(
+            "text-sm p-0 h-auto",
+            workflowHasValidCron && "text-emerald-600"
+          )}
         >
-          <div className="flex items-center gap-1">
-            <TriangleAlertIcon className="w-3 h-3 mr-1" /> Set Schedule
-          </div>
+          {workflowHasValidCron ? (
+            <div className="flex items-center gap-1">
+              <ClockIcon size={20} />
+              {readableSavedCron}
+            </div>
+          ) : (
+            <div className="flex items-center gap-1">
+              <TriangleAlertIcon className="w-3 h-3 mr-1" /> Set Schedule
+            </div>
+          )}
         </Button>
       </DialogTrigger>
+      {workflowHasValidCron && (
+        <Button
+          variant={"outline"}
+          className="border-destructive p-2 h-6"
+          onClick={() =>  {
+                toast.loading("Removing...", {
+                  id: "remove-workflow-cron",
+                });
+                removeScheduleMutation.mutate(props.workflowId);
+              }}
+            disabled={removeScheduleMutation.isPending}
+        >
+          Reset
+          <RefreshCcw size={14} />
+        </Button>
+      )}
       <DialogContent className="px-0">
-        <CustomDialogHeader
-          title="Schedule workflow execution"
-          icon={<Calendar />}
-        />
+        <CustomDialogHeader title="Schedule Web Scraping" icon={<Calendar />} />
         <div className="p-6 space-y-4">
           <p className="text-muted-foreground text-sm">
             Specify a cron expression to schedule a workflow execution, all
@@ -97,9 +152,9 @@ const SchedulerDialog = ({ workflowId }: { workflowId: string }) => {
                 toast.loading("Saving...", {
                   id: "update-workflow-cron",
                 });
-                mutation.mutate({ id: workflowId, cron });
+                updateScheduleMutation.mutate({ id: props.workflowId, cron });
               }}
-              disabled={mutation.isPending}
+              disabled={updateScheduleMutation.isPending || !validCron}
             >
               Save
             </Button>

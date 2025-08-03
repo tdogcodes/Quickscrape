@@ -30,8 +30,8 @@ import SchedulerDialog from "./scheduler-dialog";
 import { Badge } from "@/components/ui/badge";
 
 const statusColors = {
-  [WorkflowStatus.DRAFT]: "bg-yellow-400 text-yellow-600",
-  [WorkflowStatus.PUBLISHED]: "bg-green-400 text-green-600",
+  [WorkflowStatus.DRAFT]: "bg-amber-400 text-amber-600",
+  [WorkflowStatus.PUBLISHED]: "bg-emerald-400 text-emerald-600",
 };
 
 const WorkflowCard = ({ workflow }: { workflow: WorkFlow }) => {
@@ -44,7 +44,7 @@ const WorkflowCard = ({ workflow }: { workflow: WorkFlow }) => {
         <div className="flex items-center justify-end space-x-3">
           <div
             className={cn(
-              "w-10 h-10 rounded-full flex items-center justify-center",
+              "w-8 h-8 rounded-full flex items-center justify-center",
               isDraft
                 ? statusColors[WorkflowStatus.DRAFT]
                 : statusColors[WorkflowStatus.PUBLISHED]
@@ -74,6 +74,7 @@ const WorkflowCard = ({ workflow }: { workflow: WorkFlow }) => {
               workflowId={workflow.id}
               isDraft={isDraft}
               creditsCost={workflow.creditsCost}
+              cron={workflow.cron}
             />
           </div>
         </div>
@@ -153,10 +154,12 @@ const ScheduleSection = ({
   isDraft,
   creditsCost,
   workflowId,
+  cron
 }: {
   isDraft: boolean;
   creditsCost: number;
   workflowId: string;
+  cron: string | null;
 }) => {
   if (isDraft) return null;
 
@@ -166,7 +169,7 @@ const ScheduleSection = ({
         size={16}
         className="h-4 w-4 text-muted-foreground"
       />
-      <SchedulerDialog workflowId={workflowId} />
+      <SchedulerDialog workflowId={workflowId} cron={cron} />
       <MoveRightIcon className="h-4 w-4 text-muted-foreground" />
       <TooltipWrapper content="credit consumption for to execute the workflow">
         <div className="flex items-center gap-3">
