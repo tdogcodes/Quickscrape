@@ -177,7 +177,7 @@ const executeWorkflowPhase = async (
 
   if (success) {
     // executes the phase only if the credits are sufficient
-    success = await executePhase(phase, node, environment, logCollector);
+    success = await executePhase(node, environment, logCollector);
   }
 
   const outputs = environment.phases[node.id].outputs;
@@ -220,15 +220,14 @@ const finalizePhase = async (
 };
 
 const executePhase = async (
-  phase: ExecutionPhase,
   node: AppNode,
   environment: Environment,
   logCollector: LogCollector
 ): Promise<boolean> => {
   const runFn = ExecutorRegistry[node.data.type];
   if (!runFn) {
-    console.error(`No executor found for node type: ${node.data.type}`);
-    return false;
+    logCollector.error(`No executor found for node type ${node.data.type}`);
+    return false
   }
   const executionEnvironment: ExecutionEnvironment<any> =
     createExecutionEnvironment(node, environment, logCollector);

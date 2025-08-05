@@ -16,15 +16,28 @@ const TaskMenu = () => {
       className="w-[340px] min-w-[340px] max-w-[340px]
      border-r-2 border-separate p-2 px-4 overflow-auto"
     >
-      <Accordion type="multiple" className="w-full" defaultValue={["extraction"]}>
+      <Accordion
+        type="multiple"
+        className="w-full"
+        defaultValue={["extraction", "interactions"]}
+      >
         <AccordionItem value="extraction">
           <AccordionTrigger className="font-bold">
             Data Extraction
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-1">
             <TaskMenuButton taskType={TaskType.PAGE_TO_HTML} />
-            <TaskMenuButton taskType={TaskType.EXTRACT_TEXT_FROM_ELEMENT
-            } />
+            <TaskMenuButton taskType={TaskType.EXTRACT_TEXT_FROM_ELEMENT} />
+          </AccordionContent>
+        </AccordionItem>
+        
+
+        <AccordionItem value="interactions">
+          <AccordionTrigger className="font-bold">
+            User Interaction
+          </AccordionTrigger>
+          <AccordionContent className="flex flex-col gap-1">
+            <TaskMenuButton taskType={TaskType.FILL_INPUT} />
           </AccordionContent>
         </AccordionItem>
       </Accordion>
@@ -36,8 +49,8 @@ const TaskMenuButton = ({ taskType }: { taskType: TaskType }) => {
   const task = TaskRegistry[taskType];
   const onDragStart = (event: React.DragEvent, type: TaskType) => {
     event.dataTransfer.setData("application/reactflow", type);
-    event.dataTransfer.effectAllowed = "move"
-  }
+    event.dataTransfer.effectAllowed = "move";
+  };
 
   return (
     <Button
@@ -47,8 +60,8 @@ const TaskMenuButton = ({ taskType }: { taskType: TaskType }) => {
       onDragStart={(event) => onDragStart(event, taskType)}
     >
       <div className="flex items-center gap-2">
-          <task.icon size={20} />
-          {task.label}
+        <task.icon size={20} />
+        {task.label}
       </div>
     </Button>
   );
