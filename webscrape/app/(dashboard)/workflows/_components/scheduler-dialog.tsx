@@ -16,7 +16,6 @@ import {
   Calendar,
   ClockIcon,
   RefreshCcw,
-  TimerResetIcon,
   TriangleAlertIcon,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
@@ -24,6 +23,7 @@ import { toast } from "sonner";
 import cronsTrue from "cronstrue/i18n";
 import parser from "cron-parser";
 import { RemoveWorkflowSchedule } from "@/actions/workflows/remove-workflow-schedule";
+import { Separator } from "@/components/ui/separator";
 
 type Props = {
   workflowId: string;
@@ -106,13 +106,13 @@ const SchedulerDialog = (props: Props) => {
         <Button
           variant={"outline"}
           className="border-destructive p-2 h-6"
-          onClick={() =>  {
-                toast.loading("Removing...", {
-                  id: "remove-workflow-cron",
-                });
-                removeScheduleMutation.mutate(props.workflowId);
-              }}
-            disabled={removeScheduleMutation.isPending}
+          onClick={() => {
+            toast.loading("Removing...", {
+              id: "remove-workflow-cron",
+            });
+            removeScheduleMutation.mutate(props.workflowId);
+          }}
+          disabled={removeScheduleMutation.isPending}
         >
           Reset
           <RefreshCcw size={14} />
@@ -138,6 +138,29 @@ const SchedulerDialog = (props: Props) => {
           >
             {validCron ? readableCron : "Not a valid cron expression"}
           </div>
+          {validCron && (
+            <DialogClose asChild>
+              <div>
+                <Button
+                  variant={"outline"}
+                  className="border-destructive text-destructive w-full hover:border-primary hover:text-primary"
+                  disabled={
+                    updateScheduleMutation.isPending ||
+                    removeScheduleMutation.isPending
+                  }
+                  onClick={() => {
+                    toast.loading("Removing...", {
+                      id: "remove-workflow-cron",
+                    });
+                    removeScheduleMutation.mutate(props.workflowId);
+                  }}
+                >
+                  Remove Currrent Schedule
+                </Button>
+                <Separator className="my-4" />
+              </div>
+            </DialogClose>
+          )}
         </div>
         <DialogFooter className="px-6 gap-2">
           <DialogClose asChild>

@@ -10,15 +10,13 @@ import { AppNode } from "@/types/app-node";
 import { TaskRegistry } from "./task/registry";
 import { ExecutorRegistry } from "./executor/registry";
 import { Environment, ExecutionEnvironment } from "@/types/executor";
-import { LaunchBrowserTask } from "./task/launch-browser";
 import { TaskParamType } from "@/types/task";
-import { get } from "http";
 import { Browser, Page } from "puppeteer";
 import { Edge } from "@xyflow/react";
 import { LogCollector } from "@/types/log";
 import { createLogCollector } from "../log";
 
-export const ExecuteWorkflow = async (executionId: string) => {
+export const ExecuteWorkflow = async (executionId: string, nextRunAt?: Date) => {
   const execution = await prisma.workflowExectution.findUnique({
     where: {
       id: executionId,
@@ -39,8 +37,7 @@ export const ExecuteWorkflow = async (executionId: string) => {
     phases: {},
   };
 
-  await initializeWorkflowExecution(executionId, execution.workflowId);
-
+  await initializeWorkflowExecution(executionId, execution.workflowId, nextRunAt);
   await initializePhaseStatuses(execution);
 
   let creditsConsumed = 0;
@@ -75,7 +72,8 @@ export const ExecuteWorkflow = async (executionId: string) => {
 
 const initializeWorkflowExecution = async (
   executionId: string,
-  workflowId: string
+  workflowId: string,
+  nextRunAt?: Date
 ) => {
   await prisma.workflowExectution.update({
     where: { id: executionId },
@@ -93,6 +91,7 @@ const initializeWorkflowExecution = async (
       lastRunAt: new Date(),
       lastRunId: executionId,
       lastRunStatus: WorkflowExecutionStatus.RUNNING,
+      ...(nextRunAt && {nextRunAt})
     },
   });
 };

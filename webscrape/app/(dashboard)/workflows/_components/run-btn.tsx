@@ -25,7 +25,7 @@ const RunBtn = ({ workflowId }: { workflowId: string }) => {
       disabled={mutation.isPending}
       onClick={() => {
         toast.loading("Running workflow...", { id: "workflowId" });
-        mutation.mutate({workflowId});
+        mutation.mutate({ workflowId });
       }}
     >
       <PlayIcon size={16} />

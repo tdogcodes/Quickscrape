@@ -154,7 +154,7 @@ const ScheduleSection = ({
   isDraft,
   creditsCost,
   workflowId,
-  cron
+  cron,
 }: {
   isDraft: boolean;
   creditsCost: number;
@@ -169,7 +169,11 @@ const ScheduleSection = ({
         size={16}
         className="h-4 w-4 text-muted-foreground"
       />
-      <SchedulerDialog workflowId={workflowId} cron={cron} />
+      <SchedulerDialog
+        workflowId={workflowId}
+        cron={cron}
+        key={`${cron}-${workflowId}`}
+      />
       <MoveRightIcon className="h-4 w-4 text-muted-foreground" />
       <TooltipWrapper content="credit consumption for to execute the workflow">
         <div className="flex items-center gap-3">
