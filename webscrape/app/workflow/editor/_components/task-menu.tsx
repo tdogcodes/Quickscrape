@@ -19,7 +19,7 @@ const TaskMenu = () => {
       <Accordion
         type="multiple"
         className="w-full"
-        defaultValue={["extraction", "interactions"]}
+        defaultValue={["extraction", "interactions", "timing", "results"]}
       >
         <AccordionItem value="extraction">
           <AccordionTrigger className="font-bold">
@@ -30,7 +30,6 @@ const TaskMenu = () => {
             <TaskMenuButton taskType={TaskType.EXTRACT_TEXT_FROM_ELEMENT} />
           </AccordionContent>
         </AccordionItem>
-        
 
         <AccordionItem value="interactions">
           <AccordionTrigger className="font-bold">
@@ -38,6 +37,25 @@ const TaskMenu = () => {
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-1">
             <TaskMenuButton taskType={TaskType.FILL_INPUT} />
+            <TaskMenuButton taskType={TaskType.CLICK_ELEMENT} />
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="timing">
+          <AccordionTrigger className="font-bold">
+            Timing Control
+          </AccordionTrigger>
+          <AccordionContent className="flex flex-col gap-1">
+            <TaskMenuButton taskType={TaskType.WAIT_FOR_ELEMENT} />
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="results">
+          <AccordionTrigger className="font-bold">
+            Results Delivery
+          </AccordionTrigger>
+          <AccordionContent className="flex flex-col gap-1">
+            <TaskMenuButton taskType={TaskType.DELIVER_VIA_WEBHOOK} />
           </AccordionContent>
         </AccordionItem>
       </Accordion>

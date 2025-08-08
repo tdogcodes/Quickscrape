@@ -1,21 +1,20 @@
 import { TaskParamType, TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
-import { TextIcon, LucideProps } from "lucide-react";
+import { MousePointerClickIcon } from "lucide-react";
 
 export const ClickElementTask = {
-  type: TaskType.EXTRACT_TEXT_FROM_ELEMENT,
-  label: "Extract text from element",
-  icon: (props: LucideProps) => (
-    <TextIcon {...props} className="stroke-rose-400"/>
+  type: TaskType.CLICK_ELEMENT,
+  label: "Click Element",
+  icon: (props) => (
+    <MousePointerClickIcon {...props} className="stroke-orange-400"/>
   ),
   isEntryPoint: false,
-  credits: 3,
+  credits: 1,
   inputs: [
     {
-        name : "Html",
-        type: TaskParamType.STRING,
-        required: true,
-        variant: "textarea",
+        name : "Web page",
+        type: TaskParamType.BROWSER_INSTANCE,
+        required: true
     },
     {
         name : "Selector",
@@ -25,8 +24,8 @@ export const ClickElementTask = {
   ] as const,
   outputs: [
     { 
-        name: "Extracted Text",
-        type: TaskParamType.STRING
+        name: "Web page",
+        type: TaskParamType.BROWSER_INSTANCE
     }, 
   ] as const,
 } satisfies WorkflowTask;
