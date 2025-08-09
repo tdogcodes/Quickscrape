@@ -7,7 +7,9 @@ export const DeliveryViaWebhookExecutor = async (
   try {
     const targetUrl = environment.getInput("Target URL");
     if (!targetUrl) {
-      environment.log.error("Target URL is required for Deliver via Webhook task.");
+      environment.log.error(
+        "Target URL is required for Deliver via Webhook task."
+      );
     }
 
     const body = environment.getInput("Body");
@@ -21,11 +23,13 @@ export const DeliveryViaWebhookExecutor = async (
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
-    })
+    });
 
-    if(!response.ok) {
-      environment.log.error(`Failed to deliver via webhook. Status: ${response.status}`);
-      return false
+    if (!response.ok) {
+      environment.log.error(
+        `Failed to deliver via webhook. Status: ${response.status}`
+      );
+      return false;
     }
 
     const responseBody = await response.json();

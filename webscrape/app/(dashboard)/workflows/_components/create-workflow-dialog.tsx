@@ -61,10 +61,13 @@ const CreateWorkflowDialog = ({ triggerText }: { triggerText?: string }) => {
   );
 
   return (
-    <Dialog open={open} onOpenChange={open => {
-      form.reset()
-      setOpen(open)
-    }}>
+    <Dialog
+      open={open}
+      onOpenChange={(open) => {
+        form.reset();
+        setOpen(open);
+      }}
+    >
       <DialogTrigger asChild>
         <Button>{triggerText ?? "Create Workflow"}</Button>
       </DialogTrigger>
@@ -76,7 +79,10 @@ const CreateWorkflowDialog = ({ triggerText }: { triggerText?: string }) => {
         />
         <div className="p-6">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-8 w-full"
+            >
               <FormField
                 control={form.control}
                 name="name"
@@ -126,7 +132,11 @@ const CreateWorkflowDialog = ({ triggerText }: { triggerText?: string }) => {
                 className="w-full mx-auto flex items-center justify-center"
                 disabled={isPending}
               >
-                {!isPending ? "Create workflow" : <Loader2Icon className="animate-spin" />}
+                {!isPending ? (
+                  "Create workflow"
+                ) : (
+                  <Loader2Icon className="animate-spin" />
+                )}
               </Button>
             </form>
           </Form>

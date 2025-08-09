@@ -176,6 +176,14 @@ exports.Prisma.UserBalanceScalarFieldEnum = {
   credits: 'credits'
 };
 
+exports.Prisma.CredentialScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  value: 'value',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -192,7 +200,8 @@ exports.Prisma.ModelName = {
   WorkflowExectution: 'WorkflowExectution',
   ExecutionPhase: 'ExecutionPhase',
   ExecutionLog: 'ExecutionLog',
-  UserBalance: 'UserBalance'
+  UserBalance: 'UserBalance',
+  Credential: 'Credential'
 };
 
 /**
