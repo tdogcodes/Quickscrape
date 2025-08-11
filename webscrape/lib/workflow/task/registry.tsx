@@ -8,6 +8,10 @@ import { ClickElementTask } from "./click-element";
 import { WaitForElementTask } from "./wait-for-element";
 import { DeliverViaWebhookTask } from "./deliver-via-webhook";
 import { ExtractDataWithAITask } from "./extract-data-with-ai";
+import { ReadPropertyFromJsonTask } from "./read-property-from-json";
+import { NavigateUrlTask } from "./navigate-task-url";
+import { AddPropertyToJsonTask } from "./add-property-to-json";
+import { ScrollToElementTask } from "./scroll-to-element";
 
 type Registry = {
   [K in TaskType] : WorkflowTask & {type : K }
@@ -21,5 +25,9 @@ export const TaskRegistry : Registry = {
   CLICK_ELEMENT : ClickElementTask,
   WAIT_FOR_ELEMENT : WaitForElementTask,
   DELIVER_VIA_WEBHOOK: DeliverViaWebhookTask,
-  EXTRACT_DATA_WITH_AI: ExtractDataWithAITask
+  EXTRACT_DATA_WITH_AI: ExtractDataWithAITask,
+  READ_PROPERTY_FROM_JSON: ReadPropertyFromJsonTask,
+  NAVIGATE_URL: NavigateUrlTask,
+  ADD_PROPERTY_TO_JSON: AddPropertyToJsonTask,
+  SCROLL_TO_ELEMENT: ScrollToElementTask
 };

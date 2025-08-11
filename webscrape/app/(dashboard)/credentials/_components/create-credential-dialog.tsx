@@ -25,6 +25,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { CreateCredential } from "../../../../actions/credentials/create-credential";
+import { set } from "date-fns";
 
 const CreateCredentialDialog = ({ triggerText }: { triggerText?: string }) => {
   const [open, setOpen] = useState(false);
@@ -39,6 +40,7 @@ const CreateCredentialDialog = ({ triggerText }: { triggerText?: string }) => {
       toast.success("Credential created successfully!", {
         id: "create-credential",
       });
+      setOpen((prev) => !prev);
     },
     onError: (error) => {
       toast.error("Failed to create credential. Please try again.", {
@@ -59,10 +61,7 @@ const CreateCredentialDialog = ({ triggerText }: { triggerText?: string }) => {
   return (
     <Dialog
       open={open}
-      onOpenChange={(open) => {
-        form.reset();
-        setOpen(open);
-      }}
+      onOpenChange={setOpen}
     >
       <DialogTrigger asChild>
         <Button>{triggerText ?? "Create Credential"}</Button>
@@ -92,7 +91,8 @@ const CreateCredentialDialog = ({ triggerText }: { triggerText?: string }) => {
                       <Input {...field} placeholder="Enter credential name" />
                     </FormControl>
                     <FormDescription className="text-xs text-muted-foreground">
-                      Choose a descriptive and unique name for your credential. <br/>
+                      Choose a descriptive and unique name for your credential.{" "}
+                      <br />
                       This name will be used to identify the credential.
                     </FormDescription>
                     <FormMessage />
@@ -118,8 +118,9 @@ const CreateCredentialDialog = ({ triggerText }: { triggerText?: string }) => {
                       />
                     </FormControl>
                     <FormDescription className="text-xs text-muted-foreground">
-                      Provide a value for your credential. <br/>
-                      This value will be securely stored and can be used in your workflows.
+                      Provide a value for your credential. <br />
+                      This value will be securely stored and can be used in your
+                      workflows.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>

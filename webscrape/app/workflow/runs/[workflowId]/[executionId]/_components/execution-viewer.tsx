@@ -45,6 +45,8 @@ import { cn } from "@/lib/utils";
 import { LogLevel } from "@/types/log";
 import PhaseStatusBadge from "./phase-status-badge";
 import ReactCountWrapper from "@/components/react-count-wrapper";
+import { TaskParamType } from "@/types/task";
+import { symmetricDecrypt } from "@/lib/encryption";
 
 type ExecutionData = Awaited<ReturnType<typeof GetWorkflowExecutionWithPhases>>;
 

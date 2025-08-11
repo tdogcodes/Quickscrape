@@ -19,7 +19,13 @@ const TaskMenu = () => {
       <Accordion
         type="multiple"
         className="w-full"
-        defaultValue={["extraction", "interactions", "timing", "results"]}
+        defaultValue={[
+          "extraction",
+          "interactions",
+          "timing",
+          "storage",
+          "results",
+        ]}
       >
         <AccordionItem value="extraction">
           <AccordionTrigger className="font-bold">
@@ -39,6 +45,8 @@ const TaskMenu = () => {
           <AccordionContent className="flex flex-col gap-1">
             <TaskMenuButton taskType={TaskType.FILL_INPUT} />
             <TaskMenuButton taskType={TaskType.CLICK_ELEMENT} />
+            <TaskMenuButton taskType={TaskType.NAVIGATE_URL} />
+            <TaskMenuButton taskType={TaskType.SCROLL_TO_ELEMENT} />
           </AccordionContent>
         </AccordionItem>
 
@@ -51,6 +59,16 @@ const TaskMenu = () => {
           </AccordionContent>
         </AccordionItem>
 
+        <AccordionItem value="storage">
+          <AccordionTrigger className="font-bold">
+            Data Storage
+          </AccordionTrigger>
+          <AccordionContent className="flex flex-col gap-1">
+            <TaskMenuButton taskType={TaskType.READ_PROPERTY_FROM_JSON} />
+            <TaskMenuButton taskType={TaskType.ADD_PROPERTY_TO_JSON} />
+          </AccordionContent>
+        </AccordionItem>  
+
         <AccordionItem value="results">
           <AccordionTrigger className="font-bold">
             Results Delivery
@@ -59,7 +77,6 @@ const TaskMenu = () => {
             <TaskMenuButton taskType={TaskType.DELIVER_VIA_WEBHOOK} />
           </AccordionContent>
         </AccordionItem>
-
       </Accordion>
     </aside>
   );
