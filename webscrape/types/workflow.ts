@@ -10,6 +10,11 @@ export enum WorkflowStatus {
   PUBLISHED = "PUBLISHED",
 }
 
+export type Period = {
+  year: number;
+  month: number;
+};
+
 export type WorkflowTask = {
   label: string;
   icon: FC<LucideProps>;

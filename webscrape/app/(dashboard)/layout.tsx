@@ -5,7 +5,7 @@ import { Separator } from '@/components/ui/separator'
 import { SignedIn, UserButton } from '@clerk/nextjs'
 import React from 'react'
 
-const Layout = ({children} : {children: React.ReactNode}) => {
+const DashboardLayout = ({children} : {children: React.ReactNode}) => {
   return (
     <div className='flex h-screen'>
         <DesktopSidebar/>
@@ -31,4 +31,4 @@ const Layout = ({children} : {children: React.ReactNode}) => {
   )
 }
 
-export default Layout
+export default DashboardLayout
