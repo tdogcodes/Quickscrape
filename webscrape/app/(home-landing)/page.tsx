@@ -15,13 +15,13 @@ export default function LandingPage() {
     <div className="flex flex-col min-h-screen gap-4 selection:bg-primary selection:text-white dark bg-[#0C0A09] ">
       <Navbar />
       <SectionWrapper className="h-[35rem] text-center">
-        <TypewriterEffectSmooth
-          words={typeWriterWords}
-        />
+        <TypewriterEffectSmooth words={typeWriterWords} />
         <p className="text-muted-foreground text-sm md:text-xl">
           Create automation workflows and scrape the web with ease.
         </p>
-
+        <p className="text-md text-primary -mt-4">
+          New users get 200 credits for free upon first login
+        </p>
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
           <Button
             className=" rounded-xl text-xl p-6 border-primary text-white hover:text-white hover:bg-primary"
@@ -31,9 +31,6 @@ export default function LandingPage() {
             <ChevronRightIcon className="h-4 w-4" />
           </Button>
         </div>
-        <p className="text-md text-primary">
-          New users get 200 credits for free upon first login
-        </p>
       </SectionWrapper>
       <SectionWrapper
         id="howItWorks"

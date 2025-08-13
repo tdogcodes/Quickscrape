@@ -72,17 +72,17 @@ function Navbar() {
         {headerRoutes.map((route) =>
           route?.button ? (
             <Link
-              className="text-xl font-medium text-white group-hover:text-primary"
+              className="text-md font-medium text-white group-hover:text-primary"
               href={route.href}
               key={route.href}
             >
-              <Button className="hover:bg-white group text-lg text-white hover:text-primary">
+              <Button className="hover:bg-white group text-md text-white hover:text-primary">
                 {route.title}
               </Button>
             </Link>
           ) : (
             <span
-              className="text-lg font-medium hover:text-white cursor-pointer select-none"
+              className="text-md font-medium hover:text-white cursor-pointer select-none"
               key={route.href}
               onClick={() => {
                 scrollIntoView(route.href);

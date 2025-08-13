@@ -29,7 +29,12 @@ const routes = [
     href: "credentials",
     label: "Credentials",
     icon: ShieldCheckIcon,
-  }
+  },
+    {
+    href: "billing",
+    label: "Billing",
+    icon: CoinsIcon,
+  },
 ];
 
 const DesktopSidebar = () => {

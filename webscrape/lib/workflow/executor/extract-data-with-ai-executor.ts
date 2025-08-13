@@ -9,6 +9,8 @@ export const ExtractDataWithAIExecutor = async (
 ): Promise<boolean> => {
   try {
     const credentials = environment.getInput("Credentials");
+
+    let plainCredentialValue: string | undefined;
     if (!credentials) {
       environment.log.error("Credential input is required");
     }
@@ -28,28 +30,34 @@ export const ExtractDataWithAIExecutor = async (
         id: credentials,
       },
     });
+
     if (!credential) {
       environment.log.error("Credential not found");
       return false;
     }
 
-    const plainCredentialValue = symmetricDecrypt(credential.value);
-    if (!plainCredentialValue) {
-      environment.log.error("Failed to decrypt credential value");
+    if (credential && credential.value !== null) {
+      plainCredentialValue = symmetricDecrypt(credential.value);
+      if (!plainCredentialValue) {
+        environment.log.error("Decrypted credential value is invalid");
+        return false;
+      }
+    } else {
+      environment.log.error("Using the default model: Gemini 2.0 Flash");
       return false;
     }
 
-    const openai = new OpenAI({
+    const gemini = new OpenAI({
       apiKey: plainCredentialValue,
+      baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
     });
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+    const response = await gemini.chat.completions.create({
+      model: "gemini-2.0-flash",
       messages: [
         {
           role: "system",
-          content:
-            `You are a webscraper helper that extracts data from HTML or text. 
+          content: `You are a webscraper helper that extracts data from HTML or text. 
             You will be given a piece of text or HTML content as input and also
             the prompt with the data you have to extract. The response should
             always be only the extracted data as a JSON array or object, without
@@ -80,14 +88,23 @@ export const ExtractDataWithAIExecutor = async (
       )}`
     );
 
-    const result = response.choices[0].message?.content;
+    let result = response.choices[0].message?.content;
 
     if (!result) {
       environment.log.error("Empty response from AI");
       return false;
     }
 
-    environment.setOutput("Extracted Data", JSON.stringify(result));
+    result = result.replace(/```json\s*|\s*```/g, "").trim();
+    let parsedResult
+    try {
+      parsedResult = JSON.parse(result);
+    } catch (error) {
+      environment.log.error(`Failed to parse AI response as JSON: ${error}`);
+      environment.log.info(`Raw AI output: ${result}`);
+      return false;
+    }
+    environment.setOutput("Extracted Data", result);
     return true;
   } catch (e: any) {
     environment.log.error(`Failed to click the element: ${e.message}`);
