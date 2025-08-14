@@ -1,10 +1,7 @@
-export const runtime = "nodejs"; // Make sure it's running in Node.js runtime
-export const dynamic = "force-dynamic"; // Prevent static optimization
-
 import { handleCheckoutSessionCompleted } from "@/lib/stripe/handle-checkout-session-complete";
-import { stripe } from "@/lib/stripe/stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
+import { stripe } from "@/lib/stripe/stripe";
 
 export async function POST(request: Request) {
   const body = await request.text();
