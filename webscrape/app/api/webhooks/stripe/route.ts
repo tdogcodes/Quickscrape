@@ -1,3 +1,5 @@
+export const runtime = "nodejs"; // Make sure it's running in Node.js runtime
+export const dynamic = "force-dynamic"; // Prevent static optimization
 
 import { handleCheckoutSessionCompleted } from "@/lib/stripe/handle-checkout-session-complete";
 import { stripe } from "@/lib/stripe/stripe";
@@ -6,7 +8,6 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const body = await request.text();
-
   const signatureHeaders = headers().get("stripe-signature") as string;
 
   try {
