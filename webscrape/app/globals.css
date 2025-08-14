@@ -67,6 +67,17 @@
   --radius: 0.75rem;
 }
 
+.containerbg {
+  width: 100%;
+  min-width: 100%;
+  height: 240%;
+  --color: rgba(114, 114, 114, 0.08);
+  background-color: bg-accent;
+  background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
+      linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
+  background-size: 50px 50px;
+}
+
 
 
 @layer base {

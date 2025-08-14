@@ -81,7 +81,7 @@ const CreateCredentialDialog = ({ triggerText }: { triggerText?: string }) => {
               <FormField
                 control={form.control}
                 name="name"
-                render={({ field }) => (
+                render={({ field } : {field : any}) => (
                   <FormItem>
                     <FormLabel className="flex gap-1 px-1 items-center">
                       Name
@@ -102,7 +102,7 @@ const CreateCredentialDialog = ({ triggerText }: { triggerText?: string }) => {
               <FormField
                 control={form.control}
                 name="value"
-                render={({ field }) => (
+                render={({ field } : { field: any }) => (
                   <FormItem>
                     <FormLabel className="flex gap-1 px-1 items-center">
                       Value

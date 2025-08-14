@@ -26,11 +26,11 @@ function Navbar() {
 
   if (isMobile) {
     return (
-      <div className="p-5 sticky top-0 left-0 z-50">
+      <div className="p-5 sticky top-0 left-0 z-50 w-[100%]">
         {!isMobileOpen ? (
           <MenuIcon className="" onClick={() => setIsMobileOpen(true)} />
         ) : (
-          <aside className="h-screen w-full box-border p-5 backdrop-blur-md absolute top-0 left-0 z-50">
+          <aside className="h-screen w-full box-border p-5 backdrop-blur-sm absolute top-0 left-0 z-50">
             <XIcon onClick={() => setIsMobileOpen(false)} />
             <div className="mt-5 flex flex-col gap-5 h-full text-center items-center pt-60">
               {headerRoutes.map((route : any) =>
@@ -40,7 +40,7 @@ function Navbar() {
                     className="hover:bg-white group text-lg w-max"
                   >
                     <Link
-                      className="text-2xl font-light text-white group-hover:text-primary"
+                      className="text-2xl font-md text-white group-hover:text-primary"
                       href={route.href}
                     >
                       {route.title}
@@ -48,7 +48,7 @@ function Navbar() {
                   </Button>
                 ) : (
                   <span
-                    className="text-2xl font-light hover:text-white cursor-pointer select-none"
+                    className="text-2xl font-md hover:text-primary cursor-pointer select-none"
                     key={route.href}
                     onClick={() => {
                       scrollIntoView(route.href);
@@ -66,7 +66,7 @@ function Navbar() {
   }
 
   return (
-    <header className="px-4 lg:px-6 h-14 flex items-center max-w-screen-xl mx-auto w-full text-primary py-10 sticky top-0 backdrop-blur-sm z-50">
+    <header className="px-4 lg:px-6 h-14 flex items-center max-w-screen-xl mx-auto w-full text-primary py-10 sticky top-0 z-50">
       <Logo/>
       <nav className="ml-auto flex gap-4 sm:gap-6 items-center">
         {headerRoutes.map((route) =>

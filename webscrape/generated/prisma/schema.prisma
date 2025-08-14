@@ -17,12 +17,13 @@ model WorkFlow {
   name        String
   description String
 
-  definition String
+  definition    String
   executionPlan String?
-  creditsCost Int @default(0)
+  creditsCost   Int     @default(0)
 
-  status     String
   cron String?
+
+  status String
 
   lastRunAt     DateTime?
   lastRunId     String?
@@ -69,33 +70,43 @@ model ExecutionPhase {
 
   creditsConsumed     Int?
   workflowExecutionId String
-
   execution           WorkflowExectution @relation(fields: [workflowExecutionId], references: [id], onDelete: Cascade)
-  logs               ExecutionLog[]
+
+  logs ExecutionLog[]
 }
 
 model ExecutionLog {
-  id               String   @id @default(cuid())
-  logLevel         String
-  message          String
-  timestamp        DateTime @default(now())
+  id        String   @id @default(cuid())
+  logLevel  String
+  message   String
+  timestamp DateTime @default(now())
 
   executionPhaseId String
-  executionPhase ExecutionPhase @relation(fields: [executionPhaseId], references: [id], onDelete: Cascade)
+  executionPhase   ExecutionPhase @relation(fields: [executionPhaseId], references: [id], onDelete: Cascade)
 }
 
 model UserBalance {
-  userId String @id
-  credits Int @default(0)
+  userId  String @id
+  credits Int    @default(0)
 }
 
 model Credential {
-  id String @id @default(cuid())
+  id     String @id @default(cuid())
   userId String
-  name String
-  value String
+  name   String
+  value  String
 
   createdAt DateTime @default(now())
 
   @@unique([name, userId], name: "userId_name")
+}
+
+model UserPurchase {
+  id          String   @id @default(cuid())
+  userId      String
+  stripeId    String
+  description String
+  amount      Int
+  currency    String
+  date        DateTime @default(now())
 }

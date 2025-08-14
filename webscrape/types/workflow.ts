@@ -15,6 +15,14 @@ export type Period = {
   month: number;
 };
 
+export type WorkflowExecutionType = Record<
+  string,
+  {
+    success: number;
+    failed: number;
+  }
+>;
+
 export type WorkflowTask = {
   label: string;
   icon: FC<LucideProps>;

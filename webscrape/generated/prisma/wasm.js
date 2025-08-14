@@ -184,6 +184,16 @@ exports.Prisma.CredentialScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.UserPurchaseScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  stripeId: 'stripeId',
+  description: 'description',
+  amount: 'amount',
+  currency: 'currency',
+  date: 'date'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -201,7 +211,8 @@ exports.Prisma.ModelName = {
   ExecutionPhase: 'ExecutionPhase',
   ExecutionLog: 'ExecutionLog',
   UserBalance: 'UserBalance',
-  Credential: 'Credential'
+  Credential: 'Credential',
+  UserPurchase: 'UserPurchase'
 };
 
 /**

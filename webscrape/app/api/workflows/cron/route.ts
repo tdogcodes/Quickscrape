@@ -18,7 +18,7 @@ export const GET = async (req: Request) => {
     triggerWorkflow(workflow.id);
   }
 
-  return Response.json({WorkflowsToRun: workflows.length}, { status: 200 });
+  return Response.json({ WorkflowsToRun: workflows.length }, { status: 200 });
 };
 
 function triggerWorkflow(workflowId: string) {
@@ -30,7 +30,7 @@ function triggerWorkflow(workflowId: string) {
   fetch(triggerApiUrl, {
     cache: "no-store",
     headers: {
-      authorization: `Bearer ${process.env.API_SECRET}`
+      authorization: `Bearer ${process.env.API_SECRET}`,
     },
   }).catch((error) => {
     console.error(`Failed to trigger workflow ${workflowId}: Error: ${error}`);

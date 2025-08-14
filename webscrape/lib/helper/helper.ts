@@ -1,6 +1,7 @@
-import { intervalToDuration } from "date-fns";
+import { endOfMonth, intervalToDuration, startOfMonth } from "date-fns";
 import { AppNode } from "@/types/app-node";
 import { TaskRegistry } from "../workflow/task/registry";
+import { Period } from "@/types/workflow";
 
 export function DatesToDurationString(
   end: Date | null | undefined,
@@ -44,4 +45,11 @@ export function GetAppUrl(path: string): string {
   const appUrl = process.env.NEXT_PUBLIC_APP_URL;
 
   return `${appUrl}/${path}`;
+}
+
+export function periodToDateRange(period: Period) {
+  const startDate = startOfMonth(new Date(period.year, period.month));
+  const endDate = endOfMonth(new Date(period.year, period.month));
+
+  return { startDate, endDate };
 }
