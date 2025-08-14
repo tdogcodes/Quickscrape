@@ -54,4 +54,3 @@ const ExecutionViewerWrapper = async ({
 };
 
 export default ExecutionViewerPage;
-export { ExecutionViewerWrapper };

@@ -10,5 +10,9 @@ export default async function Page() {
     return <LandingPage />;
   }
 
-  return <DashboardLayout children={<HomePage searchParams={{}}/>}/>;
+  return (
+    <DashboardLayout>
+      <HomePage searchParams={{}} />
+    </DashboardLayout>
+  );
 }
