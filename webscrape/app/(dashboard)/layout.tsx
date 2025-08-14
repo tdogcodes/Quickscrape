@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import BreadcrumbHeader from '@/components/breadcrumb-header'
 import DesktopSidebar from '@/components/desktop-sidebar'
 import { ModeToggle } from '@/components/theme-toggle'
