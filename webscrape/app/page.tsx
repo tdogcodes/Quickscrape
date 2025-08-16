@@ -3,6 +3,8 @@ import LandingPage from "./(home-landing)/page";
 import DashboardLayout from "./(dashboard)/layout";
 import HomePage from "./(dashboard)/home/page";
 
+export const revalidate = 0; // disables static generation
+
 export default async function Page() {
   const { userId } = await auth();
 
