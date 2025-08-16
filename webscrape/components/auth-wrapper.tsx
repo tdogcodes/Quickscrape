@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { auth } from "@clerk/nextjs/server";
 import LandingPage from "@/app/(landing-page)/page";
 import DashboardLayout from "@/app/(dashboard)/layout";
