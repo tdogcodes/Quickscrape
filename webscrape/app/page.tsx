@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 
 import LandingPage from "./(home-landing)/page";
 import { currentUser } from "@clerk/nextjs/server";
