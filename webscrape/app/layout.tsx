@@ -1,3 +1,4 @@
+// app/layout.tsx — RootLayout
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -12,25 +13,22 @@ export const metadata: Metadata = {
   description: "Web Automation Made Easy",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider
-    afterSignOutUrl={"/"}
-    appearance={{
-      elements: {
-        formButtonPrimary: "bg-primary hover:bg-primary/70 text-sm !shadow-none",
-      }
-    }}>
+      afterSignOutUrl={"/"}
+      appearance={{
+        elements: {
+          formButtonPrimary: "bg-primary hover:bg-primary/70 text-sm !shadow-none",
+        },
+      }}
+    >
       <html lang="en">
         <body className={inter.className}>
           <AppProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
           </AppProvider>
-          <Toaster richColors/>
+          <Toaster richColors />
         </body>
       </html>
     </ClerkProvider>
