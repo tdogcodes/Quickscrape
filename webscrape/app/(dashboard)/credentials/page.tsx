@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import CreateCredentialDialog from "@/app/(dashboard)/credentials/_components/create-credential-dialog";
 import { GetCredentialsForUser } from "@/actions/credentials/get-credentials-for-user";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
