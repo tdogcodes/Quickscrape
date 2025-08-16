@@ -1,4 +1,6 @@
 "use client";
+export const dynamic = "force-dynamic";
+
 import { TypewriterEffectSmooth } from "./_components/type-writer-effect";
 import { Button } from "@/components/ui/button";
 import { pricingPlans, typeWriterWords } from "@/lib/data";

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import LandingPage from "./(home-landing)/page";
 import { currentUser } from "@clerk/nextjs/server";
 import DashboardLayout from "./(dashboard)/layout";
@@ -10,5 +12,9 @@ export default async function Page() {
     return <LandingPage />;
   }
 
-  return <DashboardLayout children={<HomePage searchParams={{}}/>}/>;
+  return (
+    <DashboardLayout>
+      <HomePage searchParams={{}} />
+    </DashboardLayout>
+  );
 }

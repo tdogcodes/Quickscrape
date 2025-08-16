@@ -4,14 +4,14 @@ import { Loader } from "lucide-react";
 import { Suspense } from "react";
 import ExecutionViewer from "./_components/execution-viewer";
 
-const ExecutionViewerPage = ({
+export default function ExecutionViewerPage({
   params,
 }: {
   params: {
     workflowId: string;
     executionId: string;
   };
-}) => {
+}) {
   return (
     <div className="flex flex-col h-screen w-full overflow-hidden">
       <Topbar
@@ -33,7 +33,7 @@ const ExecutionViewerPage = ({
       </section>
     </div>
   );
-};
+}
 
 const ExecutionViewerWrapper = async ({
   executionId,
@@ -52,6 +52,3 @@ const ExecutionViewerWrapper = async ({
 
   return <ExecutionViewer initialData={workflowExecution} />;
 };
-
-export default ExecutionViewerPage;
-export { ExecutionViewerWrapper };

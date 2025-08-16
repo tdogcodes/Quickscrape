@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"
+
 import { getPeriods, getStatsCardsValue, getWorkflowExecutionsStats, getCreditsUsageInPeriod } from "@/actions/workflows/analytics";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Period } from "@/types/workflow";
