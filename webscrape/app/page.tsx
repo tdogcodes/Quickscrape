@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import { auth } from "@clerk/nextjs/server";
-import LandingPage from "./(home-landing)/page";
+import LandingPage from "./quickscrape/page";
 import DashboardLayout from "./(dashboard)/layout";
 import HomePage from "./(dashboard)/home/page";
 
