@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { ExecuteWorkflow } from "@/lib/workflow/execute-workflow";
 import { TaskRegistry } from "@/lib/workflow/task/registry";
 import {
