@@ -9,17 +9,27 @@ const isPublicRoute = createRouteMatcher([
 ]);
 
 export default clerkMiddleware(async (auth, request) => {
-  if (!isPublicRoute(request)) {
-    await auth().protect();
+  try {
+    if (!isPublicRoute(request)) {
+      // Instead of await auth().protect() which can throw, use requireAuth() which returns NextResponse if unauthenticated
+      await auth().requireAuth?.();
+    }
+  } catch (err) {
+    console.error("Middleware error:", err);
+    // Return a redirect to the landing page instead of letting it throw
+    return new Response(null, {
+      status: 302,
+      headers: {
+        Location: "/",
+      },
+    });
   }
 });
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-    // Always run for API routes
     "/(api|trpc)(.*)",
   ],
-  runtime: "nodejs", // <-- forces Node runtime instead of Edge
+  runtime: "nodejs", // forces Node.js runtime instead of Edge
 };
