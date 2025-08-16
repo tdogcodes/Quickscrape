@@ -8,7 +8,6 @@ import { Suspense } from "react";
 import ExecutionStatusChart from "./_components/execution-status-chart";
 import PeriodSelector from "./_components/period-selector";
 import StatsCard from "./_components/stat-card";
-import CreditUsageChart from "../billing/_components/credit-useage-chart";
 
 
 function Homepage({
@@ -91,11 +90,7 @@ async function CreditsUsageInPeriod({ period }: { period: Period }) {
   const data = await getCreditsUsageInPeriod(period);
 
   return (
-    <CreditUsageChart
-      data={data}
-      title="Daily credits spent"
-      description="Daily credits consumed in selected period"
-    />
+    <div></div>
   );
 }
 
