@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import BreadcrumbHeader from '@/components/breadcrumb-header'
 import DesktopSidebar from '@/components/desktop-sidebar'
 import { ModeToggle } from '@/components/theme-toggle'
