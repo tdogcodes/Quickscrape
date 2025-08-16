@@ -14,12 +14,6 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { userId } = await auth();
-
-  // redirect logged-out users back to landing
-  if (!userId) {
-    redirect("/");
-  }
 
   return (
     <div className="flex h-screen">
