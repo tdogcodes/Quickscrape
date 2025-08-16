@@ -4,8 +4,6 @@ import { ModeToggle } from "@/components/theme-toggle";
 import { Separator } from "@/components/ui/separator";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 
-export const dynamic = "force-dynamic"; 
-
 export default async function DashboardLayout({
   children,
 }: {
