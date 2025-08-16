@@ -1,6 +1,3 @@
-// app/(dashboard)/layout.tsx
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
 import DesktopSidebar from "@/components/desktop-sidebar";
 import BreadcrumbHeader from "@/components/breadcrumb-header";
 import { ModeToggle } from "@/components/theme-toggle";
