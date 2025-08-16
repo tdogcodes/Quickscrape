@@ -11,12 +11,13 @@ const isPublicRoute = createRouteMatcher([
 export default clerkMiddleware(async (auth, request) => {
   try {
     if (!isPublicRoute(request)) {
-      // Instead of await auth().protect() which can throw, use requireAuth() which returns NextResponse if unauthenticated
-      await auth().requireAuth?.();
+      // Use protect(), but catch errors to avoid 500
+      await auth().protect(); 
     }
   } catch (err) {
-    console.error("Middleware error:", err);
-    // Return a redirect to the landing page instead of letting it throw
+    console.error("Middleware auth error:", err);
+
+    // Redirect unauthenticated users to landing page
     return new Response(null, {
       status: 302,
       headers: {
