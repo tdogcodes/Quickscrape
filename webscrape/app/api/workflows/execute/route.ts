@@ -8,7 +8,6 @@ import {
   WorkflowExecutionStatus,
   WorkflowExecutionTrigger,
 } from "@/types/workflow";
-import { timingSafeEqual } from "crypto";
 import parser from "cron-parser";
 import prisma from "@/lib/prisma";
 
@@ -20,7 +19,7 @@ function isValidSecret(secret: string) {
   }
 
   try {
-    return timingSafeEqual(Buffer.from(secret), Buffer.from(API_SECRET));
+    return API_SECRET === secret;
   } catch (error) {
     return false;
   }
