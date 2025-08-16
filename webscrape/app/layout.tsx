@@ -5,7 +5,6 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import AppProvider from "@/components/providers/app-providers";
 import { Toaster } from "sonner";
-import AuthWrapper from "@/components/auth-wrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <html lang="en">
         <body className={inter.className}>
           <AppProvider attribute="class" defaultTheme="system" enableSystem>
-            <AuthWrapper>{children}</AuthWrapper>
+            {children}
           </AppProvider>
           <Toaster richColors />
         </body>
